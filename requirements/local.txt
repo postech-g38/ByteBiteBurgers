@@ -1,0 +1,8 @@
+-r common.txt
+
+pytest==7.4.2
+pytest-mock==3.11.1
+pytest-env==1.0.1
+
+ipdb==0.13.13
+freezegun==1.2.2
