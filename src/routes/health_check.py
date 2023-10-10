@@ -3,7 +3,7 @@ from typing import Any
 from fastapi import APIRouter, Depends
 
 from src.schemas.health_check_schema import HealthCheckResponse
-from src.adapters.repositories import EntityRepository
+# from src.adapters.repositories import EntityRepository
 
 
 router = APIRouter()
@@ -15,9 +15,10 @@ router = APIRouter()
     status_code=200,tags=['Health Check'], 
     description='Is API alive ?'
     )
-def health_check(repository: EntityRepository = Depends()) -> dict[str, Any]:
+def health_check() -> dict[str, Any]:
+    # repository: EntityRepository = Depends()
     payload = {
         'status': 'alive',
         'message': 'hello world'
     }
-    return HealthCheckResponse(payload)
+    return HealthCheckResponse.model_validate(payload)
