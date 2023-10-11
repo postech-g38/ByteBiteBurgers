@@ -2,7 +2,7 @@ from fastapi import Depends
 from sqlalchemy.orm.session import Session
 
 from src.adapters.database import get_database_session
-from .user_repository import UsuarioRepositorio
+from src.adapters.repositories.user_repository import UsuarioRepositorio
 
 
 class EntityRepository:

@@ -4,7 +4,7 @@ from sqlalchemy import Select, asc, delete, desc, func, update
 from sqlalchemy.future import select
 from sqlalchemy.orm import Session
 
-from src.adapters.database.models import EntityModel
+from src.adapters.database.models.entity_model import EntityModel
 
 
 class SQLAlchemyRepository:

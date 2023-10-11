@@ -1,5 +1,6 @@
 # Python 3.11 Lightweight Base Image
 FROM python:3.11.4-alpine3.18
+# use apk to install packages
 
 # App Directory
 ENV SERVICE_HOME=/app

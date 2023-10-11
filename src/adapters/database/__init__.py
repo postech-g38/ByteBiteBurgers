@@ -1,4 +1,4 @@
-from .settings import get_session
+from src.adapters.database.settings import get_session
 
 
 def get_database_session():

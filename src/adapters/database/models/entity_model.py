@@ -2,7 +2,7 @@ from datetime import datetime
 
 from sqlalchemy.orm import Mapped, mapped_column
 
-from . import BaseModel
+from src.adapters.database.models.base_model import BaseModel
 
 
 class EntityModel(BaseModel):

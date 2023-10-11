@@ -5,7 +5,7 @@ from sqlalchemy.future import select
 from sqlalchemy.orm import Session
 
 from src.adapters.repositories.sqlalchemy_repository import SQLAlchemyRepository
-from src.adapters.database.models import UsuarioModel
+from src.adapters.database.models.usuario_model import UsuarioModel
 
 
 class UsuarioRepositorio(SQLAlchemyRepository):

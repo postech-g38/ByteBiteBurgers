@@ -1,8 +1,7 @@
-from typing import Any
 import uuid
 
 from src.adapters.repositories import EntityRepository
-from src.adapters.database.models import UsuarioModel
+from src.adapters.database.models.usuario_model import UsuarioModel
 from src.schemas.user_schema import CreateUserPayload, ResponseUserPayload, UpdateUserPayload
 
 

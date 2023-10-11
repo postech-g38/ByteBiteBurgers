@@ -13,11 +13,11 @@ class ApplicationSettings(BaseSettings):
 
 
 class DatabaseSettings(BaseSettings):
-    database_username: str
-    database_password: str
-    database_host: str
-    database_port: int
-    database_name: str
+    database_username: str = Field('postgres')
+    database_password: str = Field('postgres')
+    database_host: str = Field('localhost')
+    database_port: int = Field(5432)
+    database_name: str = Field('postgres')
 
 
 class GeneralSettings():

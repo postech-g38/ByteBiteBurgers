@@ -3,7 +3,6 @@ from typing import Any
 from fastapi import APIRouter, Depends
 
 from src.schemas.health_check_schema import HealthCheckResponse
-# from src.adapters.repositories import EntityRepository
 
 
 router = APIRouter()
