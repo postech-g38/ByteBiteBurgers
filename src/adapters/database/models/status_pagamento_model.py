@@ -1,10 +1,12 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-Base = declarative_base()
+from .entity_model import EntityModel
 
-class StatusPagamentoModel(Base):
+
+class StatusPagamentoModel(EntityModel):
     __tablename__ = 'status_pagamento'
-    id = Column(Integer, primary_key=True)
+
+    id: Mapped[int] = mapped_column(primary_key=True, nullable=False, index=True)
     nome = Column(String)

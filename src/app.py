@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from src.settings import get_settings
-from src.routes import health_check_router
+from src.routes import health_check_router, v1_router
 
 
 def create_app() -> FastAPI:
@@ -10,6 +10,7 @@ def create_app() -> FastAPI:
         debug=get_settings().app_settings.debug,
     )
     _app.include_router(health_check_router)
+    _app.include_router(v1_router)
     return _app
 
 

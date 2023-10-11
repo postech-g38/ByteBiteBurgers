@@ -1,14 +1,15 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-Base = declarative_base()
+from .entity_model import EntityModel
 
-class UsuarioModel(Base):
+class UsuarioModel(EntityModel):
     __tablename__ = 'usuarios'
-    id = Column(Integer, primary_key=True)
-    nome = Column(String)
-    senha = Column(String)
-    cpf = Column(String)
-    tipo_id = Column(Integer, ForeignKey('tipo_usuario.id'))
+
+    id: Mapped[int] = mapped_column(primary_key=True, nullable=False, index=True)
+    nome: Mapped[str]
+    senha: Mapped[str]
+    cpf: Mapped[str]
+    tipo_id: Mapped[int] = mapped_column(ForeignKey('tipo_usuario.id'))
     tipo = relationship('TipoUsuarioModel')

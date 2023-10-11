@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  fast-api-service:
+    environment:
+      DATABASE_HOST: database-service
+      DATABASE_PORT: 5433
+      
+  database-service:
+    container_name: database-service
+    image: 15.4-alpine3.17
+    ports:
+      - 5433: 5432
