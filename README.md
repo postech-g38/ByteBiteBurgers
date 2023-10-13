@@ -49,3 +49,61 @@ double CTRL + C
 - Devemos ter um banco postgres local instalado na maquina, podemos usar o docker compose pra isso tambem ou podemos usar o SQL Lite que funciona emmemoria
 
 - A app sobe mas esta quebrando, temos q terminar de arrumar o endpoint de criar usuario
+
+## Carga Inicial
+
+### Categorias
+
+categorias = [
+    {
+        "id": 1,
+        "nome": "Lanche"
+    }, {
+        "id": 2,
+        "nome": "Acompanhamento"
+    }, {
+        "id": 3,
+        "nome": "Bebida"
+    }, {
+        "id": 4,
+        "nome": "Sobremesa"
+    }
+]
+
+### Produtos
+
+produtos = [
+    {
+        "id": 1,
+        "nome": "X-Burger",
+        "categoria": "Lanche"
+    }, {
+        "id": 2,
+        "nome": "X-Egg-Burger",
+        "categoria": "Lanche"
+    }, {
+        "id": 3,
+        "nome": "Batata Média",
+        "categoria": "Acompanhamento"
+    }, {
+        "id": 4,
+        "nome": "Batata Grande",
+        "categoria": "Acompanhamento"
+    }, {
+        "id": 5,
+        "nome": "Refrigerante",
+        "categoria": "Bebida"
+    }, {
+        "id": 6,
+        "nome": "Suco",
+        "categoria": "Bebida"
+    }, {
+        "id": 7,
+        "nome": "Sorvete",
+        "categoria": "Sobremesa"
+    }, {
+        "id": 8,
+        "nome": "Cookies",
+        "categoria": "Sobremesa"
+    }
+]

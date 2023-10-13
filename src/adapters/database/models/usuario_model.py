@@ -5,11 +5,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.adapters.database.models.entity_model import EntityModel
 
 class UsuarioModel(EntityModel):
-    __tablename__ = 'usuarios'
+    __tablename__ = 'usuario'
 
-    id: Mapped[int] = mapped_column(primary_key=True, nullable=False, index=True)
     nome: Mapped[str]
     senha: Mapped[str]
     cpf: Mapped[str]
-    tipo_id: Mapped[int] = mapped_column(ForeignKey('tipo_usuario.id'))
-    tipo = relationship('TipoUsuarioModel')
+    tipo: Mapped[str]  # admin, cliente

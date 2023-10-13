@@ -39,20 +39,20 @@ SyncSessionLocal = sessionmaker(
 
 
 @contextmanager
-async def get_session() -> Session:
+def get_session() -> Session:
     _sync_scoped_session: scoped_session = scoped_session(session_factory=SyncSessionLocal)
     try:
         yield _sync_scoped_session()
-        await _sync_scoped_session.commit()
+        _sync_scoped_session.commit()
     except Exception as ex:
-        await _sync_scoped_session.rollback()
+        _sync_scoped_session.rollback()
         raise
     finally:
-        await _sync_scoped_session.remove()
+        _sync_scoped_session.remove()
 
 
 @contextmanager
-async def get_connection():
-    async with sync_engine.connect() as connection:
-        async with connection.begin():
+def get_connection():
+    with sync_engine.connect() as connection:
+        with connection.begin():
             yield connection

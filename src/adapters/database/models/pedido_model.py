@@ -8,7 +8,7 @@ from src.adapters.database.models.entity_model import EntityModel
 
 
 class PedidoModel(EntityModel):
-    __tablename__ = 'pedidos'
+    __tablename__ = 'pedido'
 
     id: Mapped[int] = mapped_column(primary_key=True, nullable=False, index=True)
     status_id: Mapped[int] = mapped_column(ForeignKey('status_pedido.id'))

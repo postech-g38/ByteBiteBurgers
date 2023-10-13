@@ -5,9 +5,8 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.adapters.database.models.entity_model import EntityModel
 
 
-class TipoUsuarioModel(EntityModel):
-    __tablename__ = 'tipo_usuario'
+class CategoriaModel(EntityModel):
+    __tablename__ = 'categoria'
 
-    id: Mapped[int] = mapped_column(primary_key=True, nullable=False, index=True)
     nome: Mapped[str]
     
