@@ -44,6 +44,18 @@ uvicorn src.app:app --reload --port 8000
 double CTRL + C
 ```
 
+### Build Databse Tables and EDR
+```bash
+python tests/manage_database.py
+```
+Aqui temos 3 funçoes, create, destroy e load. Basta troca a funçao embaixo do __name__
+
+### Running Tests
+```bash
+pytests -s -vvv
+```
+
+
 ## DISCLAIMER
 
 - Devemos ter um banco postgres local instalado na maquina, podemos usar o docker compose pra isso tambem ou podemos usar o SQL Lite que funciona emmemoria

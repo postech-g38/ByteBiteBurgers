@@ -19,6 +19,7 @@ class UpdateUsuarioPayload(CreateUsuarioPayload):
 class ResponseUsuarioPayload(CreateUsuarioPayload):
     class Config:
         from_orm = True
+        
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime

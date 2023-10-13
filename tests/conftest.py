@@ -1,12 +1,24 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from src.app import run_app
+from src.app import app
+from src.adapters.database.settings import sync_engine
+from src.adapters.database.models.base_model import BaseModel
 
 
 @pytest.fixture(scope='session')
 def sync_client():
-    return TestClient(
-        app=run_app(),
-        base_url='localhost:8000'
-        )
+    with TestClient(
+        app=app,
+        base_url='http://localhost:8000',
+        headers={'Content-Type': 'application/json'}
+    ) as _client:
+        yield _client
+
+
+@pytest.fixture(scope='function')
+def create_database():
+    """Clear data first, ensure tables are empty, create, and after store values on db to check"""
+    BaseModel.metadata.drop_all(bind=sync_engine)
+    BaseModel.metadata.create_all(bind=sync_engine)
+   
