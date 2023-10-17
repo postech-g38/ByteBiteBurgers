@@ -15,7 +15,11 @@ class UsuarioService:
         print("###########################")
         print("Resultados: " + str(len(rows)))
         print("###########################")
-        return [ResponseUsuarioPayload.model_validate(row._asdict()) for row in rows]
+        print(rows)
+        if rows:
+           rows, = rows[0]
+      #   [(<src.adapters.database.models.usuario_model.UsuarioModel object at 0x00000290A0A76290>,)]
+        return ResponseUsuarioPayload.model_validate(rows.__dict__)
     
      def get(self, id: int) -> ResponseUsuarioPayload:
         row = self.repository.usuario.search_by_id(model_id=id)
