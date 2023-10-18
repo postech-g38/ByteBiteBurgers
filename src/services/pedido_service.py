@@ -32,3 +32,4 @@ class PedidoService:
         self.repository.pedido.delete(model_id=data.id, values=dict(data))
         row = self.repository.pedido.delete(model_id=data.id)
         return ResponsePedidoPayload.model_validate(row).model_dump_json()
+    

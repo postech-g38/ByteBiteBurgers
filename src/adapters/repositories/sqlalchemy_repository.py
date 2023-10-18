@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from src.adapters.database.models.entity_model import EntityModel
 
 
-class SQLAlchemyRepository:
+class SQLAlchemyRepository(DatabaseRepository):
      def __init__(self, session) -> None:
         self.session_db = session
         self.entity_model = EntityModel
