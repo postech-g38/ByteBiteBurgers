@@ -11,10 +11,12 @@ class PedidoModel(EntityModel):
     __tablename__ = 'pedido'
 
     id: Mapped[int] = mapped_column(primary_key=True, nullable=False, index=True)
-    status_id: Mapped[int] = mapped_column(ForeignKey('status_pedido.id'))
+    # status_id: Mapped[int] = mapped_column(ForeignKey('status_pedido.id'))
     data_mudanca_status: Mapped[datetime]
     valor: Mapped[float]
-    status_pedido_id = mapped_column(Integer, ForeignKey('status_pagamento.id'))
-    status = relationship('StatusPedidoModel')
-    status_pagamento = relationship('StatusPagamentoModel')
+    status_pedido: Mapped[str]
+    status_pagamento: Mapped[str]
+    # status_pedido_id = mapped_column(Integer, ForeignKey('status_pagamento.id'))
+    # status = relationship('StatusPedidoModel')
+    # status_pagamento = relationship('StatusPagamentoModel')
     

@@ -7,8 +7,8 @@ class CreateUsuarioPayload(BaseModel):
     id: int
     nome: str
     senha: str
-    cpf: str
-    tipo: str
+    cpf: str | None
+    tipo: int
 
 
 class UpdateUsuarioPayload(CreateUsuarioPayload):
@@ -21,5 +21,5 @@ class ResponseUsuarioPayload(CreateUsuarioPayload):
         from_orm = True
         
     created_at: datetime
-    updated_at: datetime
-    deleted_at: datetime
+    updated_at: datetime | None
+    deleted_at: datetime | None

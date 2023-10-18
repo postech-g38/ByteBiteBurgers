@@ -9,5 +9,5 @@ class UsuarioModel(EntityModel):
 
     nome: Mapped[str]
     senha: Mapped[str]
-    cpf: Mapped[str]
-    tipo: Mapped[str]  # admin, cliente
+    cpf: Mapped[str | None]
+    tipo: Mapped[int]  # admin, cliente
