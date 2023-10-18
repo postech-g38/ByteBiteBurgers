@@ -7,7 +7,8 @@ from src.adapters.database.models.entity_model import EntityModel
 class UsuarioModel(EntityModel):
     __tablename__ = 'usuario'
 
-    nome: Mapped[str]
+    nome:  Mapped[str]
     senha: Mapped[str]
-    cpf: Mapped[str | None]
-    tipo: Mapped[int]  # admin, cliente
+    cpf:   Mapped[str | None]
+    tipo:  Mapped[str]  # admin, cliente
+    

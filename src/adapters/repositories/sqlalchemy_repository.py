@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from src.adapters.database.models.entity_model import EntityModel
 
 
-class SQLAlchemyRepository(DatabaseRepository):
+class SQLAlchemyRepository:
      def __init__(self, session) -> None:
         self.session_db = session
         self.entity_model = EntityModel
@@ -29,7 +29,9 @@ class SQLAlchemyRepository(DatabaseRepository):
         """
         statement = select(self.entity_model).where(self.entity_model.id == model_id)
         results = self.session_db.execute(statement=statement)
-        (result,) = results.one_or_none()
+        result = results.one_or_none()
+        if result:
+            (result,) = result
         return result
 
      def save(self, model) -> EntityModel:

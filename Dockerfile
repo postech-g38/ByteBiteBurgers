@@ -34,5 +34,5 @@ USER app_user
 
 EXPOSE 8000
 
-ENTRYPOINT [ "python3", "src/main.py" ]
-# ENTRYPOINT [ "python3", "-m", "uvicorn" ]
+# ENTRYPOINT [ "python3", "src/main.py" ]
+ENTRYPOINT [ "uvicorn", "src.app:app", "--port", "8000" ]

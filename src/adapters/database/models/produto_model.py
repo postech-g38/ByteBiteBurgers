@@ -12,5 +12,5 @@ class ProdutoModel(EntityModel):
     nome: Mapped[str]
     preco: Mapped[float]
     imagens: Mapped[str]
-    categoria = relationship('CategoriaModel')
+    # categoria = relationship('CategoriaModel')
     
