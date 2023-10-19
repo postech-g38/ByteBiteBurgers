@@ -7,36 +7,45 @@ from src.schemas.usuario_schema import CreateUsuarioPayload, ResponseUsuarioPayl
 
 
 class UsuarioService:
-     def __init__(self, repository: EntityRepository) -> None:
+    def __init__(self, repository: EntityRepository) -> None:
         self.repository = repository
     
-     def get_all(self) -> List[ResponseUsuarioPayload]:
+    def get_all(self) -> List[ResponseUsuarioPayload]:
         rows = self.repository.usuario.get_all()
-        print("###########################")
-        print("Resultados: " + str(len(rows)))
-        print("###########################")
         print(rows)
-        if rows:
-           rows, = rows[0]
-      #   [(<src.adapters.database.models.usuario_model.UsuarioModel object at 0x00000290A0A76290>,)]
-        return ResponseUsuarioPayload.model_validate(rows.__dict__)
-    
-     def get(self, id: int) -> ResponseUsuarioPayload:
+        if not rows:
+            return {
+                'items': [],
+                'quantidade': 0
+            }
+        
+        rows = [i.__dict__ for (i, )in rows]
+        [i.pop('_sa_instance_state') for i in rows]
+      
+        return {
+            'items': rows,
+            'quantidade': len(rows)
+        }
+     
+    def get(self, id: int) -> dict | None:
         row = self.repository.usuario.search_by_id(model_id=id)
-        return ResponseUsuarioPayload.model_validate(row).model_dump_json()
+        if not row:
+            return None
+        return row.__dict__
+        # ResponseUsuarioPayload.model_validate(row).model_dump_json()
     
-     def create(self, data: CreateUsuarioPayload) -> ResponseUsuarioPayload:
+    def create(self, data: CreateUsuarioPayload) -> ResponseUsuarioPayload:
         row = UsuarioModel(**dict(data))
         row.id = uuid.uuid4().hex
         self.repository.user.save(model=row)
         return ResponseUsuarioPayload.model_validate(row).model_dump_json()
 
-     def update(self, data: UpdateUsuarioPayload) -> ResponseUsuarioPayload:
+    def update(self, data: UpdateUsuarioPayload) -> ResponseUsuarioPayload:
         self.repository.usuario.update(model_id=data.id, values=dict(data))
         row = self.repository.usuario.search_by_id(model_id=data.id)
         return ResponseUsuarioPayload.model_validate(row).model_dump_json()
 
-     def delete(self, id: int) -> ResponseUsuarioPayload:
+    def delete(self, id: int) -> ResponseUsuarioPayload:
         self.repository.usuario.delete(model_id=id)
         row = self.repository.usuario.delete(model_id=id)
         return ResponseUsuarioPayload.model_validate(row).model_dump_json()

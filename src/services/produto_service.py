@@ -32,3 +32,4 @@ class ProdutoService:
         self.repository.produto.delete(model_id=data.id, values=dict(data))
         row = self.repository.produto.delete(model_id=data.id)
         return ResponseProdutoPayload.model_validate(row).model_dump_json()
+    

@@ -17,9 +17,11 @@ class UpdateUsuarioPayload(CreateUsuarioPayload):
 
 
 class ResponseUsuarioPayload(CreateUsuarioPayload):
-    class Config:
-        from_orm = True
-        
     created_at: datetime
     updated_at: datetime | None
     deleted_at: datetime | None
+
+
+class ResponsePagination(BaseModel):
+    items: list[dict] | None
+    quantidade: int

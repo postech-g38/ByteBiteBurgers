@@ -26,10 +26,10 @@ def load_database(database_session, data: list) -> None:
     database_session.add_all(data)
 
 
-if __name__ == '__main__':
+def load_database_mock():
     tables = database_tables()
     # drop_database(tables=tables)
-    create_database(tables=tables)
+    # create_database(tables=tables)
 
     user_values = [
         UsuarioModel(**usuario_model.USUARIO_MODEL_ADMIN_MOCK),
@@ -74,3 +74,5 @@ if __name__ == '__main__':
     
 
 
+if __name__ == '__main__':
+    load_database_mock()

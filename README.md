@@ -44,6 +44,11 @@ uvicorn src.app:app --reload --port 8000
 double CTRL + C
 ```
 
+### Swagger
+```bash
+http://localhost:8000/docs
+```
+
 ### Build Databse Tables and EDR
 ```bash
 python manage_database.py
