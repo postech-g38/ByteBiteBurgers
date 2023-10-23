@@ -11,10 +11,10 @@ router = APIRouter(prefix='/pedido', tags=['Pedido'])
 
 @router.get(
     path='/', 
-    response_model=ResponsePedidoPayload, 
+    # response_model=ResponsePedidoPayload, 
     tags=['Pegar todos os Pedidos']
 )
-def get_all(repository: EntityRepository = Depends()) -> ResponsePedidoPayload:
+def get_all(repository: EntityRepository = Depends()) -> dict:
     service = PedidoService(repository=repository)
     return service.get_all()
 
@@ -24,27 +24,27 @@ def get_all(repository: EntityRepository = Depends()) -> ResponsePedidoPayload:
     response_model=ResponsePedidoPayload, 
     tags=['Pegar Pedido']
 )
-def get(id: int, repository: EntityRepository = Depends()) -> ResponsePedidoPayload:
+def get(id: int, repository: EntityRepository = Depends()) -> dict:
     service = PedidoService(repository=repository)
     return service.get(id=id)
 
 
 @router.post(
-    path='/criar', 
+    path='/', 
     response_model=ResponsePedidoPayload, 
     tags=['Criar Pedido']
 )
-def create(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> ResponsePedidoPayload:
+def create(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
     service = PedidoService(repository=repository)
     return service.create(data=data)
 
 
 @router.put(
-    path='/atualizar', 
+    path='/', 
     response_model=ResponsePedidoPayload, 
     tags=['Atualizar Pedido']
 )
-def update(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> ResponsePedidoPayload:
+def update(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
     service = PedidoService(repository=repository)
     return service.update(data=data)
 
@@ -54,7 +54,7 @@ def update(data: CreatePedidoPayload, repository: EntityRepository = Depends()) 
     response_model=ResponsePedidoPayload, 
     tags=['Deletar Pedido']
 )
-def delete(id: int, repository: EntityRepository = Depends()) -> ResponsePedidoPayload:
+def delete(id: int, repository: EntityRepository = Depends()) -> dict:
     service = PedidoService(repository=repository)
     return service.delete(id=id)
 
@@ -65,6 +65,6 @@ def delete(id: int, repository: EntityRepository = Depends()) -> ResponsePedidoP
     response_model=ResponsePedidoPayload, 
     tags=['Efetuar pagamento do Pedido']
 )
-def create(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> ResponsePedidoPayload:
+def create(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
     service = PedidoService(repository=repository)
     return service.create(data=data)

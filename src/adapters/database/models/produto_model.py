@@ -11,6 +11,6 @@ class ProdutoModel(EntityModel):
     categoria_id: Mapped[int] = mapped_column(ForeignKey('categoria.id'))
     nome: Mapped[str]
     preco: Mapped[float]
-    imagens: Mapped[str]
+    imagens: Mapped[str] = mapped_column(nullable=False)
     # categoria = relationship('CategoriaModel')
     

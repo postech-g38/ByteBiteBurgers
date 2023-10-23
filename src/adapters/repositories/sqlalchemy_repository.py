@@ -45,7 +45,7 @@ class SQLAlchemyRepository:
 
         return model
 
-     def update(self, model_id: int, values: Dict[str, Any]) -> tuple[Any] | None:
+     def update(self, model, values: Dict[str, Any]) -> EntityModel | None:
         """Update BaseModel in database
         :param model_id: ID of the model
         :param values: Dictionary values of the model to be updated
@@ -53,19 +53,20 @@ class SQLAlchemyRepository:
         """
         statement = (
             update(self.entity_model)
-            .where(self.entity_model.id == model_id)
+            .where(self.entity_model.id == model.id)
             .values(**values)
             .execution_options(synchronize_session='fetch')
         )
         self.session_db.execute(statement=statement)
         self.session_db.flush()
-        self.session_db.refresh()
+      #   self.session_db.refresh()
+        return model
 
-     def delete(self, model: Optional[Type[EntityModel]]) -> None:
+     def delete(self, model_id: Optional[Type[EntityModel]]) -> Type[EntityModel] | None:
         """Delete row from database
         :param model: BaseModel to delete
         :return: None
         """
-        statement = delete(self.entity_model).where(self.entity_model.id == model.id)
+        statement = delete(self.entity_model).where(self.entity_model.id == model_id)
         self.session_db.execute(statement=statement)
         self.session_db.flush()

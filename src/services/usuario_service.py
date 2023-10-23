@@ -32,20 +32,17 @@ class UsuarioService:
         if not row:
             return None
         return row.__dict__
-        # ResponseUsuarioPayload.model_validate(row).model_dump_json()
     
-    def create(self, data: CreateUsuarioPayload) -> ResponseUsuarioPayload:
+    def create(self, data: CreateUsuarioPayload) -> dict | None:
         row = UsuarioModel(**dict(data))
-        row.id = uuid.uuid4().hex
-        self.repository.user.save(model=row)
-        return ResponseUsuarioPayload.model_validate(row).model_dump_json()
+        self.repository.usuario.save(model=row)
+        return row
 
-    def update(self, data: UpdateUsuarioPayload) -> ResponseUsuarioPayload:
-        self.repository.usuario.update(model_id=data.id, values=dict(data))
+    def update(self, data: UpdateUsuarioPayload) -> dict | None:
+        self.repository.usuario.update(model=data, values=dict(data))
         row = self.repository.usuario.search_by_id(model_id=data.id)
-        return ResponseUsuarioPayload.model_validate(row).model_dump_json()
+        return row
 
-    def delete(self, id: int) -> ResponseUsuarioPayload:
-        self.repository.usuario.delete(model_id=id)
+    def delete(self, id: int) -> int:
         row = self.repository.usuario.delete(model_id=id)
-        return ResponseUsuarioPayload.model_validate(row).model_dump_json()
+        return id

@@ -11,10 +11,10 @@ router = APIRouter(prefix='/produto', tags=['Produto'])
 
 @router.get(
     path='/', 
-    response_model=ResponseProdutoPayload, 
+    # response_model=ResponseProdutoPayload, 
     tags=['Pegar todos os Produtos']
 )
-def get_all(repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
+def get_all(repository: EntityRepository = Depends()) -> dict:
     service = ProdutoService(repository=repository)
     return service.get_all()
 
@@ -24,36 +24,36 @@ def get_all(repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
     response_model=ResponseProdutoPayload, 
     tags=['Pegar Produto']
 )
-def get(id: int, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
+def get(id: int, repository: EntityRepository = Depends()) -> dict:
     service = ProdutoService(repository=repository)
     return service.get(id=id)
 
 
 @router.post(
-    path='/criar', 
+    path='/', 
     response_model=ResponseProdutoPayload, 
     tags=['Criar Produto']
 )
-def create(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
+def create(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
     service = ProdutoService(repository=repository)
     return service.create(data=data)
 
 
 @router.put(
-    path='/atualizar', 
+    path='/', 
     response_model=ResponseProdutoPayload, 
     tags=['Atualizar Produto']
 )
-def update(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
+def update(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
     service = ProdutoService(repository=repository)
     return service.update(data=data)
 
 
 @router.delete(
     path='/{id}', 
-    response_model=ResponseProdutoPayload, 
+    response_model=int, 
     tags=['Deletar Produto']
 )
-def delete(id: int, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
+def delete(id: int, repository: EntityRepository = Depends()) -> dict:
     service = ProdutoService(repository=repository)
     return service.delete(id=id)

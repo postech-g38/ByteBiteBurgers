@@ -1,4 +1,5 @@
 import uuid
+from typing import List
 
 from src.adapters.repositories import EntityRepository
 from src.adapters.database.models.pedido_model import PedidoModel
@@ -9,27 +10,39 @@ class PedidoService:
     def __init__(self, repository: EntityRepository) -> None:
         self.repository = repository
     
-    def get_all(self) -> ResponsePedidoPayload:
-        row = self.repository.pedido.get_all()
-        return ResponsePedidoPayload.model_validate(row).model_dump_json()
+    def get_all(self) -> List[ResponsePedidoPayload]:
+        rows = self.repository.pedido.get_all()
+        print(rows)
+        if not rows:
+            return {
+                'items': [],
+                'quantidade': 0
+            }
+        
+        rows = [i.__dict__ for (i, )in rows]
+        [i.pop('_sa_instance_state') for i in rows]
+      
+        return {
+            'items': rows,
+            'quantidade': len(rows)
+        }
+     
+    def get(self, id: int) -> dict | None:
+        row = self.repository.pedido.search_by_id(model_id=id)
+        if not row:
+            return None
+        return row.__dict__
     
-    def get(self, pedido_id: int) -> ResponsePedidoPayload:
-        row = self.repository.pedido.search_by_id(model_id=pedido_id)
-        return ResponsePedidoPayload.model_validate(row).model_dump_json()
-    
-    def create(self, data: CreatePedidoPayload) -> ResponsePedidoPayload:
+    def create(self, data: CreatePedidoPayload) -> dict | None:
         row = PedidoModel(**dict(data))
-        row.id = uuid.uuid4().hex
         self.repository.pedido.save(model=row)
-        return ResponsePedidoPayload.model_validate(row).model_dump_json()
+        return row
 
-    def update(self, data: UpdatePedidoPayload) -> ResponsePedidoPayload:
-        self.repository.pedido.update(model_id=data.id, values=dict(data))
+    def update(self, data: UpdatePedidoPayload) -> dict | None:
+        self.repository.pedido.update(model=data, values=dict(data))
         row = self.repository.pedido.search_by_id(model_id=data.id)
-        return ResponsePedidoPayload.model_validate(row).model_dump_json()
+        return row
 
-    def delete(self, data: UpdatePedidoPayload) -> ResponsePedidoPayload:
-        self.repository.pedido.delete(model_id=data.id, values=dict(data))
-        row = self.repository.pedido.delete(model_id=data.id)
-        return ResponsePedidoPayload.model_validate(row).model_dump_json()
-    
+    def delete(self, id: int) -> int:
+        row = self.repository.pedido.delete(model_id=id)
+        return id

@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class CreateUsuarioPayload(BaseModel):
-    id: int
+    id: int | None
     nome: str
     senha: str
     cpf: str | None
@@ -13,11 +13,10 @@ class CreateUsuarioPayload(BaseModel):
 
 class UpdateUsuarioPayload(CreateUsuarioPayload):
     id: int
-    tipo: str
 
 
 class ResponseUsuarioPayload(CreateUsuarioPayload):
-    created_at: datetime
+    created_at: datetime | None
     updated_at: datetime | None
     deleted_at: datetime | None
 

@@ -20,7 +20,7 @@ def get(id: int, repository: EntityRepository = Depends()) -> ResponseCarrinhoPa
 
 
 @router.post(
-    path='/criar', 
+    path='/', 
     response_model=ResponseCarrinhoPayload, 
     tags=['Criar Carrinho']
 )
@@ -30,7 +30,7 @@ def create(data: CreateCarrinhoPayload, repository: EntityRepository = Depends()
 
 
 @router.put(
-    path='/atualizar', 
+    path='/', 
     response_model=ResponseCarrinhoPayload, 
     tags=['Atualizar Carrinho']
 )
