@@ -45,6 +45,7 @@ def create(
 
 @router.put(
     path='/atualizar', 
+    status_code=HTTPStatus.ACCEPTED,
     response_model=ResponseProdutoPayload, 
     tags=['Atualizar Produto']
 )
@@ -58,8 +59,9 @@ def update(
 
 @router.delete(
     path='/{id}', 
+    status_code=HTTPStatus.ACCEPTED,
     response_model=ResponseProdutoPayload, 
     tags=['Deletar Produto']
 )
-def delete(id: int, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
+def delete(id: int | str, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
     return ProdutoService(repository=repository).delete(id=id)

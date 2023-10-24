@@ -9,7 +9,7 @@ class CreateUsuarioPayload(BaseModel):
     nome: str
     senha: str
     cpf: str | None
-    tipo: str = UsuarioTipo.USUARIO
+    tipo: str = UsuarioTipo.USUARIO.value
 
 
 class UpdateUsuarioPayload(CreateUsuarioPayload):

@@ -1,7 +1,4 @@
-import uuid
-from typing import List
-
-from fastapi import HTTPException
+from typing import Any
 
 from src.services.service_base import BaseService
 from src.adapters.repositories import EntityRepository
@@ -25,19 +22,19 @@ class UsuarioService(BaseService):
         row = self.query_result(self.repository.usuario.search_by_id(model_id=id))
         return ResponseUsuarioPayload.model_validate(row).model_dump()
         
-    def create(self, data: CreateUsuarioPayload) -> ResponseUsuarioPayload:
-        row = UsuarioModel(**dict(data))
-        row.id = uuid.uuid4().hex
-        self.repository.user.save(model=row)
-        return ResponseUsuarioPayload.model_validate(row).model_dump_json()
+    def create(self, data: CreateUsuarioPayload) -> dict[str, Any]:
+        row = UsuarioModel(**data.model_dump())
+        self.repository.usuario.save(model=row)
+        self.repository.usuario.model_refresh(model=row)
+        return ResponseUsuarioPayload.model_validate(row).model_dump()
 
     # def update(self, data: UpdateUsuarioPayload) -> ResponseUsuarioPayload:
     #     self.repository.usuario.update(model_id=data.id, values=dict(data))
     #     row = self.repository.usuario.search_by_id(model_id=data.id)
-    #     return ResponseUsuarioPayload.model_validate(row).model_dump_json()
+    #     return ResponseUsuarioPayload.model_validate(row).model_dump()
 
     # def delete(self, id: int) -> ResponseUsuarioPayload:
     #     self.repository.usuario.delete(model_id=id)
     #     row = self.repository.usuario.delete(model_id=id)
-    #     return ResponseUsuarioPayload.model_validate(row).model_dump_json()
+    #     return ResponseUsuarioPayload.model_validate(row).model_dump()
     

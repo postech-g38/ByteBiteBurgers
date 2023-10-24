@@ -33,7 +33,10 @@ def get(id: int | str, repository: EntityRepository = Depends()):
     response_model=ResponseUsuarioPayload, 
     tags=['Criar Usuario']
 )
-def create(data: CreateUsuarioPayload, repository: EntityRepository = Depends()) -> dict:
+def create(
+    data: CreateUsuarioPayload, 
+    repository: EntityRepository = Depends()
+) -> dict[str, Any]:
     service = UsuarioService(repository=repository)
     return service.create(data=data)
 
@@ -43,7 +46,10 @@ def create(data: CreateUsuarioPayload, repository: EntityRepository = Depends())
     response_model=ResponseUsuarioPayload, 
     tags=['Atualizar Usuario']
 )
-def update(data: CreateUsuarioPayload, repository: EntityRepository = Depends()) -> dict:
+def update(
+    data: CreateUsuarioPayload, 
+    repository: EntityRepository = Depends()
+) -> dict[str, Any]:
     service = UsuarioService(repository=repository)
     return service.update(data=data)
 

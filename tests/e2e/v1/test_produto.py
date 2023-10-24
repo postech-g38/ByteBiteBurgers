@@ -83,7 +83,7 @@ def test_produto_service_update_produto_then_return_success(sync_client, create_
     # act
     response = sync_client.put("/v1/produto/atualizar", json=payload)
     # assert
-    assert response.status_code == 200
+    assert response.status_code == 202
     data = response.json()
     assert isinstance(data, dict)
 
@@ -93,13 +93,13 @@ def test_produto_service_update_produto_then_return_error(sync_client, create_da
     pass
 
 
-def test_produto_service_delete_produto_then_return_success(sync_client, create_database):
+def test_produto_service_delete_produto_then_return_success(sync_client, create_database, load_database):
     # arrange
     _id = '1'
     # act
-    response = sync_client.delete(f"v1/produto/{_id}")
+    response = sync_client.delete(f"/v1/produto/{_id}")
     # assert
-    assert response.status_code == 200
+    assert response.status_code == 202
     data = response.json()
     assert isinstance(data, dict)
 

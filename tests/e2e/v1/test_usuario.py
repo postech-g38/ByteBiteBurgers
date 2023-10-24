@@ -53,7 +53,7 @@ def test_usuario_service_create_user_then_return_success(sync_client, create_dat
         'cpf': '91487124007'
     }
     # act
-    response = sync_client.post("v1/usuario/criar", data=payload)
+    response = sync_client.post("/v1/usuario/criar", json=payload)
     # assert
     assert response.status_code == 200
     data = response.json()
