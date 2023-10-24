@@ -35,4 +35,4 @@ USER app_user
 EXPOSE 8000
 
 # ENTRYPOINT [ "python3", "src/main.py" ]
-ENTRYPOINT [ "uvicorn", "src.app:app", "--port", "8000" ]
+ENTRYPOINT ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000"]

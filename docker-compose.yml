@@ -10,4 +10,13 @@ services:
       - 8000:8000
     env_file:
       - .env-dev
-      
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql

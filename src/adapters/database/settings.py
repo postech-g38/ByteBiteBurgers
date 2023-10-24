@@ -13,7 +13,7 @@ from src.settings import  get_settings
 
 _logger = logging.getLogger(__name__)
 
-URI = 'postgresql+psycopg2://postgres:postgres@localhost:5432/postgres'  # uso esta config com postgresql, na doc do alchemy tem os db q ele suporta
+URI = 'postgresql+psycopg2://postgres:postgres@postgres:5432/postgres'  # uso esta config com postgresql, na doc do alchemy tem os db q ele suporta
 
 
 def _create_sync_engine():
