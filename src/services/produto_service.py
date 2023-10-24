@@ -38,3 +38,11 @@ class ProdutoService(BaseService):
         self.repository.produto.delete(row)
         return ResponseProdutoPayload.model_validate(row).model_dump()
     
+    def get_by_categoria(self, categoria: str) -> dict[str, Any]:
+        categoria = categoria.title()
+        rows = self.query_result(self.repository.produto.get_by_categoria(categoria=categoria))
+        rows = [ResponseProdutoPayload.model_validate(i).model_dump() for i in rows]
+        return {
+            'items': rows,
+            'quantidade': len(rows)
+        }

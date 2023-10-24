@@ -21,6 +21,16 @@ def get_all(repository: EntityRepository = Depends()) -> dict:
 
 
 @router.get(
+    path='/categoria', 
+    status_code=HTTPStatus.OK,
+    response_model=ResponsePagination, 
+    tags=['Pegar Produtos por Categoria']
+)
+def get_by_category(categoria:str, repository: EntityRepository = Depends()) -> dict:
+    return ProdutoService(repository=repository).get_by_categoria(categoria=categoria)
+
+
+@router.get(
     path='/{id}',
     status_code=HTTPStatus.OK,
     response_model=ResponseProdutoPayload, 

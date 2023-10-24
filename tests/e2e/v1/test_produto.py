@@ -106,3 +106,14 @@ def test_produto_service_delete_produto_then_return_success(sync_client, create_
 
 def test_produto_service_delete_produto_then_return_success(sync_client, create_database):
     pass
+
+
+@pytest.mark.parametrize('category', ['Lanche', 'Acompanhamento', 'Bebida', 'Sobremesa'])
+def test_produto_service_search_by_category_then_return_success(sync_client, create_database, load_database, category):
+    # arrange
+    # act
+    response = sync_client.get(f"/v1/produto/categoria", params={'categoria': category})
+    # assert
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, dict)
