@@ -8,6 +8,6 @@ services:
       
   database-service:
     container_name: database-service
-    image: 15.4-alpine3.17
+    image: postgres:latest
     ports:
-      - 5433: 5432
+      - "5433:5432"

@@ -61,6 +61,12 @@ pytests -s -vvv
 ```
 
 
+### Running Docker
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+
 ## DISCLAIMER
 
 - Devemos ter um banco postgres local instalado na maquina, podemos usar o docker compose pra isso tambem ou podemos usar o SQL Lite que funciona emmemoria

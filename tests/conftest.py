@@ -9,22 +9,24 @@ from tests.manage_database import load_database_mock
 
 
 @pytest.fixture(scope='session')
-def sync_client():
-    with TestClient(
+def sync_client() -> TestClient:
+    sync_test_client = TestClient(
         app=app,
         base_url='http://localhost:8000',
         headers={'Content-Type': 'application/json'}
-    ) as _client:
+    )
+    with sync_test_client as _client:
         yield _client
 
 
 @pytest.fixture(scope='function')
 def create_database():
-    """Clear data first, ensure tables are empty, create, and after store values on db to check"""
+    """Clear data first, ensure tables are empty, then create"""
     BaseModel.metadata.drop_all(bind=sync_engine)
     BaseModel.metadata.create_all(bind=sync_engine)
 
 
 @pytest.fixture(scope='function')
-def load_database():
+def load_database(create_database):
+    """Load values on Database"""
     load_database_mock()

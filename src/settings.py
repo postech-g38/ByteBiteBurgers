@@ -7,8 +7,8 @@ from pydantic import Field
 class ApplicationSettings(BaseSettings):
     app_name: str = 'ByteBiteBurguers'
     debug:   bool = True
-    app_host: str = Field('0.0.0.0', env='APP_HOST')
-    app_port: int = Field(8000,      env='APP_PORT')
+    app_host: str = Field(default='0.0.0.0', alias='APP_HOST', title='Application Host Address', description='')
+    app_port: int = Field(8000)
     workers: int = 2
 
 

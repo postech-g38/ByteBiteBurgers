@@ -11,20 +11,19 @@ router = APIRouter(prefix='/usuario', tags=['Usuario'])
 
 @router.get(
     path='/', 
-    # response_model=ResponsePagination, 
+    response_model=ResponsePagination, 
     tags=['Pegar todos os Usuario']
 )
-def get_all(repository: EntityRepository = Depends()) -> dict:
-    service = UsuarioService(repository=repository)
-    return service.get_all()
+def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
+    return UsuarioService(repository=repository).get_all()
 
 
 @router.get(
     path='/{id}', 
-    response_model=ResponseUsuarioPayload, 
+    # response_model=ResponseUsuarioPayload, 
     tags=['Pegar Usuario']
 )
-def get(id: int, repository: EntityRepository = Depends()) -> dict:
+def get(id: int | str, repository: EntityRepository = Depends()):
     service = UsuarioService(repository=repository)
     return service.get(id=id)
 

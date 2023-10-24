@@ -8,9 +8,9 @@ from src.adapters.database.models.entity_model import EntityModel
 class ProdutoModel(EntityModel):
     __tablename__ = 'produto'
 
-    categoria_id: Mapped[int] = mapped_column(ForeignKey('categoria.id'))
+    categoria_id: Mapped[str]  # = mapped_column(ForeignKey('categoria.id'))
     nome: Mapped[str]
     preco: Mapped[float]
     imagens: Mapped[str]
-    # categoria = relationship('CategoriaModel')
+    categoria: Mapped[str]
     

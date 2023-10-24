@@ -1,10 +1,29 @@
+from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class CreateProdutoPayload(BaseModel):
-    pass
+    nome: str
+    categoria_id: str
+    preco: float
+    imagens: str
+    categoria: str
 
 
-class ResponseProdutoPayload(BaseModel):
-    pass
+class UpdateProdutoPayload(CreateProdutoPayload):
+    id: int | str
+
+
+class ResponseProdutoPayload(UpdateProdutoPayload):
+    model_config: ConfigDict = ConfigDict(from_attributes=True)
+    
+    created_at: datetime
+    updated_at: datetime | None
+    deleted_at: datetime | None
+
+
+class ResponsePagination(BaseModel):
+    items: list[ResponseProdutoPayload] | None
+    quantidade: int
+    
