@@ -72,3 +72,12 @@ docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 - Devemos ter um banco postgres local instalado na maquina, podemos usar o docker compose pra isso tambem ou podemos usar o SQL Lite que funciona emmemoria
 
 - A app sobe mas esta quebrando, temos q terminar de arrumar o endpoint de criar usuario
+
+
+# PENDÊNCIAS
+
+- Vou remover os arquivos init_database.py e drop_database.py depois. Criei apenas porque não consegui usar o manage_database.py.
+- O autoincrement não está funcionando para o campo ID. O ideal seria que o usuário não tenha que passar o ID e o backend (ou ainda melhor o banco) seja o responsável por gerar o ID único.
+- Carga inicial de categorias (e talvez Produtos)
+- Métodos de checkout.
+

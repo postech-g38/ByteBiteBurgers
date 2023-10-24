@@ -12,12 +12,12 @@ router = APIRouter(prefix='/produto', tags=['Produto'])
 
 @router.get(
     path='/', 
-    status_code=HTTPStatus.OK,
-    response_model=ResponsePagination, 
+    # response_model=ResponseProdutoPayload, 
     tags=['Pegar todos os Produtos']
 )
-def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
-    return ProdutoService(repository=repository).get_all()
+def get_all(repository: EntityRepository = Depends()) -> dict:
+    service = ProdutoService(repository=repository)
+    return service.get_all()
 
 
 @router.get(
@@ -26,42 +26,36 @@ def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
     response_model=ResponseProdutoPayload, 
     tags=['Pegar Produto']
 )
-def get(id: int | str, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
-    return ProdutoService(repository=repository).get(id=id)
+def get(id: int, repository: EntityRepository = Depends()) -> dict:
+    service = ProdutoService(repository=repository)
+    return service.get(id=id)
 
 
 @router.post(
-    path='/criar', 
-    status_code=HTTPStatus.CREATED,
+    path='/', 
     response_model=ResponseProdutoPayload, 
     tags=['Criar Produto']
 )
-def create(
-    data: CreateProdutoPayload,
-    repository: EntityRepository = Depends()
-) -> ResponseProdutoPayload:
-    return ProdutoService(repository=repository).create(data=data)
+def create(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
+    service = ProdutoService(repository=repository)
+    return service.create(data=data)
 
 
 @router.put(
-    path='/atualizar', 
-    status_code=HTTPStatus.ACCEPTED,
+    path='/', 
     response_model=ResponseProdutoPayload, 
     tags=['Atualizar Produto']
 )
-def update(
-    data: UpdateProdutoPayload, 
-    repository: EntityRepository = Depends()
-) -> ResponseProdutoPayload:
-    print(data)
-    return ProdutoService(repository=repository).update(data=data)
+def update(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
+    service = ProdutoService(repository=repository)
+    return service.update(data=data)
 
 
 @router.delete(
     path='/{id}', 
-    status_code=HTTPStatus.ACCEPTED,
-    response_model=ResponseProdutoPayload, 
+    response_model=int, 
     tags=['Deletar Produto']
 )
-def delete(id: int | str, repository: EntityRepository = Depends()) -> ResponseProdutoPayload:
-    return ProdutoService(repository=repository).delete(id=id)
+def delete(id: int, repository: EntityRepository = Depends()) -> dict:
+    service = ProdutoService(repository=repository)
+    return service.delete(id=id)

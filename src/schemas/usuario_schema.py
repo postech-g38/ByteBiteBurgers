@@ -13,14 +13,11 @@ class CreateUsuarioPayload(BaseModel):
 
 
 class UpdateUsuarioPayload(CreateUsuarioPayload):
-    id: int | str
-    tipo: str
+    id: int
 
 
-class ResponseUsuarioPayload(UpdateUsuarioPayload):
-    model_config: ConfigDict = ConfigDict(from_attributes=True)
-    
-    created_at: datetime
+class ResponseUsuarioPayload(CreateUsuarioPayload):
+    created_at: datetime | None
     updated_at: datetime | None
     deleted_at: datetime | None
 

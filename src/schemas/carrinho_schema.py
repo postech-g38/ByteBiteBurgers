@@ -1,13 +1,24 @@
+from datetime import datetime
 
 from pydantic import BaseModel
 
 
 class CreateCarrinhoPayload(BaseModel):
-    pass
+    id: int | None
+    valor: float
+    usuario_id: int
 
 
-class ResponseCarrinhoPayload(BaseModel):
-    pass
+class UpdateCarrinhoPayload(CreateCarrinhoPayload):
+    id: int
 
-class UpdateCarrinhoPayload(BaseModel):
-    pass
+
+class ResponseCarrinhoPayload(CreateCarrinhoPayload):
+    created_at: datetime | None
+    updated_at: datetime | None
+    deleted_at: datetime | None
+
+
+class ResponsePagination(BaseModel):
+    items: list[dict] | None
+    quantidade: int

@@ -29,7 +29,7 @@ def get(id: int | str, repository: EntityRepository = Depends()):
 
 
 @router.post(
-    path='/criar', 
+    path='/', 
     response_model=ResponseUsuarioPayload, 
     tags=['Criar Usuario']
 )
@@ -42,7 +42,7 @@ def create(
 
 
 @router.put(
-    path='/atualizar', 
+    path='/', 
     response_model=ResponseUsuarioPayload, 
     tags=['Atualizar Usuario']
 )
@@ -56,7 +56,7 @@ def update(
 
 @router.delete(
     path='/{id}', 
-    response_model=ResponseUsuarioPayload, 
+    response_model=int, 
     tags=['Deletar Usuario']
 )
 def delete(id: int, repository: EntityRepository = Depends()) -> dict:
