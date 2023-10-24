@@ -1,26 +1,29 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+
+from src.enums import UsuarioTipo
 
 
 class CreateUsuarioPayload(BaseModel):
-    id: int | None
     nome: str
     senha: str
     cpf: str | None
-    tipo: int
+    tipo: str = UsuarioTipo.USUARIO.value
 
 
 class UpdateUsuarioPayload(CreateUsuarioPayload):
-    id: int
+    id: int | str
 
 
-class ResponseUsuarioPayload(CreateUsuarioPayload):
-    created_at: datetime | None
+class ResponseUsuarioPayload(UpdateUsuarioPayload):
+    model_config: ConfigDict = ConfigDict(from_attributes=True)
+    
+    created_at: datetime
     updated_at: datetime | None
     deleted_at: datetime | None
 
 
 class ResponsePagination(BaseModel):
-    items: list[dict] | None
+    items: list[ResponseUsuarioPayload] | None
     quantidade: int

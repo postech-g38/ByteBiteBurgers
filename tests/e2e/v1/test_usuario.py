@@ -5,15 +5,14 @@ import pytest
 from src.services.usuario_service import UsuarioService
 from tests.manual.database import usuario_model
 
+
 @pytest.mark.skip('Response validation not matching')
-def test_usuario_service_get_all_return_none(sync_client, create_database, load_database):
+def test_usuario_service_get_all_return_none(sync_client, create_database):
     # arrange
     # act
     response = sync_client.get('v1/usuario/')
     # assert
-    assert response.status_code == 404
-    data = response.json()
-    assert isinstance(data, dict)
+    assert response.status_code == 204
 
 
 def test_usuario_service_get_all_then_return_list(sync_client, create_database, load_database):
@@ -28,18 +27,16 @@ def test_usuario_service_get_all_then_return_list(sync_client, create_database, 
 
 def test_usuario_service_find_by_id_then_return_none(sync_client, create_database, load_database):
     # arrange
-    _id = 10
+    _id = '10'
     # act
     response = sync_client.get(f"v1/usuario/{_id}")
     # assert
-    assert response.status_code == 404
-    data = response.json()
-    assert isinstance(data, dict)
+    assert response.status_code == 204
 
     
 def test_usuario_service_find_by_id_then_return_one(sync_client, create_database, load_database):
     # arrange
-    _id = 1
+    _id = '1'
     # act
     response = sync_client.get(f"v1/usuario/{_id}")
     # assert
@@ -49,7 +46,18 @@ def test_usuario_service_find_by_id_then_return_one(sync_client, create_database
 
 
 def test_usuario_service_create_user_then_return_success(sync_client, create_database):
-    pass
+    # arrange
+    payload = {
+        'nome': 'Alguma Pessoa',
+        'senha': 'Senha123',
+        'cpf': '91487124007'
+    }
+    # act
+    response = sync_client.post("/v1/usuario/criar", json=payload)
+    # assert
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, dict)
 
 
 def test_usuario_service_create_user_then_return_error(sync_client, create_database):

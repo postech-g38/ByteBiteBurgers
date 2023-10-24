@@ -27,7 +27,7 @@ def load_database(database_session, data: list) -> None:
 
 
 def load_database_mock():
-    tables = database_tables()
+    #ntables = database_tables()
     # drop_database(tables=tables)
     # create_database(tables=tables)
 
@@ -45,34 +45,24 @@ def load_database_mock():
 
     produto_values = [
         ProdutoModel(**produto_model.PRODUTO_MODEL_BATATA_GRANDE_MOCK),
-        # ProdutoModel(**produto_model.PRODUTO_MODEL_BATATA_MEDIA_MOCK),
-        # ProdutoModel(**produto_model.PRODUTO_MODEL_BURGUER_MOCK),
-        # ProdutoModel(**produto_model.PRODUTO_MODEL_EGG_BURGUER_MOCK),
-        # ProdutoModel(**produto_model.PRODUTO_MODEL_REFRIGERANTE_MOCK),
-        # ProdutoModel(**produto_model.PRODUTO_MODEL_SUCO_MOCK),
-        # ProdutoModel(**produto_model.PRODUTO_MODEL_SORVETE_MOCK),
-        # ProdutoModel(**produto_model.PRODUTO_MODEL_COOKIES_MOCK)
+        ProdutoModel(**produto_model.PRODUTO_MODEL_BATATA_MEDIA_MOCK),
+        ProdutoModel(**produto_model.PRODUTO_MODEL_BURGUER_MOCK),
+        ProdutoModel(**produto_model.PRODUTO_MODEL_EGG_BURGUER_MOCK),
+        ProdutoModel(**produto_model.PRODUTO_MODEL_REFRIGERANTE_MOCK),
+        ProdutoModel(**produto_model.PRODUTO_MODEL_SUCO_MOCK),
+        ProdutoModel(**produto_model.PRODUTO_MODEL_SORVETE_MOCK),
+        ProdutoModel(**produto_model.PRODUTO_MODEL_COOKIES_MOCK)
     ]
 
     with get_session() as sess:
-        load_database(
-            database_session=sess,
-            data=user_values
-        )
+        load_database(database_session=sess,data=user_values)
         sess.commit()
         sess.flush()
-        load_database(
-            database_session=sess,
-            data=categoria_values
-        )
+        load_database(database_session=sess,data=categoria_values)
         sess.commit()
         sess.flush()
-        load_database(
-            database_session=sess,
-            data=produto_values
-        )
+        load_database(database_session=sess,data=produto_values)
     
-
 
 if __name__ == '__main__':
     load_database_mock()
