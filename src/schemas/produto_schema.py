@@ -21,11 +21,6 @@ class ResponseProdutoPayload(CreateProdutoPayload):
 
 
 class ResponsePagination(BaseModel):
-<<<<<<< HEAD
     items: list[ResponseProdutoPayload] | None
     quantidade: int
     
-=======
-    items: list[dict] | None
-    quantidade: int
->>>>>>> caf435fd3e3f906719a8cade8b3fc1f61bdd0e3f

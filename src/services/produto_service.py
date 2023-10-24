@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 from typing import Any
-=======
-import uuid
-from typing import List
->>>>>>> caf435fd3e3f906719a8cade8b3fc1f61bdd0e3f
 
 from src.services.service_base import BaseService
 from src.adapters.repositories import EntityRepository
