@@ -35,7 +35,7 @@ USUARIO_MODEL_ADMIN_MOCK = {
 }
 
 USUARIO_MODEL_ADMIN_DELETED_MOCK = {
-    'id': 2,
+    'id': '2',
     'created_at': datetime.utcnow(),
     'updated_at': datetime.utcnow(),
     'deleted_at': datetime.utcnow(),

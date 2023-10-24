@@ -10,7 +10,7 @@ class ProdutoService(BaseService):
     def __init__(self, repository: EntityRepository) -> None:
         self.repository = repository
     
-    def get_all(self):
+    def get_all(self) -> dict[str, Any]:
         values= self.query_result(result=self.repository.produto.get_all())
         rows = [ResponseProdutoPayload.model_validate(i).model_dump() for i in values]
         return {

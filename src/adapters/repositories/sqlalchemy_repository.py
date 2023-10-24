@@ -46,7 +46,7 @@ class SQLAlchemyRepository:
         print(model.__dict__)
         return model
 
-    def update(self, model_id: int, values: Dict[str, Any]) -> tuple[Any] | None:
+    def update(self, model_id: int | str, values: Dict[str, Any]) -> tuple[Any] | None:
         """Update BaseModel in database
         :param model_id: ID of the model
         :param values: Dictionary values of the model to be updated
@@ -54,7 +54,7 @@ class SQLAlchemyRepository:
         """
         statement = (
             update(self.entity_model)
-            .where(self.entity_model.id == model.id)
+            .where(self.entity_model.id == model_id)
             .values(**values)
             .execution_options(synchronize_session='fetch')
         )

@@ -29,7 +29,7 @@ def get(id: int | str, repository: EntityRepository = Depends()):
 
 
 @router.post(
-    path='/', 
+    path='/criar', 
     response_model=ResponseUsuarioPayload, 
     tags=['Criar Usuario']
 )
@@ -42,7 +42,7 @@ def create(
 
 
 @router.put(
-    path='/', 
+    path='/atualizar', 
     response_model=ResponseUsuarioPayload, 
     tags=['Atualizar Usuario']
 )

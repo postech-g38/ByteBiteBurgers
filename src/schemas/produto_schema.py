@@ -5,17 +5,20 @@ from pydantic import BaseModel, ConfigDict
 
 class CreateProdutoPayload(BaseModel):
     nome: str
+    categoria_id: str
     preco: float
-    categoria_id: int
-    imagens: str | None
+    imagens: str
+    categoria: str
 
 
 class UpdateProdutoPayload(CreateProdutoPayload):
-    id: int | None
+    id: int | str
 
 
-class ResponseProdutoPayload(CreateProdutoPayload):
-    created_at: datetime | None
+class ResponseProdutoPayload(UpdateProdutoPayload):
+    model_config: ConfigDict = ConfigDict(from_attributes=True)
+
+    created_at: datetime
     updated_at: datetime | None
     deleted_at: datetime | None
 
