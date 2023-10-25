@@ -66,6 +66,16 @@ pytests -s -vvv
 docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 
+### Running Load Test
+```bash
+locust  -H http://localhost:8000
+```
+
+open URL:
+```bash
+http://localhost:8089/
+```
+Add the number of user and spawn rate and click start Swarming button to start the load test
 
 ## DISCLAIMER
 
