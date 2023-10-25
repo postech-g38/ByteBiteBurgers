@@ -17,13 +17,21 @@ class UsuarioService(BaseService):
             'items': rows,
             'quantidade': len(rows)
         }
-
-    def get(self, id: str):
-        row = self.query_result(self.repository.usuario.search_by_id(model_id=id))
-        return ResponseUsuarioPayload.model_validate(row).model_dump()
-        
-    def create(self, data: CreateUsuarioPayload) -> dict[str, Any]:
-        row = UsuarioModel(**data.model_dump())
+     
+    def get(self, id: int) -> dict | None:
+        row = self.repository.usuario.search_by_id(model_id=id)
+        if not row:
+            return None
+        return row.__dict__
+     
+    def getByCpf(self, cpf: str) -> dict | None:
+        row = self.repository.usuario.search_by_cpf(cpf=cpf)
+        if not row:
+            return None
+        return row.__dict__
+    
+    def create(self, data: CreateUsuarioPayload) -> dict | None:
+        row = UsuarioModel(**dict(data))
         self.repository.usuario.save(model=row)
         self.repository.usuario.model_refresh(model=row)
         return ResponseUsuarioPayload.model_validate(row).model_dump()

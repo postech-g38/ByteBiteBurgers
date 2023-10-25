@@ -28,6 +28,26 @@ def get(id: int | str, repository: EntityRepository = Depends()):
     return service.get(id=id)
 
 
+@router.get(
+    path='/{id}',
+    response_model=ResponseUsuarioPayload, 
+    tags=['Pegar Usuario']
+)
+def get(id: int, repository: EntityRepository = Depends()) -> dict:
+    service = UsuarioService(repository=repository)
+    return service.get(id=id)
+
+
+@router.get(
+    path='/cpf/{cpf}', 
+    response_model=ResponseUsuarioPayload, 
+    tags=['Pegar Usuario pelo CPF']
+)
+def get(cpf: str, repository: EntityRepository = Depends()) -> dict:
+    service = UsuarioService(repository=repository)
+    return service.getByCpf(cpf=cpf)
+
+
 @router.post(
     path='/criar', 
     response_model=ResponseUsuarioPayload, 
