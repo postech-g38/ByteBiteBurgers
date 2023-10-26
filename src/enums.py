@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class UsuarioTipo(Enum):
-    USUARIO: str = 'user'
-    ADMINISTRADOR: str = 'administrador'
+    CLIENTE: str = 'cliente'
+    ADMIN: str = 'admin'
 
 
 class PedidoStatus(Enum):

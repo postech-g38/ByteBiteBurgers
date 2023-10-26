@@ -1,10 +1,11 @@
 from datetime import datetime
 
+from uuid import UUID
+
 from pydantic import BaseModel
 
 
 class CreatePedidoPayload(BaseModel):
-    id: int | None
     data_mudanca_status: datetime | None
     valor: float
     status_pedido: str
@@ -12,7 +13,7 @@ class CreatePedidoPayload(BaseModel):
 
 
 class UpdatePedidoPayload(CreatePedidoPayload):
-    id: int
+    id: UUID | None
 
 
 class ResponsePedidoPayload(CreatePedidoPayload):

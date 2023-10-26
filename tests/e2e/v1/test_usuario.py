@@ -53,9 +53,24 @@ def test_usuario_service_create_user_then_return_success(sync_client, create_dat
         'cpf': '91487124007'
     }
     # act
-    response = sync_client.post("/v1/usuario/criar", json=payload)
+    response = sync_client.post("/v1/usuario", json=payload)
     # assert
     assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, dict)
+
+
+def test_usuario_service_update_user_then_return_success(sync_client, create_database):
+    # arrange
+    payload = {
+        'nome': 'Alguma Pessoa',
+        'senha': 'Senha123',
+        'cpf': '91487124007'
+    }
+    # act
+    response = sync_client.put("/v1/usuario", json=payload)
+    # assert
+    assert response.status_code == 202
     data = response.json()
     assert isinstance(data, dict)
 

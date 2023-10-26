@@ -57,7 +57,7 @@ Aqui temos 3 funçoes, create, drop e load. Basta troca a funçao embaixo do __n
 
 ### Running Tests
 ```bash
-pytests -s -vvv
+pytest -s -v
 ```
 
 

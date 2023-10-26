@@ -51,11 +51,11 @@ def test_produto_service_create_produto_then_return_success(sync_client, create_
         'categoria_id': 'lanche',
         'preco': 29.99,
         'imagens': 'path/to/file_1.png',
-        'categoria': 'lanche'
+        'categoria': 'Lanche'
     }
     # act
     response = sync_client.post(
-        "/v1/produto/criar", 
+        "/v1/produto", 
         json=payload,
         )
     # assert

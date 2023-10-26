@@ -41,7 +41,7 @@ def get(id: int | str, repository: EntityRepository = Depends()) -> dict:
 
 
 @router.post(
-    path='/criar', 
+    path='/', 
     status_code=HTTPStatus.CREATED,
     response_model=ResponseProdutoPayload, 
     tags=['Criar Produto']
@@ -51,7 +51,7 @@ def create(data: CreateProdutoPayload, repository: EntityRepository = Depends())
 
 
 @router.put(
-    path='/atualizar',
+    path='/',
     status_code=HTTPStatus.ACCEPTED,
     response_model=ResponseProdutoPayload, 
     tags=['Atualizar Produto']

@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
 
 
@@ -12,7 +14,7 @@ class CreateProdutoPayload(BaseModel):
 
 
 class UpdateProdutoPayload(CreateProdutoPayload):
-    id: int | str
+    id: UUID
 
 
 class ResponseProdutoPayload(UpdateProdutoPayload):

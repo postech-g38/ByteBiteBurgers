@@ -2,9 +2,9 @@
 FROM python:3.11-slim
 
 # Update Packages Manager
-RUN apt-get update \
-    && apt-get upgrade \
-    && apt autoremove
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt autoremove -y
 RUN pip install --upgrade pip
 RUN apt-get install -y build-essential python3-dev
 
