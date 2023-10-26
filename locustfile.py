@@ -23,4 +23,16 @@ class Healthcheck(HttpUser):
             "cpf": "03477306040",
               "tipo": "user"
             })
-        
+    @task
+    def list_all_orders(self):
+        self.client.get('/v1/pedido')
+    
+    @task
+    def create_order(self):
+        self.client.post('/v1/pedido/checkout', json={
+            "data_mudanca_status": "2023-10-26T19:05:17.541Z",
+            "valor": 0,
+            "status_pedido": "string",
+            "status_pagamento": "string"
+        })
+    
