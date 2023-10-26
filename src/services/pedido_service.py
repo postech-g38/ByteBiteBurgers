@@ -1,4 +1,3 @@
-import uuid
 from typing import List
 
 from src.adapters.repositories import EntityRepository
@@ -12,7 +11,6 @@ class PedidoService:
     
     def get_all(self) -> List[ResponsePedidoPayload]:
         rows = self.repository.pedido.get_all()
-        print(rows)
         if not rows:
             return {
                 'items': [],

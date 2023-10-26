@@ -1,7 +1,7 @@
 -- Criação da tabela
 CREATE TABLE IF NOT EXISTS public.usuario
 (
-    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+    id text DEFAULT gen_random_uuid()::text PRIMARY KEY,
     nome text NOT NULL,
     senha text,
     cpf character varying(11),

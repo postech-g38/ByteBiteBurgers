@@ -7,6 +7,7 @@ from src.adapters.database.models.base_model import BaseModel
 
 class CategoriaModel(BaseModel):
     __tablename__ = 'categoria'
+    
     id: Mapped[str] = mapped_column(primary_key=True, nullable=False, index=True)
     nome: Mapped[str]
     
