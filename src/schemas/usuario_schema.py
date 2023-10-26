@@ -1,7 +1,5 @@
 from datetime import datetime
 
-from uuid import UUID
-
 from pydantic import BaseModel, ConfigDict
 
 from src.enums import UsuarioTipo
@@ -15,7 +13,7 @@ class CreateUsuarioPayload(BaseModel):
 
 
 class UpdateUsuarioPayload(CreateUsuarioPayload):
-    id: UUID
+    id: str
 
 
 class ResponseUsuarioPayload(UpdateUsuarioPayload):

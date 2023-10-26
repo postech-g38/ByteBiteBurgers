@@ -2,6 +2,7 @@ from functools import lru_cache
 
 from pydantic_settings import BaseSettings
 from pydantic import Field
+from sqlalchemy.engine import URL
 
 
 class ApplicationSettings(BaseSettings):
@@ -15,9 +16,20 @@ class ApplicationSettings(BaseSettings):
 class DatabaseSettings(BaseSettings):
     database_username: str = Field('postgres')
     database_password: str = Field('postgres')
-    database_host: str = Field('postgres')
+    database_host: str = Field('localhost')
     database_port: int = Field(5432)
     database_name: str = Field('postgres')
+
+    @property
+    def unittest_sync_uri(self) -> URL:
+        return URL.create(
+            drivername='postgresql+psycopg2',
+            username=self.database_username, 
+            password=self.database_password, 
+            host=self.database_host, 
+            port=self.database_port, 
+            database=self.database_name
+            )
 
 
 class GeneralSettings():

@@ -19,13 +19,13 @@ class UsuarioService(BaseService):
         }
      
     def get(self, id: int) -> dict | None:
-        row = self.repository.usuario.search_by_id(model_id=id)
+        row = self.query_result(self.repository.usuario.search_by_id(model_id=id))
         if not row:
             return None
         return row.__dict__
      
     def getByCpf(self, cpf: str) -> dict | None:
-        row = self.repository.usuario.search_by_cpf(cpf=cpf)
+        row = self.query_result(self.repository.usuario.search_by_cpf(cpf=cpf))
         if not row:
             return None
         return row.__dict__

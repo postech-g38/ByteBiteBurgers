@@ -1,7 +1,5 @@
 from datetime import datetime
 
-from uuid import UUID
-
 from pydantic import BaseModel
 
 
@@ -13,7 +11,7 @@ class CreatePedidoPayload(BaseModel):
 
 
 class UpdatePedidoPayload(CreatePedidoPayload):
-    id: UUID | None
+    id: str
 
 
 class ResponsePedidoPayload(CreatePedidoPayload):

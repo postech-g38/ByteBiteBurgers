@@ -13,12 +13,10 @@ from src.settings import  get_settings
 
 _logger = logging.getLogger(__name__)
 
-URI = 'postgresql+psycopg2://postgres:postgres@postgres:5432/postgres'  # uso esta config com postgresql, na doc do alchemy tem os db q ele suporta
-
 
 def _create_sync_engine():
     return create_engine(
-        url=URI,
+        url=get_settings().database_settings.unittest_sync_uri,
         pool_size=10, #  get_settings().database.database_pool_size,
         max_overflow=20, #  get_settings().database.database_max_overflow,
         pool_pre_ping=True,

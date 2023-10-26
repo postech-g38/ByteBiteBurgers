@@ -81,7 +81,7 @@ def test_produto_service_update_produto_then_return_success(sync_client, create_
     'categoria': 'lanche'
     }
     # act
-    response = sync_client.put("/v1/produto/atualizar", json=payload)
+    response = sync_client.put("/v1/produto/", json=payload)
     # assert
     assert response.status_code == 202
     data = response.json()
