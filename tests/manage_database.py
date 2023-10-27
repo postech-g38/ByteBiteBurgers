@@ -27,7 +27,7 @@ def load_database(database_session, data: list) -> None:
 
 
 def load_database_mock():
-    #ntables = database_tables()
+    # tables = database_tables()
     # drop_database(tables=tables)
     # create_database(tables=tables)
 

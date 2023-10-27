@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Any
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict
 
@@ -26,5 +27,6 @@ class ResponsePedidoPayload(UpdatePedidoPayload):
 
 
 class ResponsePagination(BaseModel):
+    items: list[ResponsePedidoPayload] | None
     items: list[ResponsePedidoPayload] | None
     quantidade: int
