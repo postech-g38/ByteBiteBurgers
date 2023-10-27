@@ -17,15 +17,15 @@ class Healthcheck(HttpUser):
 
     @task
     def create_user(self):
-        self.client.post('/v1/usuario/criar', json={
+        self.client.post('/v1/usuario/', json={
             "nome": "name",
             "senha": "12345",
             "cpf": "03477306040",
-              "tipo": "user"
+            "tipo": "user"
             })
     @task
     def list_all_orders(self):
-        self.client.get('/v1/pedido')
+        self.client.get('/v1/pedido/')
     
     @task
     def create_order(self):
