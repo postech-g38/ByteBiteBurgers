@@ -3,10 +3,9 @@ import logging
 from src.adapters.database.settings import sync_engine, get_session
 from src.adapters.database.models.base_model import BaseModel
 
-from tests.manual.database import usuario_model, produto_model, categoria_model
+from tests.manual.database import usuario_model, produto_model
 from src.adapters.database.models.usuario_model import UsuarioModel
 from src.adapters.database.models.produto_model import ProdutoModel
-from src.adapters.database.models.categoria_model import CategoriaModel
 
 
 def database_tables() -> list[str]:
@@ -34,13 +33,6 @@ def load_database_mock():
     user_values = [
         UsuarioModel(**usuario_model.USUARIO_MODEL_ADMIN_MOCK),
         UsuarioModel(**usuario_model.USUARIO_MODEL_CLIENTE_MOCK)
-    ]
-
-    categoria_values = [
-        CategoriaModel(**categoria_model.CATEGORIA_MODEL_ACOMPANHAMENTO),
-        CategoriaModel(**categoria_model.CATEGORIA_MODEL_BEBIDA_MOCK),
-        CategoriaModel(**categoria_model.CATEGORIA_MODEL_LANCHE_MOCK),
-        CategoriaModel(**categoria_model.CATEGORIA_MODEL_SOBREMESA_MOCK),
     ]
 
     produto_values = [
