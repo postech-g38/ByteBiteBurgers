@@ -50,10 +50,10 @@ def load_database_mock():
         load_database(database_session=sess,data=user_values)
         sess.commit()
         sess.flush()
-        load_database(database_session=sess,data=categoria_values)
+        load_database(database_session=sess,data=produto_values)
         sess.commit()
         sess.flush()
-        load_database(database_session=sess,data=produto_values)
+        
     
 
 if __name__ == '__main__':
