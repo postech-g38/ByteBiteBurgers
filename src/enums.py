@@ -3,7 +3,7 @@ from enum import Enum
 
 class UsuarioTipo(Enum):
     CLIENTE: str = 'cliente'
-    ADMIN: str = 'admin'
+    ADMIN:   str = 'admin'
 
 
 class PedidoStatus(Enum):

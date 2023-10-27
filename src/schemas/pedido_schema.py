@@ -1,25 +1,30 @@
 from datetime import datetime
+from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class CreatePedidoPayload(BaseModel):
-    data_mudanca_status: datetime | None
-    valor: float
-    status_pedido: str
-    status_pagamento: str
+    produtos: list[dict[str, Any]]
+
 
 
 class UpdatePedidoPayload(CreatePedidoPayload):
     id: str
+    status_pedido:    str
+    status_pagamento: str
 
 
-class ResponsePedidoPayload(CreatePedidoPayload):
+class ResponsePedidoPayload(UpdatePedidoPayload):
+    model_config: ConfigDict = ConfigDict(from_attributes=True)
+
+    valor: float
+    data_mudanca_status: datetime | None
     created_at: datetime | None
     updated_at: datetime | None
     deleted_at: datetime | None
 
 
 class ResponsePagination(BaseModel):
-    items: list[dict] | None
+    items: list[ResponsePedidoPayload] | None
     quantidade: int

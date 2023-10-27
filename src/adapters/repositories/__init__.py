@@ -5,6 +5,7 @@ from src.adapters.database import get_database_session
 from src.adapters.repositories.pedido_repository import PedidoRepository
 from src.adapters.repositories.produto_repository import ProdutoRepository
 from src.adapters.repositories.usuario_repository import UsuarioRepository
+from src.adapters.repositories.checkout_repository import CheckoutRepository
 
 
 class EntityRepository:
@@ -13,4 +14,5 @@ class EntityRepository:
         self.pedido = PedidoRepository(database_session=database)
         self.produto = ProdutoRepository(database_session=database)
         self.usuario = UsuarioRepository(database_session=database)
+        self.checkout = CheckoutRepository(database_session=database)
         
