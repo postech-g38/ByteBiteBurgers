@@ -12,7 +12,7 @@ router = APIRouter(prefix='/usuario', tags=['Usuario'])
 @router.get(
     path='/', 
     response_model=ResponsePagination, 
-    tags=['Pegar todos os Usuario']
+    summary='Pegar todos os Usuario'
 )
 def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
     return UsuarioService(repository=repository).get_all()
@@ -21,7 +21,7 @@ def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
 @router.get(
     path='/{id}', 
     # response_model=ResponseUsuarioPayload, 
-    tags=['Pegar Usuario']
+    summary='Pegar Usuario'
 )
 def get(id: int | str, repository: EntityRepository = Depends()):
     service = UsuarioService(repository=repository)
@@ -31,7 +31,7 @@ def get(id: int | str, repository: EntityRepository = Depends()):
 @router.get(
     path='/cpf/{cpf}', 
     response_model=ResponseUsuarioPayload, 
-    tags=['Pegar Usuario pelo CPF']
+    summary='Pegar Usuario pelo CPF'
 )
 def get(cpf: str, repository: EntityRepository = Depends()) -> dict:
     service = UsuarioService(repository=repository)
@@ -41,7 +41,7 @@ def get(cpf: str, repository: EntityRepository = Depends()) -> dict:
 @router.post(
     path='/', 
     response_model=ResponseUsuarioPayload, 
-    tags=['Criar Usuario']
+    summary='Criar Usuario'
 )
 def create(
     data: CreateUsuarioPayload, 
@@ -54,7 +54,7 @@ def create(
 @router.put(
     path='/', 
     response_model=ResponseUsuarioPayload, 
-    tags=['Atualizar Usuario']
+    summary='Atualizar Usuario'
 )
 def update(
     data: CreateUsuarioPayload, 
@@ -67,7 +67,7 @@ def update(
 @router.delete(
     path='/{id}', 
     response_model=int, 
-    tags=['Deletar Usuario']
+    summary='Deletar Usuario'
 )
 def delete(id: int, repository: EntityRepository = Depends()) -> dict:
     service = UsuarioService(repository=repository)
