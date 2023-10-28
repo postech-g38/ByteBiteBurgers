@@ -26,8 +26,16 @@ def get_all(repository: EntityRepository = Depends()) -> dict:
     summary='Pegar Pedido'
 )
 def get(id: int, repository: EntityRepository = Depends()) -> dict:
-    service = PedidoService(repository=repository)
-    return service.get(id=id)
+    return PedidoService(repository=repository).get(id=id)
+
+
+@router.get(
+    path='/status', 
+    # response_model=ResponsePedidoPayload, 
+    summary='Pegar Pedido por Status'
+)
+def get_by_status(status: str, repository: EntityRepository = Depends()) -> dict:
+    return PedidoService(repository=repository).get_by_status(status=status)
 
 
 # @router.post(
@@ -47,8 +55,7 @@ def get(id: int, repository: EntityRepository = Depends()) -> dict:
     summary='Atualizar Pedido'
 )
 def update(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
-    service = PedidoService(repository=repository)
-    return service.update(data=data)
+    return PedidoService(repository=repository).update(data=data)
 
 
 @router.delete(
@@ -57,8 +64,7 @@ def update(data: CreatePedidoPayload, repository: EntityRepository = Depends()) 
     summary='Deletar Pedido'
 )
 def delete(id: int, repository: EntityRepository = Depends()) -> dict:
-    service = PedidoService(repository=repository)
-    return service.delete(id=id)
+    return PedidoService(repository=repository).delete(id=id)
 
 
 @router.post(

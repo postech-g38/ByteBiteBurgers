@@ -26,6 +26,14 @@ class PedidoService(BaseService):
             return None
         return row.__dict__
     
+    def get_by_status(self, status: str) -> dict | None:
+        status = status.title()
+        row = self.repository.pedido.get_by_status(status=status)
+        if not row:
+            return None
+        return row.__dict__
+        
+    
     def checkout(self, data: CreatePedidoPayload) -> dict | None:
         row = PedidoModel(**dict(data))
         total = 0
