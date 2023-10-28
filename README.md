@@ -68,7 +68,7 @@ docker compose -f docker-compose.yml up --build
 
 ### Running Load Test
 ```bash
-locust -H http://localhost:8000
+locust -H http://localhost:8000 -f tests/load/locustfile.py
 ```
 
 open URL:

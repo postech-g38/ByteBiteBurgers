@@ -1,29 +1,32 @@
 from datetime import datetime
 from typing import Any
+from typing import Any
 
-from pydantic import BaseModel
-
-from src.enums import PedidoStatus
+from pydantic import BaseModel, ConfigDict
 
 
 class CreatePedidoPayload(BaseModel):
-    data_mudanca_status: datetime | None
-    valor: float
-    status_pedido: str = PedidoStatus.RECEBIDO.value
-    status_pagamento: str
-    items: dict[list[dict[str, Any]]]
+    produtos: list[dict[str, Any]]
+
 
 
 class UpdatePedidoPayload(CreatePedidoPayload):
     id: str
+    status_pedido:    str
+    status_pagamento: str
 
 
 class ResponsePedidoPayload(UpdatePedidoPayload):
+    model_config: ConfigDict = ConfigDict(from_attributes=True)
+
+    valor: float
+    data_mudanca_status: datetime | None
     created_at: datetime | None
     updated_at: datetime | None
     deleted_at: datetime | None
 
 
 class ResponsePagination(BaseModel):
+    items: list[ResponsePedidoPayload] | None
     items: list[ResponsePedidoPayload] | None
     quantidade: int

@@ -11,8 +11,8 @@ class ProdutoService(BaseService):
         self.repository = repository
     
     def get_all(self) -> dict[str, Any]:
-        values= self.query_result(result=self.repository.produto.get_all())
-        rows = [ResponseProdutoPayload.model_validate(i).model_dump() for i in values]
+        rows = self.query_result(result=self.repository.produto.get_all())
+        rows = [ResponseProdutoPayload.model_validate(i).model_dump() for i in rows]
         return {
             'items': rows,
             'quantidade': len(rows)

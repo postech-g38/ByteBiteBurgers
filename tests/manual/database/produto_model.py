@@ -30,7 +30,7 @@ PRODUTO_MODEL_BATATA_MEDIA_MOCK = {
     'created_at': datetime.utcnow(),
     'updated_at': datetime.utcnow(),
     'deleted_at': datetime.utcnow(),
-    "nome": "Batata Média",
+    "nome": "Batata Media",
     'categoria_id': '2',
     'preco': 10.99,
     'imagens': 'pth/to/file.png',

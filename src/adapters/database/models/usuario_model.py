@@ -4,6 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.adapters.database.models.entity_model import EntityModel
 
+
 class UsuarioModel(EntityModel):
     __tablename__ = 'usuario'
 

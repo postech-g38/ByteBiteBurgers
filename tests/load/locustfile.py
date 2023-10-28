@@ -1,6 +1,5 @@
 from locust import HttpUser, task, between
 
-
 class Healthcheck(HttpUser):
     wait_time = between(1, 3)  # Wait between 1 and 3 seconds
 
@@ -22,7 +21,7 @@ class Healthcheck(HttpUser):
             "nome": "name",
             "senha": "12345",
             "cpf": "03477306040",
-            "tipo": "cliente"
+            "tipo": "user"
             })
     @task
     def list_all_orders(self):
