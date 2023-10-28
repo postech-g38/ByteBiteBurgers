@@ -1,20 +1,59 @@
 -- Criação da tabela
-CREATE TABLE IF NOT EXISTS public.usuario
-(
+CREATE TABLE IF NOT EXISTS public.usuario (
     id text DEFAULT gen_random_uuid()::text PRIMARY KEY,
     nome text NOT NULL,
     senha text,
     cpf character varying(11),
-    tipo character varying(10) NOT NULL, -- admin, cliente
-    created_at timestamp,
+    tipo character varying(10) NOT NULL,
+    created_at timestamp DEFAULT current_timestamp NOT NULL,
     updated_at timestamp,
     deleted_at timestamp
 );
 
+CREATE TABLE IF NOT EXISTS public.produto (
+	nome varchar NOT NULL,
+	preco float8 NOT NULL,
+	imagens varchar NOT NULL,
+	categoria varchar NOT NULL,
+	id text DEFAULT gen_random_uuid()::text PRIMARY KEY,
+	created_at timestamp DEFAULT current_timestamp NOT NULL,
+	updated_at timestamp NULL,
+	deleted_at timestamp NULL
+);
+
+CREATE TABLE IF NOT EXISTS public.pedido (
+	produtos json NULL,
+	data_mudanca_status timestamp NULL,
+	valor float8 NOT NULL,
+	status_pedido varchar NULL,
+	status_pagamento varchar NULL,
+	id text DEFAULT gen_random_uuid()::text PRIMARY KEY,
+	created_at timestamp DEFAULT current_timestamp NOT NULL,
+	updated_at timestamp NULL,
+	deleted_at timestamp NULL
+);
+
 -- Inserção de dados
+INSERT INTO public.usuario (nome, senha, cpf, tipo, updated_at, deleted_at)
+VALUES 
+    ('Cliente Pedro', 'senha123', '24945805016', 'cliente', current_timestamp, NULL),
+    ('Admin Joao',    'senha123', '40986296074', 'admin',   current_timestamp, NULL);
 
-INSERT INTO public.usuario (nome, senha, cpf, tipo, created_at, updated_at, deleted_at)
-VALUES ('Cliente Pedro', '123', '11122233344', 'cliente', current_timestamp, current_timestamp, NULL);
+INSERT INTO public.produto (nome, preco, imagens, categoria)
+VALUES 
+    ('X-Burger',      10.99, 'pth/to/file.png', 'Lanche'),
+    ('X-Egg-Burger',  10.99, 'pth/to/file.png', 'Lanche'),
+    ('Batata Media',  10.99, 'pth/to/file.png', 'Acompanhamento'),
+    ('Batata Grande', 10.99, 'pth/to/file.png', 'Acompanhamento'),
+    ('Refrigerante',  10.99, 'pth/to/file.png', 'Bebida'),
+    ('Suco',          10.99, 'pth/to/file.png', 'Bebida'),
+    ('Sorvete',       10.99, 'pth/to/file.png', 'Sobremesa'),
+    ('Cookies',       10.99, 'pth/to/file.png', 'Sobremesa');
 
-INSERT INTO public.usuario (nome, senha, cpf, tipo, created_at, updated_at, deleted_at)
-VALUES ('Usuário Admin', 'admin', NULL, 'admin', current_timestamp, current_timestamp, NULL);
+
+INSERT INTO public.pedido (status_pedido, status_pagamento, valor, produtos)
+VALUES
+    ('Recebido',   'Efetuado', 10.99, '{"produtos": [{"produto": "X-Burger", "quantidade": 1, "valor": 10.99}]}'),
+    ('Pronto',     'Efetuado', 10.99, '{"produtos": [{"produto": "Refrigerante", "quantidade": 1, "valor": 10.99}]}'),
+    ('Finalizado', 'Efetuado', 21.98, '{"produtos": [{"produto": "X-Burger", "quantidade": 1, "valor": 10.99},{"produto": "Batata Media", "quantidade": 1, "valor": 10.99}]}');
+
