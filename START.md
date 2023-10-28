@@ -22,7 +22,11 @@ docker-compose build
 docker-compose up
 ```
 
-4. Efetuar o teste health_check: Em seu navegador, digite: http://localhost:8000/v1/health_check
+4. Abra o seu navegador e acesse o endereço abaixo.
+
+```
+http://localhost:8000/docs
+```
 
 
 ## Outros comandos úteis

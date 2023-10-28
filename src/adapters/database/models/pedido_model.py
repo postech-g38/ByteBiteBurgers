@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Dict
 
-from sqlalchemy import Column, Integer, String, ForeignKey, JSON
+from sqlalchemy import Column, Integer, String, ForeignKey, JSON, ARRAY
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -15,4 +15,4 @@ class PedidoModel(EntityModel):
     valor: Mapped[float]
     status_pedido: Mapped[str | None]
     status_pagamento: Mapped[str | None]
-    produtos = mapped_column('produtos', JSON)
+    produtos = mapped_column('produtos', ARRAY(JSON))

@@ -1,14 +1,17 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
+
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.adapters.database.models.entity_model import EntityModel
+from src.adapters.database.models.base_model import BaseModel
 
 
-class ProdutoModel(EntityModel):
+class ProdutoModel(BaseModel):
     __tablename__ = 'produto'
 
-    categoria_id: Mapped[str]
+    id: Mapped[int] = mapped_column(primary_key=True, nullable=False, index=True, autoincrement=True)
+    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    updated_at: Mapped[datetime | None] = mapped_column(onupdate=datetime.utcnow)
+    deleted_at: Mapped[datetime | None]
     nome: Mapped[str]
     preco: Mapped[float]
     imagens: Mapped[str]

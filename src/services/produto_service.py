@@ -35,7 +35,7 @@ class ProdutoService(BaseService):
     
     def delete(self, id: str| int) -> dict[str, Any]:
         row = self.query_result(self.repository.produto.search_by_id(model_id=id))
-        self.repository.produto.delete(row)
+        self.repository.produto.delete(model_id=id)
         return ResponseProdutoPayload.model_validate(row).model_dump()
     
     def get_by_categoria(self, categoria: str) -> dict[str, Any]:

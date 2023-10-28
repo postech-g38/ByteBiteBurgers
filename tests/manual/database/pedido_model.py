@@ -8,7 +8,7 @@ PEDIDO_MODEL_LANCHE_MOCK = {
     'deleted_at': datetime.now(),
     'valor': 10.99,
     'produtos': [
-        {'produto': 'X-Burger', 'quantidade': 1, 'valor': 10.99}
+        {'produto_id': 1, 'quantidade': 1}
     ],
     'status_pedido': 'Recebido',
     'status_pagamento': 'Efetuado'
@@ -22,7 +22,7 @@ PEDIDO_MODEL_REFRIGERANTE_MOCK = {
     'deleted_at': datetime.now(),
     'valor': 10.99,
     'produtos': [
-        {'produto': 'Refrigerante', 'quantidade': 1, 'valor': 10.99}
+        {'produto_id': 5, 'quantidade': 1}
     ],
     'status_pedido': 'Pronto',
     'status_pagamento': 'Efetuado'
@@ -36,8 +36,8 @@ PEDIDO_MODEL_COMBO_MOCK = {
     'deleted_at': datetime.now(),
     'valor': 21.98,
     'produtos': [
-        {'produto': 'X-Burger',     'quantidade': 1, 'valor': 10.99},
-        {'produto': 'Batata Media', 'quantidade': 1, 'valor': 10.99}
+        {'produto_id': 1, 'quantidade': 1},
+        {'produto_id': 5, 'quantidade': 1}
     ],
     'status_pedido': 'Finalizado',
     'status_pagamento': 'Efetuado'

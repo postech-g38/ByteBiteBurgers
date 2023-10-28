@@ -5,7 +5,6 @@ from pydantic import BaseModel, ConfigDict
 
 class CreateProdutoPayload(BaseModel):
     nome: str
-    categoria_id: str
     preco: float
     imagens: str
     categoria: str
