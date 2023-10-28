@@ -1,13 +1,10 @@
 from datetime import datetime
-from typing import Any
-from typing import Any
 
 from pydantic import BaseModel, ConfigDict
 
 
 class ProdudoPedidoSchema(BaseModel):
-    nome: str
-    valor: float
+    produto_id: int
     quantidade: int
 
 
