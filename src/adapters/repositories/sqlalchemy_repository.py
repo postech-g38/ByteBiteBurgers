@@ -43,7 +43,6 @@ class SQLAlchemyRepository:
         self.session_db.add(model)
         self.session_db.flush()
         self.session_db.refresh(instance=model)
-        print(model.__dict__)
         return model
 
     def update(self, model_id: int | str, values: Dict[str, Any]) -> tuple[Any] | None:
@@ -73,3 +72,7 @@ class SQLAlchemyRepository:
     def model_refresh(self, model: Type[EntityModel]) -> Type[EntityModel]:
         self.session_db.refresh(instance=model)
         return model
+
+    def commit(self) -> None:
+        self.session_db.commit()
+        

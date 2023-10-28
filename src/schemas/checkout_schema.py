@@ -6,8 +6,13 @@ from pydantic import BaseModel
 from src.enums import PedidoStatus
 
 
+class ProdudoPedidoSchema(BaseModel):
+    produto_id: int
+    quantidade: int
+
+
 class CreateCheckoutPayload(BaseModel):
-    produtos: list[dict[str, Any]]
+    produtos: list[ProdudoPedidoSchema]
     valor: float
     pagamento: str
     status: str = PedidoStatus.RECEBIDO.value

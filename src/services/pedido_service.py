@@ -1,4 +1,4 @@
-from typing import List
+from datetime import datetime
 
 from src.adapters.repositories import EntityRepository
 from src.adapters.database.models.pedido_model import PedidoModel
@@ -30,14 +30,18 @@ class PedidoService(BaseService):
         row = PedidoModel(**dict(data))
         total = 0
         for produto in data.produtos:
-            valor = produto['valor'] * produto['quantidade']
-            total += valor
+            row = self.query_result(self.repository.produto.search_by_id(model_id=produto.produto_id))
+            total += (row.preco * produto.quantidade)
 
         row.valor = total
         row.status_pedido = 'Recebido'
         row.status_pagamento = 'Pendente'
+        row.data_mudanca_status = datetime.now()
+        row.produtos = [i.model_dump() for i in data.produtos]
 
         self.repository.pedido.save(model=row)
+        self.repository.pedido.commit()
+        row = self.repository.pedido.model_refresh(model=row)
         return ResponsePedidoPayload.model_validate(row).model_dump()
 
     def update(self, data: UpdatePedidoPayload) -> dict | None:
