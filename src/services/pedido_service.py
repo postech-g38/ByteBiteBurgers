@@ -26,7 +26,7 @@ class PedidoService(BaseService):
             return None
         return row.__dict__
     
-    def create(self, data: CreatePedidoPayload) -> dict | None:
+    def checkout(self, data: CreatePedidoPayload) -> dict | None:
         row = PedidoModel(**dict(data))
         total = 0
         for produto in data.produtos:
@@ -35,7 +35,7 @@ class PedidoService(BaseService):
 
         row.valor = total
         row.status_pedido = 'Recebido'
-        row.status_pagamento = 'Pendente'
+        row.status_pagamento = 'Efetuado'
         row.data_mudanca_status = datetime.now()
         row.produtos = [i.model_dump() for i in data.produtos]
 
@@ -54,9 +54,9 @@ class PedidoService(BaseService):
         return id
     
 
-    def chekout(self, payload: CreateCheckoutPayload) -> dict:
-        model = CheckoutModel(**payload.model_dump())
-        self.repository.checkout.save(model)
-        self.repository.checkout.model_refresh(model)
+    # def chekout(self, payload: CreateCheckoutPayload) -> dict:
+    #     model = CheckoutModel(**payload.model_dump())
+    #     self.repository.checkout.save(model)
+    #     self.repository.checkout.model_refresh(model)
 
-        return model
+    #     return model

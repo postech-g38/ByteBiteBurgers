@@ -30,15 +30,15 @@ def get(id: int, repository: EntityRepository = Depends()) -> dict:
     return service.get(id=id)
 
 
-@router.post(
-    path='/',
-    status_code=status.HTTP_201_CREATED,
-    response_model=ResponsePedidoPayload, 
-    summary='Criar Pedido'
-)
-def create(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
-    service = PedidoService(repository=repository)
-    return service.create(data=data)
+# @router.post(
+#     path='/',
+#     status_code=status.HTTP_201_CREATED,
+#     response_model=ResponsePedidoPayload, 
+#     summary='Criar Pedido'
+# )
+# def create(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
+#     service = PedidoService(repository=repository)
+#     return service.create(data=data)
 
 
 @router.put(
@@ -63,8 +63,8 @@ def delete(id: int, repository: EntityRepository = Depends()) -> dict:
 
 @router.post(
     path='/checkout', 
-    response_model=ResponseCheckoutPayload, 
+    response_model=ResponsePedidoPayload, 
     summary='Efetuar pagamento do Pedido'
 )
-def checkout(payload: CreateCheckoutPayload, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).chekout(payload=payload)
+def checkout(payload: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
+    return PedidoService(repository=repository).checkout(data=payload)

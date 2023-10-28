@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS public.produto (
 	preco float8 NOT NULL,
 	imagens varchar NOT NULL,
 	categoria varchar NOT NULL,
-	id serial4 NOT NULL,
+	id serial4 NOT NULL PRIMARY KEY,
 	created_at timestamp DEFAULT current_timestamp NOT NULL,
 	updated_at timestamp NULL,
 	deleted_at timestamp NULL
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS public.pedido (
 	valor float8 NOT NULL,
 	status_pedido varchar NULL,
 	status_pagamento varchar NULL,
-	id text DEFAULT gen_random_uuid()::text PRIMARY KEY,
+	id serial4 NOT NULL PRIMARY KEY,
 	created_at timestamp DEFAULT current_timestamp NOT NULL,
 	updated_at timestamp NULL,
 	deleted_at timestamp NULL
@@ -51,9 +51,9 @@ VALUES
     (8, 'Cookies',       10.99, 'pth/to/file.png', 'Sobremesa');
 
 
-INSERT INTO public.pedido (status_pedido, status_pagamento, valor, data_mudanca_status, produtos)
+INSERT INTO public.pedido (id, status_pedido, status_pagamento, valor, data_mudanca_status, produtos)
 VALUES
-    ('Recebido',   'Efetuado', 10.99, current_timestamp, ARRAY ['{"nome": "X-Burger", "quantidade": 1, "valor": 10.99}'::json]),
-    ('Pronto',     'Efetuado', 10.99, current_timestamp, ARRAY ['{"nome": "Refrigerante", "quantidade": 1, "valor": 10.99}'::json]),
-    ('Finalizado', 'Efetuado', 21.98, current_timestamp, ARRAY ['{"nome": "X-Burger", "quantidade": 1, "valor": 10.99}'::json,'{"nome": "Batata Media", "quantidade": 1, "valor": 10.99}'::json]);
+    (1, 'Recebido',   'Efetuado', 10.99, current_timestamp, ARRAY ['{"nome": "X-Burger", "quantidade": 1, "valor": 10.99}'::json]),
+    (2, 'Pronto',     'Efetuado', 10.99, current_timestamp, ARRAY ['{"nome": "Refrigerante", "quantidade": 1, "valor": 10.99}'::json]),
+    (3, 'Finalizado', 'Efetuado', 21.98, current_timestamp, ARRAY ['{"nome": "X-Burger", "quantidade": 1, "valor": 10.99}'::json,'{"nome": "Batata Media", "quantidade": 1, "valor": 10.99}'::json]);
 
