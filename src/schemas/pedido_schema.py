@@ -6,7 +6,8 @@ from pydantic import BaseModel, ConfigDict
 
 
 class ProdudoPedidoSchema(BaseModel):
-    produto_id: int
+    nome: str
+    valor: float
     quantidade: int
 
 

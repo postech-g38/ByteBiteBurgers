@@ -11,7 +11,7 @@ class CreateProdutoPayload(BaseModel):
 
 
 class UpdateProdutoPayload(CreateProdutoPayload):
-    id: str
+    id: int
 
 
 class ResponseProdutoPayload(UpdateProdutoPayload):
