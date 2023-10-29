@@ -14,8 +14,8 @@ class CreateProdutoPayload(BaseModel):
     @field_validator('categoria')
     def validate_categoria(cls, categoria: str) -> str:
         categorias = [i.value for i in ProdutoCategorias]
-        if categoria not in categorias:
-            raise ValidationError(f"Categoria deve ser: {'|'.join(categorias)}")
+        if categoria.title() not in categorias:
+            raise ValueError(f"Categoria deve ser: {'|'.join(categorias)}")
         return categoria.lower()
 
 
