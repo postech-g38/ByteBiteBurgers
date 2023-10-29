@@ -1,6 +1,4 @@
 from datetime import datetime
-from typing import Any
-from typing import Any
 
 from pydantic import BaseModel, ConfigDict
 
@@ -16,7 +14,7 @@ class CreatePedidoPayload(BaseModel):
 
 
 class UpdatePedidoPayload(CreatePedidoPayload):
-    id: int
+    id:               int
     status_pedido:    str
     status_pagamento: str
 

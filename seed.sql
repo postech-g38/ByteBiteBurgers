@@ -39,21 +39,20 @@ VALUES
     ('Cliente Pedro', 'senha123', '24945805016', 'cliente', current_timestamp, NULL),
     ('Admin Joao',    'senha123', '40986296074', 'admin',   current_timestamp, NULL);
 
-INSERT INTO public.produto (id, nome, preco, imagens, categoria)
+INSERT INTO public.produto (nome, preco, imagens, categoria)
 VALUES 
-    (1, 'X-Burger',      10.99, 'pth/to/file.png', 'Lanche'),
-    (2, 'X-Egg-Burger',  10.99, 'pth/to/file.png', 'Lanche'),
-    (3, 'Batata Media',  10.99, 'pth/to/file.png', 'Acompanhamento'),
-    (4, 'Batata Grande', 10.99, 'pth/to/file.png', 'Acompanhamento'),
-    (5, 'Refrigerante',  10.99, 'pth/to/file.png', 'Bebida'),
-    (6, 'Suco',          10.99, 'pth/to/file.png', 'Bebida'),
-    (7, 'Sorvete',       10.99, 'pth/to/file.png', 'Sobremesa'),
-    (8, 'Cookies',       10.99, 'pth/to/file.png', 'Sobremesa');
+    ('X-Burger',      10.99, 'pth/to/file.png', 'Lanche'),
+    ('X-Egg-Burger',  10.99, 'pth/to/file.png', 'Lanche'),
+    ('Batata Media',  10.99, 'pth/to/file.png', 'Acompanhamento'),
+    ('Batata Grande', 10.99, 'pth/to/file.png', 'Acompanhamento'),
+    ('Refrigerante',  10.99, 'pth/to/file.png', 'Bebida'),
+    ('Suco',          10.99, 'pth/to/file.png', 'Bebida'),
+    ('Sorvete',       10.99, 'pth/to/file.png', 'Sobremesa'),
+    ('Cookies',       10.99, 'pth/to/file.png', 'Sobremesa');
 
 
-INSERT INTO public.pedido (id, status_pedido, status_pagamento, valor, data_mudanca_status, produtos)
+INSERT INTO public.pedido (status_pedido, status_pagamento, valor, data_mudanca_status, produtos)
 VALUES
-    (1, 'Recebido',   'Efetuado', 10.99, current_timestamp, ARRAY ['{"nome": "X-Burger", "quantidade": 1, "valor": 10.99}'::json]),
-    (2, 'Pronto',     'Efetuado', 10.99, current_timestamp, ARRAY ['{"nome": "Refrigerante", "quantidade": 1, "valor": 10.99}'::json]),
-    (3, 'Finalizado', 'Efetuado', 21.98, current_timestamp, ARRAY ['{"nome": "X-Burger", "quantidade": 1, "valor": 10.99}'::json,'{"nome": "Batata Media", "quantidade": 1, "valor": 10.99}'::json]);
-
+    ('Recebido',   'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 1, "quantidade": 1}'::json]),
+    ('Pronto',     'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 5, "quantidade": 1}'::json]),
+    ('Finalizado', 'Efetuado', 21.98, current_timestamp, ARRAY ['{"produto_id": 1, "quantidade": 1}'::json,'{"produto_id": 5, "quantidade": 1}'::json]);
