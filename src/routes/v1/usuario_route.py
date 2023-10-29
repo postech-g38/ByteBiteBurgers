@@ -70,5 +70,4 @@ def update(
     summary='Deletar Usuario'
 )
 def delete(id: str, repository: EntityRepository = Depends()) -> dict:
-    service = UsuarioService(repository=repository)
-    return service.delete(id=id)
+    return UsuarioService(repository=repository).delete(id=id)

@@ -41,8 +41,8 @@ class UsuarioService(BaseService):
     #     row = self.repository.usuario.search_by_id(model_id=data.id)
     #     return ResponseUsuarioPayload.model_validate(row).model_dump()
 
-    # def delete(self, id: int) -> ResponseUsuarioPayload:
-    #     self.repository.usuario.delete(model_id=id)
-    #     row = self.repository.usuario.delete(model_id=id)
-    #     return ResponseUsuarioPayload.model_validate(row).model_dump()
+    def delete(self, id: str) -> ResponseUsuarioPayload:
+        row = self.query_result(self.repository.usuario.search_by_id(model_id=id))
+        self.repository.usuario.delete(model_id=id)
+        return ResponseUsuarioPayload.model_validate(row).model_dump()
     
