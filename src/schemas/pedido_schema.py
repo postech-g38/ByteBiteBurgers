@@ -14,7 +14,7 @@ class CreatePedidoPayload(BaseModel):
 
 
 class UpdatePedidoPayload(CreatePedidoPayload):
-    id: int
+    id:               int
     status_pedido:    str
     status_pagamento: str
 
