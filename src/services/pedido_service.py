@@ -57,9 +57,10 @@ class PedidoService(BaseService):
         row = self.repository.pedido.search_by_id(model_id=data.id)
         return row
 
-    def delete(self, id: int) -> int:
-        row = self.repository.pedido.delete(model_id=id)
-        return id
+    def delete(self, id: int) -> dict | None:
+        row = self.query_result(self.repository.pedido.search_by_id(model_id=id))
+        self.repository.pedido.delete(model_id=id)
+        return ResponsePedidoPayload.model_validate(row).model_dump()
     
 
     # def chekout(self, payload: CreateCheckoutPayload) -> dict:
