@@ -66,9 +66,9 @@ def update(
 
 @router.delete(
     path='/{id}', 
-    response_model=int, 
+    # response_model=int, 
     summary='Deletar Usuario'
 )
-def delete(id: int, repository: EntityRepository = Depends()) -> dict:
+def delete(id: str, repository: EntityRepository = Depends()) -> dict:
     service = UsuarioService(repository=repository)
     return service.delete(id=id)
