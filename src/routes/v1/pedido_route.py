@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 
 from src.services.pedido_service import PedidoService
 from src.adapters.repositories import EntityRepository
-from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, ResponsePagination
+from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, ResponsePagination, UpdatePedidoPayload
 
 
 router = APIRouter(prefix='/pedido', tags=['Pedido'])
@@ -41,7 +41,7 @@ def get(id: int, repository: EntityRepository = Depends()) -> dict:
     response_model=ResponsePedidoPayload, 
     summary='Atualizar Pedido'
 )
-def update(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
+def update(data: UpdatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
     return PedidoService(repository=repository).update(data=data)
 
 

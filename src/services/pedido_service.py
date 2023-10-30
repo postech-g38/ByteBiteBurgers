@@ -51,7 +51,7 @@ class PedidoService(BaseService):
         return ResponsePedidoPayload.model_validate(row).model_dump()
 
     def update(self, data: UpdatePedidoPayload) -> dict | None:
-        self.repository.pedido.update(model=data, values=dict(data))
+        self.repository.pedido.update(model_id=data.id, values=data.model_dump())
         row = self.repository.pedido.search_by_id(model_id=data.id)
         return row
 
