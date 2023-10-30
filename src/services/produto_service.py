@@ -33,12 +33,12 @@ class ProdutoService(BaseService):
         row = self.repository.produto.model_refresh(model=row)
         return ResponseProdutoPayload.model_validate(row).model_dump()
     
-    def delete(self, id: str| int) -> dict[str, Any]:
+    def delete(self, id: str | int) -> dict[str, Any]:
         row = self.query_result(self.repository.produto.search_by_id(model_id=id))
         self.repository.produto.delete(model_id=id)
         return ResponseProdutoPayload.model_validate(row).model_dump()
     
-    def get_by_categoria(self, categoria: str) -> dict[str, Any]:
+    def get_by_categoria(self, categoria: str):  #  -> dict[str, Any]
         categoria = categoria.title()
         rows = self.query_result(self.repository.produto.get_by_categoria(categoria=categoria))
         rows = [ResponseProdutoPayload.model_validate(i).model_dump() for i in rows]

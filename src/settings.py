@@ -10,15 +10,15 @@ class ApplicationSettings(BaseSettings):
     debug:   bool = True
     app_host: str = Field(default='0.0.0.0', alias='APP_HOST', title='Application Host Address', description='')
     app_port: int = Field(8000)
-    workers: int = 2
+    workers:  int = 2
 
 
 class DatabaseSettings(BaseSettings):
     database_username: str = Field('postgres')
     database_password: str = Field('postgres')
-    database_host: str = Field('localhost')
-    database_port: int = Field(5432)
-    database_name: str = Field('postgres')
+    database_host:     str = Field('localhost')
+    database_port:     int = Field(5432)
+    database_name:     str = Field('postgres')
 
     @property
     def unittest_sync_uri(self) -> URL:
