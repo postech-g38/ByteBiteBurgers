@@ -26,7 +26,7 @@ def get_all(repository: EntityRepository = Depends()) -> dict:
     response_model=ResponsePagination, 
     summary='Pegar Produtos por Categoria'
 )
-def get_by_category(categoria:str, repository: EntityRepository = Depends()) -> dict:
+def get_by_category(categoria: str, repository: EntityRepository = Depends()) -> dict:
     return ProdutoService(repository=repository).get_by_categoria(categoria=categoria)
 
 

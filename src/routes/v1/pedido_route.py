@@ -1,12 +1,10 @@
-from typing import Any
 
 from fastapi import APIRouter, Depends
-from starlette import status
 
 from src.services.pedido_service import PedidoService
 from src.adapters.repositories import EntityRepository
 from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, ResponsePagination
-from src.schemas.checkout_schema import CreateCheckoutPayload, ResponseCheckoutPayload
+
 
 router = APIRouter(prefix='/pedido', tags=['Pedido'])
 
@@ -21,32 +19,21 @@ def get_all(repository: EntityRepository = Depends()) -> dict:
 
 
 @router.get(
+    path='/status', 
+    response_model=ResponsePagination, 
+    summary='Pegar Pedido por Status'
+)
+def pedido_get_by_status(status: str, repository: EntityRepository = Depends()) -> dict:
+    return PedidoService(repository=repository).get_by_status(status=status)
+
+
+@router.get(
     path='/{id}', 
     response_model=ResponsePedidoPayload, 
     summary='Pegar Pedido'
 )
 def get(id: int, repository: EntityRepository = Depends()) -> dict:
     return PedidoService(repository=repository).get(id=id)
-
-
-@router.get(
-    path='/status', 
-    # response_model=ResponsePedidoPayload, 
-    summary='Pegar Pedido por Status'
-)
-def get_by_status(status: str, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).get_by_status(status=status)
-
-
-# @router.post(
-#     path='/',
-#     status_code=status.HTTP_201_CREATED,
-#     response_model=ResponsePedidoPayload, 
-#     summary='Criar Pedido'
-# )
-# def create(data: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
-#     service = PedidoService(repository=repository)
-#     return service.create(data=data)
 
 
 @router.put(

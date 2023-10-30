@@ -4,8 +4,6 @@ from src.adapters.repositories import EntityRepository
 from src.adapters.database.models.pedido_model import PedidoModel
 from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, UpdatePedidoPayload
 from src.services.service_base import BaseService
-from src.schemas.checkout_schema import CreateCheckoutPayload
-from src.adapters.database.models.checkout_model import CheckoutModel
 
 
 class PedidoService(BaseService):
@@ -21,17 +19,17 @@ class PedidoService(BaseService):
         }
      
     def get(self, id: int) -> dict | None:
-        row = self.repository.pedido.search_by_id(model_id=id)
-        if not row:
-            return None
+        row = self.query_result(self.repository.pedido.search_by_id(model_id=id))
         return row.__dict__
     
     def get_by_status(self, status: str) -> dict | None:
         status = status.title()
-        row = self.repository.pedido.get_by_status(status=status)
-        if not row:
-            return None
-        return row.__dict__
+        rows = self.query_result(self.repository.pedido.get_by_status(status=status))
+        rows = [ResponsePedidoPayload.model_validate(i).model_dump() for i in rows]
+        return {
+            'items': rows,
+            'quantidade': len(rows)
+        }
         
     def checkout(self, data: CreatePedidoPayload) -> dict | None:
         row = PedidoModel(**dict(data))
