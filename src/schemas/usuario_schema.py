@@ -9,6 +9,7 @@ class CreateUsuarioPayload(BaseModel):
     nome: str
     senha: str
     cpf: str | None
+    email: str
     tipo: str = UsuarioTipo.CLIENTE.value
 
 

@@ -18,7 +18,7 @@ class PedidoService(BaseService):
             'quantidade': len(rows)
         }
      
-    def get(self, id: int) -> dict | None:
+    def get_by_id(self, id: int) -> dict | None:
         row = self.query_result(self.repository.pedido.search_by_id(model_id=id))
         return row.__dict__
     

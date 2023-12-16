@@ -2,6 +2,7 @@
 CREATE TABLE IF NOT EXISTS public.usuario (
     id text DEFAULT gen_random_uuid()::text PRIMARY KEY,
     nome text NOT NULL,
+    email text,
     senha text,
     cpf character varying(11),
     tipo character varying(10) NOT NULL,
