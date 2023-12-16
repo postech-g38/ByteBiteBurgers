@@ -41,7 +41,7 @@ class PedidoService(BaseService):
 
         row.valor = total
         row.status_pedido = 'Recebido'
-        row.status_pagamento = 'Efetuado'
+        row.status_pagamento = 'Aguardando'
         row.data_mudanca_status = datetime.now()
         row.produtos = [i.model_dump() for i in data.produtos]
 
