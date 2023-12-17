@@ -2,24 +2,28 @@ version: '3.7'
 
 services:
   fast-api-service:
-    container_name: fast-api-service
+    container_name: byte-burguer-backend
     build: 
       context: .
       dockerfile: Dockerfile
     ports:
       - 8000:8000
-    env_file:
-      - .env-dev
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: postgres
     depends_on:
       - postgres
 
   postgres:
-    container_name: postgres
+    container_name: byte-burguer-postgres
     image: postgres
     environment:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5433:5432
     volumes:
-      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
-      
+      - /var/lib/postgresql/data
+    
