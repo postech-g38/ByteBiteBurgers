@@ -5,6 +5,6 @@ metadata:
 data:
   DATABASE_USERNAME: postgres
   DATABASE_PASSWORD: postgres
-  DATABASE_HOST: svc-db:5432
+  DATABASE_HOST: svc-db
   DATABASE_PORT: '5432'
   DATABASE_NAME: postgres
