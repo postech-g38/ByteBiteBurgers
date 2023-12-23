@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: statefulset-db
+  name: statefulset-database
 spec:
   template:
     metadata:
       labels:
-        app: byteburger-db
-      name: byteburger-db
+        app: byteburger-database
+      name: byteburger-database
     spec:
       containers:
-        - name: byte-burguer-backend
+        - name: byte-burguer-api
           image: hiltonbruno633/byte-burguer-db:1.1
           ports:
             - containerPort: 5432
           envFrom:
             - configMapRef:
-                name: configmap-db
+                name: configmap-database
   #     volumeMounts:
   #         - name: volume-db
   #           mouthPath: /var/lib/postgresql/data
@@ -31,7 +31,7 @@ spec:
   #         storage: 1Gi
   selector:
     matchLabels:
-      app: byteburger-db
-  serviceName: svc-db
+      app: byteburger-database
+  serviceName: service-database
 
               

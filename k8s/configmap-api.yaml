@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configmap-backend
+  name: configmap-api
 data:
   DATABASE_USERNAME: postgres
   DATABASE_PASSWORD: postgres
-  DATABASE_HOST: svc-db
+  DATABASE_HOST: service-database
   DATABASE_PORT: '5432'
   DATABASE_NAME: postgres
