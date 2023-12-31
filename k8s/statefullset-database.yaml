@@ -10,13 +10,16 @@ spec:
       name: byteburger-database
     spec:
       containers:
-        - name: byte-burguer-api
+        - name: byte-burguer-db
           image: hiltonbruno633/byte-burguer-db:1.1
           ports:
             - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: configmap-database
+          env:
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret-byte-burguer
+                key: POSTGRES_PASSWORD
   #     volumeMounts:
   #         - name: volume-db
   #           mouthPath: /var/lib/postgresql/data
