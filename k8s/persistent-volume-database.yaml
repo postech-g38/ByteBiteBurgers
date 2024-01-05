@@ -1,3 +1,4 @@
+# Solicita um volume do tipo ebs
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

@@ -1,3 +1,4 @@
+# Horizontal Pod Scaler - Aumenta em até 9 pods do deployment do backend de acordo com o aumento de volume 
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:

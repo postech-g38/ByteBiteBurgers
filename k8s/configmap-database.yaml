@@ -1,3 +1,4 @@
+# Arquivo popula o banco dentro do pod do banco de dados, criando as tabelas e insere dados para testes iniciais
 apiVersion: v1
 kind: ConfigMap
 metadata:
