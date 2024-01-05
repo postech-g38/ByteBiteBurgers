@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+# Arquivo responsável pela criacao do cluster com instancia EC2 t3.small no AWS EKS
+# comando para criar cluster time eksctl create cluster 
+kind: ClusterConfig
+metadata:
+  name: EKS-BYTEBURGUER
+  region: us-east-1
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.small
+    desiredCapacity: 3
+    ssh: # use existing EC2 key
+      publicKeyName: eks-course
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["api", "audit", "authenticator"]

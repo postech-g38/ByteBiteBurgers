@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: statefulset-database
+  labels:
+    app: statefulset-database
+spec:
+  template:
+    metadata:
+      name: byteburger-database
+      labels:
+        app: byteburger-database
+    spec:
+      containers:
+        - name: byte-burger-db
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: DATABASE_USERNAME
+              value: postgres
+            - name: DATABASE_PASSWORD
+              value: postgres
+            - name: DATABASE_HOST
+              value: service-database
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: DATABASE_NAME
+              value: postgres
+            - name: DATABASE_PORT
+              value: '5432'
+          volumeMounts:
+            - name: persistent-volume-database
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres 
+            - name: seed-database-script
+              mountPath: /docker-entrypoint-initdb.d 
+      volumes:
+        - name: persistent-volume-database
+          persistentVolumeClaim:
+            claimName: ebs-mysql-pv-claim
+        - name: seed-database-script
+          configMap: 
+            name: seed-database-script
+  selector:
+    matchLabels:
+      app: byteburger-database
