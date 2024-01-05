@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: EKS-BYTEBURGUER
+  region: us-east-1
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.small
+    desiredCapacity: 3
+    ssh: # use existing EC2 key
+      publicKeyName: eks-course
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["api", "audit", "authenticator"]

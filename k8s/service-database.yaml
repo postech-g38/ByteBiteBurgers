@@ -5,6 +5,6 @@ metadata:
 spec: 
   ports:
     - port: 5432
-  clusterIP: None
   selector:
     app: byteburger-database
+  clusterIP: None

@@ -6,9 +6,9 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: byte-burguer-api
-  minReplicas: 1
-  maxReplicas: 3
+    name: byte-burguer-pod
+  minReplicas: 3
+  maxReplicas: 5
   metrics:
   - type: Resource
     resource:

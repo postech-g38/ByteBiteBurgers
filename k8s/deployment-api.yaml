@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: byte-burguer-api
+  name: byte-burguer-pod
   labels:
-    app: byte-burguer-api
+    app: byte-burguer-pod
 spec:
   template:
     metadata:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: byte-burguer-api
-          image: hiltonbruno633/bytebyteburguers-fast-api-service:2.1
+          image: hiltonbruno633/bytebyteburguers-fast-api-service:2.2
           ports:
             - containerPort: 80
           envFrom:
@@ -21,7 +21,7 @@ spec:
                 name: configmap-api
           livenessProbe:
             httpGet:
-                path: /v1/pedido
+                path: /health_check
                 port: 8000
             periodSeconds: 10  
             failureThreshold: 3
@@ -35,6 +35,8 @@ spec:
           resources:
             requests:
               cpu: 10m
+            limits:
+              cpu: 50m
   replicas: 3
   selector:
     matchLabels: 
