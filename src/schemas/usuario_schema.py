@@ -14,7 +14,7 @@ class CreateUsuarioPayload(BaseModel):
 
 
 class UpdateUsuarioPayload(CreateUsuarioPayload):
-    id: str
+    id: int
 
 
 class ResponseUsuarioPayload(UpdateUsuarioPayload):

@@ -12,10 +12,11 @@ class CreatePedidoPayload(BaseModel):
     produtos: list[ProdudoPedidoSchema]
 
 
-
 class UpdatePedidoPayload(BaseModel):
     id:               int
     status_pedido:    str
+    status_pagamento: str
+    pagamento_id:     str | None
 
 
 class ResponsePedidoPayload(UpdatePedidoPayload):

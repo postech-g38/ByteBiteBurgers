@@ -15,4 +15,5 @@ class PedidoModel(EntityModel):
     valor: Mapped[float]
     status_pedido: Mapped[str | None]
     status_pagamento: Mapped[str | None]
+    pagamento_id: Mapped[str | None]
     produtos = mapped_column('produtos', ARRAY(JSON))

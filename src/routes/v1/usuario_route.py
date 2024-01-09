@@ -25,7 +25,7 @@ def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
 )
 def get(id: int | str, repository: EntityRepository = Depends()):
     service = UsuarioService(repository=repository)
-    return service.get(id=id)
+    return service.get_by_id(id=id)
 
 
 @router.get(
@@ -35,7 +35,7 @@ def get(id: int | str, repository: EntityRepository = Depends()):
 )
 def get(cpf: str, repository: EntityRepository = Depends()) -> dict:
     service = UsuarioService(repository=repository)
-    return service.getByCpf(cpf=cpf)
+    return service.get_by_cpf(cpf=cpf)
 
 
 @router.post(

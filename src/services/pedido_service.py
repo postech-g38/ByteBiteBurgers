@@ -61,3 +61,17 @@ class PedidoService(BaseService):
         self.repository.pedido.delete(model_id=id)
         return ResponsePedidoPayload.model_validate(row).model_dump()
     
+    def pending_orders(self) -> dict | None:
+        rows = self.query_result(self.repository.pedido.get_pending_orders())
+        received = [i for i in rows if i.status_pedido == 'Recebido']
+        received.sort(key=lambda x: x.created_at)
+        preparing = [i for i in rows if i.status_pedido == 'Em Preparação']
+        preparing.sort(key=lambda x: x.created_at)
+        ready = [i for i in rows if i.status_pedido == 'Pronto']
+        ready.sort(key=lambda x: x.created_at)
+        rows = [ResponsePedidoPayload.model_validate(i) for i in received + preparing + ready]
+        return {
+            'items': rows,
+            'quantidade': len(rows)
+        }
+    
