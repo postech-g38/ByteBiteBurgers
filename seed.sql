@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS public.pedido (
 );
 
 -- Inserção de dados
-INSERT INTO public.usuario (nome, senha, cpf, tipo, updated_at, deleted_at)
+INSERT INTO public.usuario (nome, senha, cpf, tipo, updated_at, deleted_at, email)
 VALUES 
-    ('Cliente Pedro', 'senha123', '24945805016', 'cliente', current_timestamp, NULL),
-    ('Admin Joao',    'senha123', '40986296074', 'admin',   current_timestamp, NULL);
+    ('Cliente Pedro', 'senha123', '24945805016', 'cliente', current_timestamp, NULL, 'pedro@email.com'),
+    ('Admin Joao',    'senha123', '40986296074', 'admin',   current_timestamp, NULL, 'joao@email.com');
 
 INSERT INTO public.produto (nome, preco, imagens, categoria)
 VALUES 
