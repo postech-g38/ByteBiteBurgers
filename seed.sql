@@ -1,6 +1,6 @@
 -- Criação da tabela
 CREATE TABLE IF NOT EXISTS public.usuario (
-    id text DEFAULT gen_random_uuid()::text PRIMARY KEY,
+    id integer NOT NULL DEFAULT nextval('usuario_id_seq') PRIMARY KEY,
     nome text NOT NULL,
     email text,
     senha text,
