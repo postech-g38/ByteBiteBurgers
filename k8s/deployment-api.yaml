@@ -19,7 +19,7 @@ spec:
             - containerPort: 80
           envFrom:
             - configMapRef:
-                name: configmap-api
+                name: configmap
           livenessProbe:
             httpGet:
                 path: /health_check
@@ -37,9 +37,21 @@ spec:
             requests:
               cpu: 10m
             limits:
-              cpu: 50m
+              cpu: 500m
   replicas: 3
   selector:
     matchLabels: 
       app: byte-burguer-pod
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-api
+spec:
+  type: LoadBalancer
+  selector:
+    app: byte-burguer-pod
+  ports:
+  - port: 8000

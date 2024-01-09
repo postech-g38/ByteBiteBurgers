@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configmap-api
+  name: configmap
 data:
   DATABASE_USERNAME: postgres
   DATABASE_HOST: service-database

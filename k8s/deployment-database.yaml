@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: statefulset-database
+  name: deployment-database
   labels:
-    app: statefulset-database
+    app: deployment-database
 spec:
   template:
     metadata:
@@ -16,19 +16,9 @@ spec:
           image: postgres
           ports:
             - containerPort: 5432
-          env:
-            - name: DATABASE_USERNAME
-              value: postgres
-            - name: DATABASE_PASSWORD
-              value: postgres
-            - name: DATABASE_HOST
-              value: service-database
-            - name: POSTGRES_PASSWORD
-              value: postgres
-            - name: DATABASE_NAME
-              value: postgres
-            - name: DATABASE_PORT
-              value: '5432'
+          envFrom:
+            - configMapRef:
+                name: configmap
           volumeMounts:
             - name: persistent-volume-database
               mountPath: /var/lib/postgresql/data
@@ -45,3 +35,15 @@ spec:
   selector:
     matchLabels:
       app: byteburger-database
+---
+# Servico conexao com banco de dados
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-database
+spec: 
+  ports:
+    - port: 5432
+  selector:
+    app: byteburger-database
+  clusterIP: None
