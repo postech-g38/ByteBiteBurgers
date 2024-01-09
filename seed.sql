@@ -1,6 +1,6 @@
 -- Criação da tabela
 CREATE TABLE IF NOT EXISTS public.usuario (
-    id integer NOT NULL DEFAULT nextval('usuario_id_seq') PRIMARY KEY,
+    id serial4 NOT NULL PRIMARY KEY,
     nome text NOT NULL,
     email text,
     senha text,
@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS public.pedido (
 	valor float8 NOT NULL,
 	status_pedido varchar NULL,
 	status_pagamento varchar NULL,
+    pagamento_id varchar NULL,
 	id serial4 NOT NULL PRIMARY KEY,
 	created_at timestamp DEFAULT current_timestamp NOT NULL,
 	updated_at timestamp NULL,
