@@ -11,7 +11,7 @@ router = APIRouter(prefix='/usuario', tags=['Usuario'])
 
 @router.get(
     path='/', 
-    response_model=ResponsePagination, 
+    # response_model=ResponsePagination, 
     summary='Pegar todos os Usuario'
 )
 def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:

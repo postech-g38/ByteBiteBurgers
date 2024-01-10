@@ -24,7 +24,7 @@ def pending_orders(request: Request, repository: EntityRepository = Depends()) -
     response_model=ResponsePagination, 
     summary='Pegar todos os Pedidos'
 )
-def get_all(repository: EntityRepository = Depends()) -> dict:
+def get_all(request: Request, repository: EntityRepository = Depends()) -> dict:
     return PedidoService(repository=repository).get_all()
 
 
@@ -43,7 +43,7 @@ def pedido_get_by_status(status: str, repository: EntityRepository = Depends()) 
     summary='Pegar Pedido'
 )
 def get(id: int, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).get(id=id)
+    return PedidoService(repository=repository).get_by_id(id=id)
 
 
 @router.put(
