@@ -13,8 +13,13 @@ class CreateUsuarioPayload(BaseModel):
     tipo: str = UsuarioTipo.CLIENTE.value
 
 
-class UpdateUsuarioPayload(CreateUsuarioPayload):
+class UpdateUsuarioPayload(BaseModel):
     id: int
+    nome: str | None
+    senha: str | None
+    cpf: str | None
+    email: str | None
+    tipo: str | None
 
 
 class ResponseUsuarioPayload(UpdateUsuarioPayload):

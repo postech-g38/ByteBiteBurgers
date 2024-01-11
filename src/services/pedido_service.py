@@ -53,11 +53,12 @@ class PedidoService(BaseService):
     def update(self, data: UpdatePedidoPayload) -> dict | None:
         row = self.query_result(self.repository.pedido.search_by_id(model_id=data.id))
         self.repository.pedido.update(model_id=data.id, values=data.model_dump())
-        row = self.repository.pedido.model_refresh(model=row)
+        self.repository.pedido.model_refresh(model=row)
         return ResponsePedidoPayload.model_validate(row).model_dump()
 
     def delete(self, id: int) -> dict | None:
         row = self.query_result(self.repository.pedido.search_by_id(model_id=id))
+        row.deleted_at = datetime.now()
         self.repository.pedido.delete(model_id=id)
         return ResponsePedidoPayload.model_validate(row).model_dump()
     

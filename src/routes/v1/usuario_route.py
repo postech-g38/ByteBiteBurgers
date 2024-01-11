@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 
 from src.services.usuario_service import UsuarioService
 from src.adapters.repositories import EntityRepository
-from src.schemas.usuario_schema import CreateUsuarioPayload, ResponseUsuarioPayload, ResponsePagination
+from src.schemas.usuario_schema import CreateUsuarioPayload, ResponseUsuarioPayload, ResponsePagination, UpdateUsuarioPayload
 
 router = APIRouter(prefix='/usuario', tags=['Usuario'])
 
@@ -57,7 +57,7 @@ def create(
     summary='Atualizar Usuario'
 )
 def update(
-    data: CreateUsuarioPayload, 
+    data: UpdateUsuarioPayload, 
     repository: EntityRepository = Depends()
 ) -> dict[str, Any]:
     service = UsuarioService(repository=repository)
