@@ -66,7 +66,7 @@ class PedidoService(BaseService):
         rows = self.query_result(self.repository.pedido.get_pending_orders())
         received = [i for i in rows if i.status_pedido == 'Recebido']
         received.sort(key=lambda x: x.created_at)
-        preparing = [i for i in rows if i.status_pedido == 'Em Preparação']
+        preparing = [i for i in rows if i.status_pedido == 'Em preparação']
         preparing.sort(key=lambda x: x.created_at)
         ready = [i for i in rows if i.status_pedido == 'Pronto']
         ready.sort(key=lambda x: x.created_at)
