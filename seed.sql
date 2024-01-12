@@ -55,6 +55,10 @@ VALUES
 
 INSERT INTO public.pedido (status_pedido, status_pagamento, valor, data_mudanca_status, produtos)
 VALUES
-    ('Recebido',   'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 1, "quantidade": 1}'::json]),
     ('Pronto',     'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 5, "quantidade": 1}'::json]),
+    ('Pronto',     'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 4, "quantidade": 2}'::json]),
+    ('Em preparação', 'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 3, "quantidade": 3}'::json]),
+    ('Em preparação', 'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 1, "quantidade": 4}'::json]),
+    ('Recebido',   'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 1, "quantidade": 1}'::json]),
+    ('Recebido',   'Efetuado', 10.99, current_timestamp, ARRAY ['{"produto_id": 1, "quantidade": 1}'::json]),
     ('Finalizado', 'Efetuado', 21.98, current_timestamp, ARRAY ['{"produto_id": 1, "quantidade": 1}'::json,'{"produto_id": 5, "quantidade": 1}'::json]);
