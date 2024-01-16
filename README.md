@@ -93,15 +93,18 @@ Add the number of user and spawn rate and click start Swarming button to start t
 
 # Kubernetes - EKS
 
+
+## Criação do Cluster EKS
+
 - Para criar o cluster EKS, execute o comando:
 
 ```bash
 eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml         
 ```
+## Configuração da Política IAM
+ - Acesse o Console do AWS e vá para Services > IAM.
+ - Crie uma nova política utilizando o JSON abaixo:
 
-- Crie uma IAM policy
- - Vá até Services > IAM
- - Crie uma policy
 ```bash
 {
   "Version": "2012-10-17",
@@ -129,7 +132,7 @@ eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml
 ```
 - Pegue o IAM role worker node e associe a policy criada 
 
-````bash
+```bash
 # Get Worker node IAM Role ARN
 kubectl -n kube-system describe configmap aws-auth
 
@@ -139,13 +142,16 @@ kubectl -n kube-system describe configmap aws-auth
     - Clique em Permissions
     - Clique em Attach Policy
 
+ ## Instalação do Amazon EBS CSI Driver
+
 - Instale Amazon EBS CSI Driver
 
 ```bash
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
 ```
+## Instalação do Kubernetes Metric Server
 
-- Instale o Kubernetes Metric Server
+- Instale o Metric Server utilizando o seguinte comando:
 
 ```bash
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -155,13 +161,14 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
  ```bash
  kubectl get deployment metrics-server -n kube-system
 ```
+## Implantação de Pods
 
-- Instale pod's 
+- Para implantar os pods, utilize o seguinte comando:
 
 ```bash
 kubectl apply -f k8s
 ```
-- Verifique a execucao dos pods
+- Verifique a execução dos pods com o comando:
 
 ```bash
 kubectl get all
