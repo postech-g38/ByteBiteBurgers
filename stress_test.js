@@ -9,6 +9,6 @@ export const options = {
 
 // 10 * 20 = 200 request to get/pedido in 40 seconds
 export default function () {
-  http.get("http://aea830e58c65a4b6ca8f25b3eb251257-1762251680.us-east-1.elb.amazonaws.com:8000/v1/usuario/");
+  http.get("http://a094291329d9b48bba7b166b013a1af7-427386988.us-east-1.elb.amazonaws.com:8000/v1/usuario/");
   sleep(1);
 }

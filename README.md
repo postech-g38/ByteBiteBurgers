@@ -91,3 +91,81 @@ Add the number of user and spawn rate and click start Swarming button to start t
 - Carga inicial de categorias (e talvez Produtos)
 - Métodos de checkout.
 
+# Kubernetes - EKS
+
+- Para criar o cluster EKS, execute o comando:
+
+```bash
+eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml         
+```
+
+- Crie uma IAM policy
+ - Vá até Services > IAM
+ - Crie uma policy
+```bash
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AttachVolume",
+        "ec2:CreateSnapshot",
+        "ec2:CreateTags",
+        "ec2:CreateVolume",
+        "ec2:DeleteSnapshot",
+        "ec2:DeleteTags",
+        "ec2:DeleteVolume",
+        "ec2:DescribeInstances",
+        "ec2:DescribeSnapshots",
+        "ec2:DescribeTags",
+        "ec2:DescribeVolumes",
+        "ec2:DetachVolume"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+- Pegue o IAM role worker node e associe a policy criada 
+
+````bash
+# Get Worker node IAM Role ARN
+kubectl -n kube-system describe configmap aws-auth
+
+```
+    - Vá até Services > IAM > Roles
+    - Busque pela role
+    - Clique em Permissions
+    - Clique em Attach Policy
+
+- Instale Amazon EBS CSI Driver
+
+```bash
+kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
+```
+
+- Instale o Kubernetes Metric Server
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+ - Verifique se o pod's estao em execucao com o comando
+
+ ```bash
+ kubectl get deployment metrics-server -n kube-system
+```
+
+- Instale pod's 
+
+```bash
+kubectl apply -f k8s
+```
+- Verifique a execucao dos pods
+
+```bash
+kubectl get all
+```
+
+
+
