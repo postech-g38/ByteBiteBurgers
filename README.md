@@ -94,6 +94,45 @@ Add the number of user and spawn rate and click start Swarming button to start t
 # Kubernetes - EKS
 
 
+## Instalação do eksctl
+
+O eksctl é uma ferramenta de linha de comando para criar, gerenciar e operar clusters do Amazon Elastic Kubernetes Service (Amazon EKS). Este guia fornece instruções passo a passo para instalar o eksctl em seu ambiente.
+
+Pré-requisitos
+Certifique-se de ter os seguintes pré-requisitos instalados em seu sistema antes de começar:
+
+AWS CLI
+kubectl
+Git
+
+## Instalação do eksctl
+Linux ou macOS
+
+```bash
+# Instale o eksctl usando o comando curl
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+# Mova o binário para um diretório no seu PATH
+sudo mv /tmp/eksctl /usr/local/bin
+
+# Teste a instalação
+eksctl version
+```
+Windows
+Abra o PowerShell como administrador.
+
+Execute o seguinte comando para baixar e instalar o eksctl:
+
+```bash
+# Certifique-se de substituir <version> pela versão mais recente disponível
+curl.exe -o eksctl.exe https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_Windows_amd64.exe
+
+# Mova o binário para um diretório no seu PATH
+Move-Item .\eksctl.exe C:\diretorio\do\seu\PATH\eksctl.exe
+
+# Teste a instalação
+eksctl version
+```
 ## Criação do Cluster EKS
 
 - Para criar o cluster EKS, execute o comando:
@@ -175,14 +214,15 @@ kubectl get all
 ```
 ## Teste de Stress - K6
 
-A fim de comprovar a escalabilidade e a disponibilidade com o aumento de volume de requisições na aplicacao construimos um cenário de teste. 
+A fim de comprovar a escalabilidade e a disponibilidade com o aumento de volume de requisições na aplicação construimos um cenário de teste de stress. 
 
 - O cenário consiste em 20 usuarios virtuais (vu's), realizando 40 requisições por usuario durante 60 segundos ( 20 vu's * 40 interactions = 800 requests em 60 segundos)
 
-A ideia deste teste consiste em comprovar oa escalabilidade e disponibilidade com o escalonamento do numero de Pod com uma quantidade minima de erro de requisições
+A ideia deste teste consiste em comprovar a escalabilidade e disponibilidade com o escalonamento do numero de Pod com uma quantidade minima de erro de requisições
 
 - Para executar o teste execute o seguinte comando:
 
 ```bash
 k6 run stress_test.js
 ```
+--
