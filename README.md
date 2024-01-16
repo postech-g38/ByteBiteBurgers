@@ -101,9 +101,12 @@ O eksctl é uma ferramenta de linha de comando para criar, gerenciar e operar cl
 Pré-requisitos
 Certifique-se de ter os seguintes pré-requisitos instalados em seu sistema antes de começar:
 
-[AWS CLI](https://aws.amazon.com/pt/cli/)/n
-[kubectl](https://kubernetes.io/pt-br/docs/reference/kubectl/)/n
-[Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git)/n
+[AWS CLI](https://aws.amazon.com/pt/cli/)
+
+[kubectl](https://kubernetes.io/pt-br/docs/reference/kubectl/)
+
+[Git](https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Instalando-o-Git)
+
 
 ## Instalação do eksctl
 Linux ou macOS
