@@ -173,6 +173,16 @@ kubectl apply -f k8s
 ```bash
 kubectl get all
 ```
+## Teste de Stress - K6
 
+A fim de comprovar a escalabilidade e a disponibilidade com o aumento de volume de requisições na aplicacao construimos um cenário de teste. 
 
+- O cenário consiste em 20 usuarios virtuais (vu's), realizando 40 requisições por usuario durante 60 segundos ( 20 vu's * 40 interactions = 800 requests em 60 segundos)
 
+A ideia deste teste consiste em comprovar oa escalabilidade e disponibilidade com o escalonamento do numero de Pod com uma quantidade minima de erro de requisições
+
+- Para executar o teste execute o seguinte comando:
+
+```bash
+k6 run stress_test.js
+```
