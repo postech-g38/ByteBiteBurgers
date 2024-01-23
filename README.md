@@ -93,6 +93,8 @@ Add the number of user and spawn rate and click start Swarming button to start t
 
 # Kubernetes - EKS
 
+## Link Video
+https://www.youtube.com/watch?v=tMUzzM8YnzE
 
 ## Instalação do eksctl
 
