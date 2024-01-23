@@ -31,4 +31,5 @@ class ResponsePedidoPayload(UpdatePedidoPayload):
 
 class ResponsePagination(BaseModel):
     items: list[ResponsePedidoPayload] | None
+    items: list[ResponsePedidoPayload] | None
     quantidade: int

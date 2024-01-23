@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-database
+  labels:
+    app: deployment-database
+spec:
+  template:
+    metadata:
+      name: byteburger-database
+      labels:
+        app: byteburger-database
+    spec:
+      containers:
+        - name: byte-burger-db
+          image: postgres
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: configmap
+          volumeMounts:
+            - name: persistent-volume-database
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres 
+            - name: seed-database-script
+              mountPath: /docker-entrypoint-initdb.d 
+      volumes:
+        - name: persistent-volume-database
+          persistentVolumeClaim:
+            claimName: ebs-mysql-pv-claim
+        - name: seed-database-script
+          configMap: 
+            name: seed-database-script
+  selector:
+    matchLabels:
+      app: byteburger-database
+---
+# Servico conexao com banco de dados
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-database
+spec: 
+  ports:
+    - port: 5432
+  selector:
+    app: byteburger-database
+  clusterIP: None

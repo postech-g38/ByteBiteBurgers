@@ -16,23 +16,20 @@ class Healthcheck(HttpUser):
         self.client.get('/v1/usuario/')
 
     @task
-    def create_user(self):
-        self.client.post('/v1/usuario/', json={
-            "nome": "name",
-            "senha": "12345",
-            "cpf": "03477306040",
-            "tipo": "user"
-            })
-    @task
     def list_all_orders(self):
         self.client.get('/v1/pedido/')
     
     @task
     def create_order(self):
         self.client.post('/v1/pedido/checkout', json={
-            "data_mudanca_status": "2023-10-26T19:05:17.541Z",
-            "valor": 0,
-            "status_pedido": "string",
-            "status_pagamento": "string"
-        })
+        "produtos": [
+            {
+                "produto_id": 3,
+                "quantidade": 2
+            }
+        ]})
+    @task
+    def get_product_by_category(self):
+        self.client.get('http://localhost:8000/v1/produto/categoria/?categoria=Sobremesa')
+
     

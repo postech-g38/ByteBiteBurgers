@@ -1,5 +1,5 @@
 # Python 3.11 Lightweight Base Image ->  Debian Distro use < apt-get >
-FROM python:3.11-slim
+FROM --platform=linux/amd64 python:3.11-slim
 
 # Update Packages Manager
 RUN apt-get update -y \
