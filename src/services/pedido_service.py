@@ -18,7 +18,7 @@ class PedidoService(BaseService):
             'quantidade': len(rows)
         }
      
-    def get(self, id: int) -> dict | None:
+    def get_by_id(self, id: int) -> dict | None:
         row = self.query_result(self.repository.pedido.search_by_id(model_id=id))
         return row.__dict__
     
@@ -41,7 +41,7 @@ class PedidoService(BaseService):
 
         row.valor = total
         row.status_pedido = 'Recebido'
-        row.status_pagamento = 'Efetuado'
+        row.status_pagamento = 'Aguardando'
         row.data_mudanca_status = datetime.now()
         row.produtos = [i.model_dump() for i in data.produtos]
 
@@ -53,11 +53,26 @@ class PedidoService(BaseService):
     def update(self, data: UpdatePedidoPayload) -> dict | None:
         row = self.query_result(self.repository.pedido.search_by_id(model_id=data.id))
         self.repository.pedido.update(model_id=data.id, values=data.model_dump())
-        row = self.repository.pedido.model_refresh(model=row)
+        self.repository.pedido.model_refresh(model=row)
         return ResponsePedidoPayload.model_validate(row).model_dump()
 
     def delete(self, id: int) -> dict | None:
         row = self.query_result(self.repository.pedido.search_by_id(model_id=id))
+        row.deleted_at = datetime.now()
         self.repository.pedido.delete(model_id=id)
         return ResponsePedidoPayload.model_validate(row).model_dump()
+    
+    def pending_orders(self) -> dict | None:
+        rows = self.query_result(self.repository.pedido.get_pending_orders())
+        received = [i for i in rows if i.status_pedido == 'Recebido']
+        received.sort(key=lambda x: x.created_at)
+        preparing = [i for i in rows if i.status_pedido == 'Em preparação']
+        preparing.sort(key=lambda x: x.created_at)
+        ready = [i for i in rows if i.status_pedido == 'Pronto']
+        ready.sort(key=lambda x: x.created_at)
+        rows = [ResponsePedidoPayload.model_validate(i) for i in received + preparing + ready]
+        return {
+            'items': rows,
+            'quantidade': len(rows)
+        }
     

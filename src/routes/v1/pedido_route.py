@@ -1,5 +1,5 @@
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 
 from src.services.pedido_service import PedidoService
 from src.adapters.repositories import EntityRepository
@@ -8,13 +8,23 @@ from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload
 
 router = APIRouter(prefix='/pedido', tags=['Pedido'])
 
+@router.get(
+    path='/pendente', 
+    response_model=ResponsePagination, 
+    summary='Listagem de pedidos nao finalizados'
+)
+def pending_orders(request: Request, repository: EntityRepository = Depends()) -> dict:
+    pedido = PedidoService(repository=repository).pending_orders()
+    print(pedido)
+    return pedido
+
 
 @router.get(
     path='/', 
     response_model=ResponsePagination, 
     summary='Pegar todos os Pedidos'
 )
-def get_all(repository: EntityRepository = Depends()) -> dict:
+def get_all(request: Request, repository: EntityRepository = Depends()) -> dict:
     return PedidoService(repository=repository).get_all()
 
 
@@ -33,7 +43,7 @@ def pedido_get_by_status(status: str, repository: EntityRepository = Depends()) 
     summary='Pegar Pedido'
 )
 def get(id: int, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).get(id=id)
+    return PedidoService(repository=repository).get_by_id(id=id)
 
 
 @router.put(
@@ -61,3 +71,6 @@ def delete(id: int, repository: EntityRepository = Depends()) -> dict:
 )
 def checkout(payload: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
     return PedidoService(repository=repository).checkout(data=payload)
+
+
+

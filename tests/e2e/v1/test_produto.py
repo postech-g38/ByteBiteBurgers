@@ -5,7 +5,6 @@ import pytest
 from starlette import status
 
 
-@pytest.mark.skip('Response validation not matching')
 def test_produto_service_get_all_return_none(sync_client, create_database):
     # arrange
     # act

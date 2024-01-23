@@ -67,7 +67,7 @@ class SQLAlchemyRepository:
         """
         statement = delete(self.entity_model).where(self.entity_model.id == model_id)
         self.session_db.execute(statement=statement)
-        self.session_db.flush()
+        # self.session_db.flush()
     
     def model_refresh(self, model: Type[EntityModel]) -> Type[EntityModel]:
         self.session_db.refresh(instance=model)

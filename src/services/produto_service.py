@@ -1,4 +1,5 @@
 from typing import Any
+from datetime import datetime
 
 from src.services.service_base import BaseService
 from src.adapters.repositories import EntityRepository
@@ -35,6 +36,7 @@ class ProdutoService(BaseService):
     
     def delete(self, id: str | int) -> dict[str, Any]:
         row = self.query_result(self.repository.produto.search_by_id(model_id=id))
+        row.deleted_at = datetime.now()
         self.repository.produto.delete(model_id=id)
         return ResponseProdutoPayload.model_validate(row).model_dump()
     
