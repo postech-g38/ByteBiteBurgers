@@ -23,9 +23,17 @@ docker-compose up
 ```
 
 4. Abra o seu navegador e acesse o endereço abaixo.
-
 ```
 http://localhost:8000/docs
+```
+
+
+## Outros comandos úteis
+
+- Para resetar o banco, execute o comando abaixo, em seguida, execute os passos 2 e 3 para subir novamente o projeto.
+
+```
+docker-compose drop postgres
 ```
 
 
