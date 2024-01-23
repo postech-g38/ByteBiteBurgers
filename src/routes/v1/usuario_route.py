@@ -4,14 +4,14 @@ from fastapi import APIRouter, Depends
 
 from src.services.usuario_service import UsuarioService
 from src.adapters.repositories import EntityRepository
-from src.schemas.usuario_schema import CreateUsuarioPayload, ResponseUsuarioPayload, ResponsePagination
+from src.schemas.usuario_schema import CreateUsuarioPayload, ResponseUsuarioPayload, ResponsePagination, UpdateUsuarioPayload
 
 router = APIRouter(prefix='/usuario', tags=['Usuario'])
 
 
 @router.get(
     path='/', 
-    response_model=ResponsePagination, 
+    # response_model=ResponsePagination, 
     summary='Pegar todos os Usuario'
 )
 def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
@@ -25,7 +25,7 @@ def get_all(repository: EntityRepository = Depends()) -> ResponsePagination:
 )
 def get(id: int | str, repository: EntityRepository = Depends()):
     service = UsuarioService(repository=repository)
-    return service.get(id=id)
+    return service.get_by_id(id=id)
 
 
 @router.get(
@@ -35,7 +35,7 @@ def get(id: int | str, repository: EntityRepository = Depends()):
 )
 def get(cpf: str, repository: EntityRepository = Depends()) -> dict:
     service = UsuarioService(repository=repository)
-    return service.getByCpf(cpf=cpf)
+    return service.get_by_cpf(cpf=cpf)
 
 
 @router.post(
@@ -57,7 +57,7 @@ def create(
     summary='Atualizar Usuario'
 )
 def update(
-    data: CreateUsuarioPayload, 
+    data: UpdateUsuarioPayload, 
     repository: EntityRepository = Depends()
 ) -> dict[str, Any]:
     service = UsuarioService(repository=repository)

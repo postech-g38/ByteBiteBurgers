@@ -6,7 +6,6 @@ from src.services.usuario_service import UsuarioService
 from tests.manual.database import usuario_model
 
 
-@pytest.mark.skip('Response validation not matching')
 def test_usuario_service_get_all_return_none(sync_client, create_database):
     # arrange
     # act
@@ -50,7 +49,8 @@ def test_usuario_service_create_user_then_return_success(sync_client, create_dat
     payload = {
         'nome': 'Alguma Pessoa',
         'senha': 'Senha123',
-        'cpf': '91487124007'
+        'cpf': '91487124007',
+        'email': 'someone@email.com'
     }
     # act
     response = sync_client.post("/v1/usuario", json=payload)

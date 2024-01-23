@@ -23,7 +23,6 @@ docker-compose up
 ```
 
 4. Abra o seu navegador e acesse o endereço abaixo.
-
 ```
 http://localhost:8000/docs
 ```
@@ -36,28 +35,14 @@ http://localhost:8000/docs
 ```
 docker-compose drop postgres
 ```
-Aqui temos 3 funçoes, create, drop e load. Basta troca a funçao embaixo do __name__
 
-### Running Tests
-```bash
-pytest -s -v
+
+## Outros comandos úteis
+
+- Para resetar o banco, execute o comando abaixo, em seguida, execute os passos 2 e 3 para subir novamente o projeto.
+
 ```
 
-
-### Running Docker
-```bash
-docker compose -f docker-compose.yml up --build
-```
-
-### Running Load Test
-```bash
-locust -H http://localhost:8000 -f tests/load/locustfile.py
-```
-
-open URL:
-```bash
-http://localhost:8089/
-```
 Add the number of user and spawn rate and click start Swarming button to start the load test
 
 ## DISCLAIMER
@@ -213,4 +198,3 @@ A ideia deste teste consiste em comprovar a escalabilidade e disponibilidade com
 ```bash
 k6 run stress_test.js
 ```
---

@@ -9,6 +9,7 @@ class UsuarioModel(EntityModel):
     __tablename__ = 'usuario'
 
     nome:  Mapped[str]
+    email: Mapped[str]
     senha: Mapped[str]
     cpf:   Mapped[str | None]
     tipo:  Mapped[str]
