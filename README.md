@@ -34,10 +34,8 @@ http://localhost:8000/docs
 - Para resetar o banco, execute o comando abaixo, em seguida, execute os passos 2 e 3 para subir novamente o projeto.
 
 ```
-<<<<<<< HEAD
 docker-compose drop postgres
 ```
-=======
 Aqui temos 3 funçoes, create, drop e load. Basta troca a funçao embaixo do __name__
 
 ### Running Tests
@@ -216,4 +214,3 @@ A ideia deste teste consiste em comprovar a escalabilidade e disponibilidade com
 k6 run stress_test.js
 ```
 --
->>>>>>> 8c032d1d35854ea669131b6911efe60ec5366381
