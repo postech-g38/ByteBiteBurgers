@@ -1,4 +1,9 @@
-# Olá, professor!
+# Olá, professor 👋
+
+## Desenho de arquitetura
+
+![image](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/9b113352-6b66-4b52-80fc-39b85a9a05c8)
+
 
 Para auxiliar na sua trajetória de conhecimento da ByteBiteBugers, criamos esse pequeno roteiro para baixar e executar o sistema.
 
