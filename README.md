@@ -41,7 +41,6 @@ docker-compose drop postgres
 
 - Para resetar o banco, execute o comando abaixo, em seguida, execute os passos 2 e 3 para subir novamente o projeto.
 
-```
 
 Add the number of user and spawn rate and click start Swarming button to start the load test
 
