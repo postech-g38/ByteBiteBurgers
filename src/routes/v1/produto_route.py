@@ -3,9 +3,9 @@ from typing import Any
 from fastapi import APIRouter, Depends
 from http import HTTPStatus
 
-from src.services.produto_service import ProdutoService
+from src.controllers.produto_controller import ProdutoController
 from src.adapters.repositories import EntityRepository
-from src.schemas.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, ResponsePagination, UpdateProdutoPayload
+from src.presenters.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, ResponsePagination, UpdateProdutoPayload
 
 router = APIRouter(prefix='/produto', tags=['Produto'])
 
@@ -17,7 +17,7 @@ router = APIRouter(prefix='/produto', tags=['Produto'])
     summary='Pegar todos os Produtos'
 )
 def get_all(repository: EntityRepository = Depends()) -> dict:
-    return ProdutoService(repository=repository).get_all()
+    return ProdutoController(repository=repository).get_all()
 
 
 @router.get(
@@ -27,7 +27,7 @@ def get_all(repository: EntityRepository = Depends()) -> dict:
     summary='Pegar Produtos por Categoria'
 )
 def get_by_category(categoria: str, repository: EntityRepository = Depends()) -> dict:
-    return ProdutoService(repository=repository).get_by_categoria(categoria=categoria)
+    return ProdutoController(repository=repository).get_by_categoria(categoria=categoria)
 
 
 @router.get(
@@ -37,7 +37,7 @@ def get_by_category(categoria: str, repository: EntityRepository = Depends()) ->
     summary='Pegar Produto'
 )
 def get(id: int | str, repository: EntityRepository = Depends()) -> dict:
-    return ProdutoService(repository=repository).get(id=id)
+    return ProdutoController(repository=repository).get(id=id)
 
 
 @router.post(
@@ -47,7 +47,7 @@ def get(id: int | str, repository: EntityRepository = Depends()) -> dict:
     summary='Criar Produto'
 )
 def create(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
-    return ProdutoService(repository=repository).create(data=data)
+    return ProdutoController(repository=repository).create(data=data)
 
 
 @router.put(
@@ -57,7 +57,7 @@ def create(data: CreateProdutoPayload, repository: EntityRepository = Depends())
     summary='Atualizar Produto'
 )
 def update(data: UpdateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
-    return ProdutoService(repository=repository).update(data=data)
+    return ProdutoController(repository=repository).update(data=data)
 
 
 @router.delete(
@@ -67,5 +67,5 @@ def update(data: UpdateProdutoPayload, repository: EntityRepository = Depends())
     summary='Deletar Produto'
 )
 def delete(id: int | str, repository: EntityRepository = Depends()) -> dict:
-    service = ProdutoService(repository=repository)
+    service = ProdutoController(repository=repository)
     return service.delete(id=id)

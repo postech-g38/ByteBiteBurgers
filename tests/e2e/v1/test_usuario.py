@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 import pytest
 
-from src.services.usuario_service import UsuarioService
+from src.controllers.usuario_controller import UsuarioService
 from tests.manual.database import usuario_model
 
 

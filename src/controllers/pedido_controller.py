@@ -2,11 +2,11 @@ from datetime import datetime
 
 from src.adapters.repositories import EntityRepository
 from src.adapters.database.models.pedido_model import PedidoModel
-from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, UpdatePedidoPayload
-from src.services.service_base import BaseService
+from src.presenters.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, UpdatePedidoPayload
+from src.controllers.base_controller import BaseController
 
 
-class PedidoService(BaseService):
+class PedidoController(BaseController):
     def __init__(self, repository: EntityRepository) -> None:
         self.repository = repository
     
@@ -70,7 +70,7 @@ class PedidoService(BaseService):
         preparing.sort(key=lambda x: x.created_at)
         ready = [i for i in rows if i.status_pedido == 'Pronto']
         ready.sort(key=lambda x: x.created_at)
-        rows = [ResponsePedidoPayload.model_validate(i) for i in received + preparing + ready]
+        rows = [ResponsePedidoPayload.model_validate(i) for i in ready + preparing + received]
         return {
             'items': rows,
             'quantidade': len(rows)

@@ -12,7 +12,7 @@ class NotFoundExcepition(HTTPException):
 
 
 @dataclass
-class BaseService:
+class BaseController:
     @classmethod
     def query_result(cls, result: list[Any] | dict[str, Any]) -> Any:
         """Return the result if exists or raise exception"""

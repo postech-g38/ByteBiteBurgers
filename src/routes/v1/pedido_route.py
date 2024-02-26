@@ -1,9 +1,9 @@
 
 from fastapi import APIRouter, Depends, Request
 
-from src.services.pedido_service import PedidoService
+from src.controllers.pedido_controller import PedidoController
 from src.adapters.repositories import EntityRepository
-from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, ResponsePagination, UpdatePedidoPayload
+from src.presenters.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, ResponsePagination, UpdatePedidoPayload
 
 
 router = APIRouter(prefix='/pedido', tags=['Pedido'])
@@ -14,7 +14,7 @@ router = APIRouter(prefix='/pedido', tags=['Pedido'])
     summary='Listagem de pedidos nao finalizados'
 )
 def pending_orders(request: Request, repository: EntityRepository = Depends()) -> dict:
-    pedido = PedidoService(repository=repository).pending_orders()
+    pedido = PedidoController(repository=repository).pending_orders()
     print(pedido)
     return pedido
 
@@ -25,7 +25,7 @@ def pending_orders(request: Request, repository: EntityRepository = Depends()) -
     summary='Pegar todos os Pedidos'
 )
 def get_all(request: Request, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).get_all()
+    return PedidoController(repository=repository).get_all()
 
 
 @router.get(
@@ -34,7 +34,7 @@ def get_all(request: Request, repository: EntityRepository = Depends()) -> dict:
     summary='Pegar Pedido por Status'
 )
 def pedido_get_by_status(status: str, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).get_by_status(status=status)
+    return PedidoController(repository=repository).get_by_status(status=status)
 
 
 @router.get(
@@ -43,7 +43,7 @@ def pedido_get_by_status(status: str, repository: EntityRepository = Depends()) 
     summary='Pegar Pedido'
 )
 def get(id: int, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).get_by_id(id=id)
+    return PedidoController(repository=repository).get_by_id(id=id)
 
 
 @router.put(
@@ -52,7 +52,7 @@ def get(id: int, repository: EntityRepository = Depends()) -> dict:
     summary='Atualizar Pedido'
 )
 def update(data: UpdatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).update(data=data)
+    return PedidoController(repository=repository).update(data=data)
 
 
 @router.delete(
@@ -61,7 +61,7 @@ def update(data: UpdatePedidoPayload, repository: EntityRepository = Depends()) 
     summary='Deletar Pedido'
 )
 def delete(id: int, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).delete(id=id)
+    return PedidoController(repository=repository).delete(id=id)
 
 
 @router.post(
@@ -70,7 +70,7 @@ def delete(id: int, repository: EntityRepository = Depends()) -> dict:
     summary='Efetuar pagamento do Pedido'
 )
 def checkout(payload: CreatePedidoPayload, repository: EntityRepository = Depends()) -> dict:
-    return PedidoService(repository=repository).checkout(data=payload)
+    return PedidoController(repository=repository).checkout(data=payload)
 
 
 
