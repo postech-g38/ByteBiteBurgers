@@ -51,10 +51,7 @@ jobs:
       #  run: docker exec bytebiteburgers_container pytest  # Alteração feita aqui
       - name: Run pytest on specific test file
         run: |
-          cd tests/e2e/v1 && 
-          pwd && 
-          cat test_pedido.py && 
-          docker exec bytebiteburgers_container pytest test_pedido.py
+          docker run -v $(pwd)/tests:/usr/src/app/tests bytebiteburgers pytest tests/e2e/v1/test_pedido.py
 
       - name: Stop Docker container
         run: docker stop bytebiteburgers_container
