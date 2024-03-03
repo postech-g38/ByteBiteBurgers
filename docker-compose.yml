@@ -26,4 +26,4 @@ services:
       - 5433:5432
     volumes:
       - /var/lib/postgresql/data
-    
+      - ./seeds:/docker-entrypoint-initdb.d  # Montando o diretório seeds no contêiner
