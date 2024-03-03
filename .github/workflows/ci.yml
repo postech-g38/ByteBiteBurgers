@@ -36,9 +36,9 @@ jobs:
       - name: Seed database
         run: |
           docker ps  # Verifica se o contêiner está sendo iniciado corretamente
-          docker cp ./seeds/seed.sql postgres:/seed.sql
+          docker cp ./seeds/seed.sql service-postgres:/seed.sql
           sleep 5  # Atraso adicional de 5 segundos para garantir que o contêiner esteja pronto
-          docker exec postgres psql -U postgres -d postgres -f /seed.sql
+          docker exec service-postgres psql -U postgres -d postgres -f /seed.sql
 
       - name: Run pytest
         run: docker exec bytebiteburgers_container pytest tests/
