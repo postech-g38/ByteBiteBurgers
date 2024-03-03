@@ -8,3 +8,4 @@ Flask==3.0.0
 
 # Development Dependencies
 pytest
+httpx==0.21.1
