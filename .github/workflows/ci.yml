@@ -31,7 +31,7 @@ jobs:
         run: docker network create bytebite_network && docker run -d --name bytebiteburgers_container --network bytebite_network bytebiteburgers
 
       - name: Seed database
-        run: docker cp ./seeds/seed.sql bytebiteburgers_container:/seed.sql && docker exec bytebiteburgers_container psql -U postgres -d postgres -f /seed.sql
+        run: docker cp ./seeds/seed.sql postgres:/seed.sql && docker exec postgres psql -U postgres -d postgres -f /seed.sql
 
       - name: Run pytest
         run: docker exec bytebiteburgers_container pytest tests/
