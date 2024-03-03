@@ -8,14 +8,15 @@ jobs:
 
     services:
       postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: postgres
-          POSTGRES_USER: postgres
+        image: postgres
+        container_name: byte-burguer-postgres
+        environment:
           POSTGRES_PASSWORD: postgres
         ports:
           - 5433:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        volumes:
+          - /var/lib/postgresql/data
+          - ./seeds:/docker-entrypoint-initdb.d  # Montando o diretório seeds no contêiner
 
     steps:
       - name: Checkout repository
@@ -35,13 +36,7 @@ jobs:
 
       - name: Seed database
         run: |
-          docker ps  # Verifica se o contêiner está sendo iniciado corretamente
-          docker cp ./seeds/seed.sql service-postgres:/seed.sql
+          docker ps  # Verifica se os contêineres estão sendo iniciados corretamente
+          docker cp ./seeds/seed.sql byte-burguer-postgres:/docker-entrypoint-initdb.d/seed.sql
           sleep 5  # Atraso adicional de 5 segundos para garantir que o contêiner esteja pronto
-          docker exec service-postgres psql -U postgres -d postgres -f /seed.sql
-
-      - name: Run pytest
-        run: docker exec bytebiteburgers_container pytest tests/
-
-      - name: Stop Docker container
-        run: docker stop bytebiteburgers_container
+          docker exec byte
