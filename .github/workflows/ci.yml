@@ -28,10 +28,17 @@ jobs:
         run: docker build -t bytebiteburgers .
 
       - name: Run Docker container
-        run: docker network create bytebite_network && docker run -d --name bytebiteburgers_container --network bytebite_network bytebiteburgers
+        run: |
+          docker network create bytebite_network
+          docker run -d --name bytebiteburgers_container --network bytebite_network bytebiteburgers
+          sleep 10  # Atraso de 10 segundos para garantir que o contêiner esteja pronto
 
       - name: Seed database
-        run: docker cp ./seeds/seed.sql postgres:/seed.sql && docker exec postgres psql -U postgres -d postgres -f /seed.sql
+        run: |
+          docker ps  # Verifica se o contêiner está sendo iniciado corretamente
+          docker cp ./seeds/seed.sql postgres:/seed.sql
+          sleep 5  # Atraso adicional de 5 segundos para garantir que o contêiner esteja pronto
+          docker exec postgres psql -U postgres -d postgres -f /seed.sql
 
       - name: Run pytest
         run: docker exec bytebiteburgers_container pytest tests/
