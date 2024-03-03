@@ -47,8 +47,11 @@ jobs:
       - name: Print current directory
         run: pwd
 
+      - name: Change directory to tests
+        run: cd tests/
+
       - name: Run pytest
-        run: docker exec bytebiteburgers_container pytest tests/  # Alteração feita aqui
+        run: docker exec bytebiteburgers_container pytest .  # Alteração feita aqui
 
       - name: Stop Docker container
         run: docker stop bytebiteburgers_container
