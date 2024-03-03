@@ -47,9 +47,6 @@ jobs:
       - name: Print current directory
         run: pwd
 
-      - name: Change directory to tests
-        run: cd tests/
-
       #- name: Run pytest
       #  run: docker exec bytebiteburgers_container pytest  # Alteração feita aqui
       - name: Run pytest on specific test file
