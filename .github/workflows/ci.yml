@@ -48,7 +48,7 @@ jobs:
         run: pwd
 
       - name: Run pytest
-        run: docker exec bytebiteburgers_container pytest tests/
+        run: docker exec bytebiteburgers_container pytest /home/runner/work/ByteBiteBurgers/ByteBiteBurgers/tests/
 
       - name: Stop Docker container
         run: docker stop bytebiteburgers_container
