@@ -25,16 +25,16 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Build Docker image
-        run: docker build -t ByteBiteBurgers .
+        run: docker build -t bytebiteburgers .
 
       - name: Run Docker container
-        run: docker run -d --name ByteBiteBurgers_container --link postgres:postgres ByteBiteBurgers
+        run: docker run -d --name bytebiteburgers_container --link postgres:postgres bytebiteburgers
 
       - name: Seed database
-        run: docker cp ./seeds/seed.sql ByteBiteBurgers_container:/seed.sql && docker exec -it ByteBiteBurgers_container psql -U postgres -d postgres -f /seed.sql
+        run: docker cp ./seeds/seed.sql bytebiteburgers_container:/seed.sql && docker exec -it bytebiteburgers_container psql -U postgres -d postgres -f /seed.sql
 
       - name: Run pytest
-        run: docker exec -it ByteBiteBurgers_container pytest
+        run: docker exec -it bytebiteburgers_container pytest
 
       - name: Stop Docker container
-        run: docker stop ByteBiteBurgers_container
+        run: docker stop bytebiteburgers_container
