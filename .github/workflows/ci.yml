@@ -38,6 +38,9 @@ jobs:
           sleep 5  # Atraso adicional de 5 segundos para garantir que o contêiner esteja pronto
           docker exec $(docker ps -q --filter "ancestor=postgres") psql -U postgres -d postgres -f /docker-entrypoint-initdb.d/seed.sql
 
+      - name: List contents of tests directory
+        run: ls -la tests/
+
       - name: Run pytest
         run: docker exec bytebiteburgers_container pytest tests/
 
