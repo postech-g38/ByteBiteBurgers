@@ -49,9 +49,9 @@ jobs:
 
       #- name: Run pytest
       #  run: docker exec bytebiteburgers_container pytest  # Alteração feita aqui
-      - name: Run pytest on specific test file
+      - name: Run pytest in Docker container
         run: |
-          docker run -v $(pwd)/tests:/usr/src/app/tests bytebiteburgers pytest tests/e2e/v1/test_pedido.py
+          docker exec bytebiteburgers_container pytest /usr/src/app/tests/e2e/v1/test_pedido.py    
 
       - name: Stop Docker container
         run: docker stop bytebiteburgers_container
