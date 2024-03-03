@@ -28,7 +28,7 @@ jobs:
         run: docker build -t bytebiteburgers .
 
       - name: Run Docker container
-        run: docker run -d --name bytebiteburgers_container --link postgres:postgres bytebiteburgers
+        run: docker network create bytebite_network && docker run -d --name bytebiteburgers_container --network bytebite_network bytebiteburgers
 
       - name: Seed database
         run: docker cp ./seeds/seed.sql bytebiteburgers_container:/seed.sql && docker exec -it bytebiteburgers_container psql -U postgres -d postgres -f /seed.sql
