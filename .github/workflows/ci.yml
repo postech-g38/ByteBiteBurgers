@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Tests Simplified
 
 on: [push]
 
@@ -8,49 +8,56 @@ jobs:
 
     services:
       postgres:
-        image: postgres
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    container:
+      image: python:3.9
+      services:
+        postgres:
+          image: postgres:latest
+          env:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+          ports:
+            - 5432:5432
+          options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
-      - name: Build Docker image
-        run: docker build -t bytebiteburgers .
-
-      - name: Run Docker container
+      - name: Install dependencies
         run: |
-          docker network create bytebite_network
-          docker run -d --name bytebiteburgers_container --network bytebite_network bytebiteburgers
-          sleep 10  # Wait for 10 seconds to ensure the container is ready
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Seed database
+      - name: Wait for PostgreSQL to be ready
         run: |
-          docker cp ./seeds/seed.sql $(docker ps -q --filter "ancestor=postgres"):/docker-entrypoint-initdb.d/seed.sql
-          sleep 5  # Wait for 5 seconds to ensure the seed copy is complete
-          docker exec $(docker ps -q --filter "ancestor=postgres") psql -U postgres -d postgres -f /docker-entrypoint-initdb.d/seed.sql
+          until pg_isready -h localhost -p 5432 -U postgres; do
+            echo "Waiting for PostgreSQL to start..."
+            sleep 2
+          done
 
-      - name: Print Python version
-        run: python --version
-
-      - name: List contents of tests directory
-        run: ls -la tests/
-
-      - name: Print current directory
-        run: pwd
-
-      - name: Run pytest in Docker container
-        run: |
-          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' bytebiteburgers_container)
-          docker cp tests bytebiteburgers_container:/usr/src/app/
-          docker exec bytebiteburgers_container pytest /usr/src/app/tests/e2e/v1/test_pedido.py
-
-      - name: Stop Docker container
-        run: docker stop bytebiteburgers_container
+      - name: Run pytest with coverage
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
+        run: pytest --verbose --cov
