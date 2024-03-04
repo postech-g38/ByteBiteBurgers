@@ -29,12 +29,12 @@ jobs:
         run: |
           docker network create bytebite_network
           docker run -d --name bytebiteburgers_container --network bytebite_network bytebiteburgers
-          sleep 10  # Aguardar 10 segundos para garantir que o contêiner esteja pronto
+          sleep 10  # Wait for 10 seconds to ensure the container is ready
 
       - name: Seed database
         run: |
           docker cp ./seeds/seed.sql $(docker ps -q --filter "ancestor=postgres"):/docker-entrypoint-initdb.d/seed.sql
-          sleep 5  # Aguardar 5 segundos para garantir que a cópia do seed seja concluída
+          sleep 5  # Wait for 5 seconds to ensure the seed copy is complete
           docker exec $(docker ps -q --filter "ancestor=postgres") psql -U postgres -d postgres -f /docker-entrypoint-initdb.d/seed.sql
 
       - name: Print Python version
