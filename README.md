@@ -15,7 +15,7 @@ git clone https://github.com/postech-g38/ByteBiteBurgers.git
 ```
 docker-compose build
 ```
- 
+
 3. Iniciar o container.
 
 ```
@@ -48,16 +48,6 @@ Add the number of user and spawn rate and click start Swarming button to start t
 ## DISCLAIMER
 
 - Devemos ter um banco postgres local instalado na maquina, podemos usar o docker compose pra isso tambem ou podemos usar o SQL Lite que funciona emmemoria
-
-- A app sobe mas esta quebrando, temos q terminar de arrumar o endpoint de criar usuario
-
-
-# PENDÊNCIAS
-
-- Vou remover os arquivos init_database.py e drop_database.py depois. Criei apenas porque não consegui usar o manage_database.py.
-- O autoincrement não está funcionando para o campo ID. O ideal seria que o usuário não tenha que passar o ID e o backend (ou ainda melhor o banco) seja o responsável por gerar o ID único.
-- Carga inicial de categorias (e talvez Produtos)
-- Métodos de checkout.
 
 # Kubernetes - EKS
 
@@ -111,7 +101,7 @@ eksctl version
 - Para criar o cluster EKS, execute o comando:
 
 ```bash
-eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml         
+eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml
 ```
 ## Configuração da Política IAM
  - Acesse o Console do AWS e vá para Services > IAM.
@@ -142,7 +132,7 @@ eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml
   ]
 }
 ```
-- Pegue o IAM role worker node e associe a policy criada 
+- Pegue o IAM role worker node e associe a policy criada
 
 ```bash
 # Get Worker node IAM Role ARN
@@ -187,7 +177,7 @@ kubectl get all
 ```
 ## Teste de Stress - K6
 
-A fim de comprovar a escalabilidade e a disponibilidade com o aumento de volume de requisições na aplicação construimos um cenário de teste de stress. 
+A fim de comprovar a escalabilidade e a disponibilidade com o aumento de volume de requisições na aplicação construimos um cenário de teste de stress.
 
 - O cenário consiste em 20 usuarios virtuais (vu's), realizando 40 requisições por usuario durante 60 segundos ( 20 vu's * 40 interactions = 800 requests em 60 segundos)
 
