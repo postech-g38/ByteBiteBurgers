@@ -1,9 +1,9 @@
 
 from fastapi import APIRouter, Depends
 
-from src.services.pagamento_service import PagamentoService
+from src.controllers.pagamento_controller import PagamentoController
 from src.adapters.repositories import EntityRepository
-from src.schemas.pagamento_schema import PagamentoWebhookSchema
+from src.presenters.pagamento_schema import PagamentoWebhookSchema
 
 
 router = APIRouter(prefix='/pagamento', tags=['Pedido'])
@@ -15,7 +15,7 @@ router = APIRouter(prefix='/pagamento', tags=['Pedido'])
     summary='Pegar status do pagamento de um Pedido ID'
 )
 def get_order_payment_status(pedido_id: int, repository: EntityRepository = Depends()) -> dict:
-    return PagamentoService(repository=repository).get_pedido_status(pedido_id=pedido_id)
+    return PagamentoController(repository=repository).get_pedido_status(pedido_id=pedido_id)
 
 
 @router.post(
@@ -24,4 +24,4 @@ def get_order_payment_status(pedido_id: int, repository: EntityRepository = Depe
     summary='Webhook para atualizaçao do status do pagamento'
 )
 def get_order_payment_status(data: PagamentoWebhookSchema, repository: EntityRepository = Depends()) -> dict:
-    return PagamentoService(repository=repository).payment_response(payload=data)
+    return PagamentoController(repository=repository).payment_response(payload=data)

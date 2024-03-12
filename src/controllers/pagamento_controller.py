@@ -1,7 +1,7 @@
 from src.adapters.repositories import EntityRepository
 
 
-class PagamentoService:
+class PagamentoController:
     def __init__(self, repository: EntityRepository) -> None:
         self.repository = repository
     

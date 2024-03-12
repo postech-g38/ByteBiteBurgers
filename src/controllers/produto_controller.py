@@ -1,13 +1,13 @@
 from typing import Any
 from datetime import datetime
 
-from src.services.service_base import BaseService
+from src.controllers.base_controller import BaseController
 from src.adapters.repositories import EntityRepository
 from src.adapters.database.models.produto_model import ProdutoModel
-from src.schemas.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, UpdateProdutoPayload
+from src.presenters.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, UpdateProdutoPayload
 
 
-class ProdutoService(BaseService):
+class ProdutoController(BaseController):
     def __init__(self, repository: EntityRepository) -> None:
         self.repository = repository
     

@@ -1,11 +1,3 @@
-from unittest.mock import patch
-
-import pytest
-
-from src.services.usuario_service import UsuarioService
-from tests.manual.database import usuario_model
-
-
 def test_usuario_service_get_all_return_none(sync_client, create_database):
     # arrange
     # act
