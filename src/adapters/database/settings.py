@@ -9,6 +9,7 @@ from sqlalchemy.engine import create_engine
 from sqlalchemy.orm.session import Session
 
 from src.settings import  get_settings
+from src.adapters.database.models.base_model import BaseModel
 
 
 _logger = logging.getLogger(__name__)
@@ -54,3 +55,9 @@ def get_connection():
     with sync_engine.connect() as connection:
         with connection.begin():
             yield connection
+
+
+def run_migrations():
+    tables = BaseModel.metadata.tables()
+    BaseModel.metadata.create_all(tables=tables, bind=sync_engine, checkfirst=True)
+    

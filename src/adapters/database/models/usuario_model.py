@@ -11,6 +11,5 @@ class UsuarioModel(EntityModel):
     nome:  Mapped[str]
     email: Mapped[str]
     senha: Mapped[str]
-    cpf:   Mapped[str | None]
+    cpf:   Mapped[str]
     tipo:  Mapped[str]
-    
