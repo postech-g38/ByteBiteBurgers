@@ -58,6 +58,6 @@ def get_connection():
 
 
 def run_migrations():
-    tables = BaseModel.metadata.tables()
+    tables = BaseModel.metadata.tables.keys()
     BaseModel.metadata.create_all(tables=tables, bind=sync_engine, checkfirst=True)
     
