@@ -1,0 +1,17 @@
+name: Trigger Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT_GRANDO }}
+          repository: postech-g38/terraform-eks
+          event-type: deploy-event
