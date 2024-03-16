@@ -46,8 +46,8 @@ jobs:
 
       - name: Run pytest with coverage
         env:
-          DATABASE_USERNAME: postgresql
-          DATABASE_PASSWORD: postgresql
+          DATABASE_USERNAME: postgres
+          DATABASE_PASSWORD: postgres
           DATABASE_HOST: '0.0.0.0'
           DATABASE_PORT: 5432
           DATABASE_NAME: postgres
