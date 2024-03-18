@@ -57,12 +57,7 @@ def get_connection():
         with connection.begin():
             yield connection
 
-
 def run_migrations() -> None:
-    BaseModel.metadata.create_all(bind=sync_engine, checkfirst=True)
-
-
-def add_seed() -> None:
-    with get_connection as conn:
+    with get_connection() as conn:
         with open('seeds/seed.sql') as file:
             conn.execute(text(file.read()))
