@@ -63,6 +63,6 @@ def run_migrations() -> None:
 
 
 def add_seed() -> None:
-    with get_connection as conn:
+    with get_connection() as conn:
         with open('seeds/seed.sql') as file:
             conn.execute(text(file.read()))
