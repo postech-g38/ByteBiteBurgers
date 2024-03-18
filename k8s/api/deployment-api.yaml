@@ -13,13 +13,13 @@ spec:
         app: byte-burguer-pod
     spec:
       containers:
-        - name: byte-burguer-api
-          image: hiltonbruno633/byte-burguer-api:latest
+        - name: byteburguer-api
+          image: hiltonbruno633/byteburguer-api:latest
           ports:
             - containerPort: 80
           envFrom:
-            - configMapRef:
-                name: configmap
+            - secretRef:
+                name: my-secret
           livenessProbe:
             httpGet:
                 path: /health_check

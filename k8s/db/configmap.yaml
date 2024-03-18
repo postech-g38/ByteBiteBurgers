@@ -4,7 +4,7 @@ metadata:
   name: configmap
 data:
   DATABASE_USERNAME: postgres
-  DATABASE_HOST: service-database
+  DATABASE_HOST: 'rds-prd.cl6m0ukm6axd.us-west-2.rds.amazonaws.com'
   DATABASE_PORT: '5432'
   DATABASE_NAME: postgres
-  POSTGRES_PASSWORD: postgres
+  DATABASE_PASSWORD: '4ZcgjhlwC9AeLMv{H:DkB1||BC.r'
