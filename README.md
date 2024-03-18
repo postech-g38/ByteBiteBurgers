@@ -1,8 +1,17 @@
 # Olá, professor 👋.
 
-## Entregas da fase 2 ⬇️
+## Vídeo da fase 03
+
+[![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?xxxxxx)
+
+
+## Entregas da fase 2
+
+➡️ Fase 02: 
 
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=tMUzzM8YnzE)
+
+
 
 
 <details>
