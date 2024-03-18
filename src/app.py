@@ -7,8 +7,6 @@ from src.adapters.database.settings import run_migrations
 
 
 def create_app() -> FastAPI:
-    run_migrations()
-    
     _app = FastAPI(
         title=get_settings().app_settings.app_name,
         debug=get_settings().app_settings.debug,
