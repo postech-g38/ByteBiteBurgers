@@ -1,11 +1,32 @@
 # Olá, professor 👋.
 
-## Vídeo da fase 03
+## Entrega da fase 03 ⬇️
 
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?xxxxxx)
 
+<details>
+  <summary>Desenho de Arquitetura</summary>
 
-## Entregas da fase 2
+  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/b8f3c32e-80b5-46f4-99fc-3abaf3e256cd)
+
+</details>
+
+<details>
+  <summary>Estrutura do banco de dados</summary>
+  
+![Desenho do banco](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/d63154d1-3686-4f56-a778-4ed6454cdb23)
+
+  
+
+
+  
+</details>
+
+
+## Entrega da fase 02 ⬇️
+
+<details> 
+  <summary>Abrir</summary>
 
 ➡️ Fase 02: 
 
@@ -93,8 +114,9 @@ O projeto foi iniciado com a ferramenta `eksctl`, que auxilia e facilita o proce
 
 - **Postman:**
   - Collection do Postman: [ByteBiteBurgers](https://www.postman.com/gold-robot-4346/workspace/g38-pos-tech-fiap/collection/30696994-63b32e4a-a75e-4298-a551-d8cfeb17253b?action=share&creator=30696994&active-environment=30696994-08c7d317-27c4-47af-b65f-8e6d5ca36b23)
+  - 
 </details>
-
+</details>
 
 ## Informações complementares
 
