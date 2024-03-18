@@ -7,8 +7,11 @@
 
 <details>
   <summary>Desenho de Arquitetura</summary>
+
+  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/b8f3c32e-80b5-46f4-99fc-3abaf3e256cd)
+
+
   
-  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/9b113352-6b66-4b52-80fc-39b85a9a05c8)
 </details>
 
 <details>
