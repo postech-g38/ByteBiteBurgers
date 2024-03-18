@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: byteburguer-api
-          image: hiltonbruno633/byteburguer-api:latest
+          image: ggrando/bytebiteburger:latest
           ports:
             - containerPort: 80
           envFrom:
