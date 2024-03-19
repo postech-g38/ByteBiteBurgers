@@ -81,3 +81,16 @@ jobs:
           aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }}
       - run: ls -R k8s/api/
       - run: kubectl apply -f k8s/api/
+
+
+      - name: Disparar Action no Outro Repositório
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+            owner: 'ggrando',
+            repo: 'terraform-eks',
+            workflow_id: 'cd.yml',
+            ref: 'main',
+            })
