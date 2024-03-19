@@ -5,6 +5,23 @@
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?xxxxxx)
 
 <details>
+  <summary>Repositórios</summary>
+
+Aplicação
+https://github.com/postech-g38/ByteBiteBurgers
+
+Lambda
+https://github.com/postech-g38/lambda-metrics
+
+Infra Kubernetes com Terraform
+https://github.com/postech-g38/terraform-eks
+
+Infra banco de dados gerenciáveis com Terraform
+https://github.com/postech-g38/terraform-rds
+
+</details>
+
+<details>
   <summary>Desenho de Arquitetura</summary>
 
   ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/b8f3c32e-80b5-46f4-99fc-3abaf3e256cd)
