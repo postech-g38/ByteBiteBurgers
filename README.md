@@ -327,3 +327,5 @@ A ideia deste teste consiste em comprovar a escalabilidade e disponibilidade com
 ```bash
 k6 run stress_test.js
 ```
+
+teste
