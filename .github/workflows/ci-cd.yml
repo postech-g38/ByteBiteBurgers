@@ -69,7 +69,6 @@ jobs:
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v2
       - uses: aws-actions/configure-aws-credentials@v1
@@ -82,8 +81,7 @@ jobs:
       - run: ls -R k8s/api/
       - run: kubectl apply -f k8s/api/
 
-
-      - name: Disparar Action no Outro Repositório
+      - name: Disparar Action no eks
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
