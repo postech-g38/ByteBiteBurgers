@@ -74,6 +74,9 @@ Automatizar o processo de pedidos em estabelecimentos, proporcionando uma experi
    - Permitir a atualização do status do pedido e consulta em tempo real.
 
 2. **Notificações:**
+
+
+teste
    - Notificar o usuário quando o pedido estiver concluído.
 
 3. **Processamento de Pagamentos:**
@@ -157,8 +160,7 @@ docker-compose build
 3. Iniciar o container.
 
 ```
-docker-compose up
-```
+Fase 3: Distribuição da Aplicação - Pós Tech - Fiap -4SOAT```
 
 4. Abra o seu navegador e acesse o endereço abaixo.
 ```
