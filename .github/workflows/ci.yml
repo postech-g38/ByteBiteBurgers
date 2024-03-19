@@ -51,4 +51,5 @@ jobs:
           DATABASE_HOST: '0.0.0.0'
           DATABASE_PORT: 5432
           DATABASE_NAME: postgres
+          ENVIRONMENT: 'unittest'
         run: pytest --verbose --cov
