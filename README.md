@@ -143,8 +143,7 @@ docker-compose build
 3. Iniciar o container.
 
 ```
-docker-compose up
-```
+Fase 3: Distribuição da Aplicação - Pós Tech - Fiap -4SOAT```
 
 4. Abra o seu navegador e acesse o endereço abaixo.
 ```
