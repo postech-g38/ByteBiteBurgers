@@ -66,20 +66,6 @@ jobs:
           push: true
           tags: ggrando/bytebiteburger:latest
 
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-      - run: |
-          aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }}
-      - run: ls -R k8s/api/
-
       - name: Disparar Action no eks
         uses: actions/github-script@v5
         with:
