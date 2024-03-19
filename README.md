@@ -57,6 +57,9 @@ Automatizar o processo de pedidos em estabelecimentos, proporcionando uma experi
    - Permitir a atualização do status do pedido e consulta em tempo real.
 
 2. **Notificações:**
+
+
+teste
    - Notificar o usuário quando o pedido estiver concluído.
 
 3. **Processamento de Pagamentos:**
