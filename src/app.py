@@ -12,9 +12,6 @@ def create_app() -> FastAPI:
         title=get_settings().app_settings.app_name,
         debug=get_settings().app_settings.debug,
     )
-    if not os.getenv('Environemnt') == 'unittest':
-        run_migrations()
-
     _app.include_router(health_check_router)
     _app.include_router(v1_router)
     return _app
