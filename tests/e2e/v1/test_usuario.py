@@ -1,11 +1,13 @@
 from unittest.mock import patch
+from threading import Thread
 
 import pytest
 
 from src.services.usuario_service import UsuarioService
-from tests.manual.database import usuario_model
+from tests.resouces.database import usuario_model
 
 
+@pytest.mark.integration_test
 def test_usuario_service_get_all_return_none(sync_client, create_database):
     # arrange
     # act
@@ -14,6 +16,7 @@ def test_usuario_service_get_all_return_none(sync_client, create_database):
     assert response.status_code == 204
 
 
+@pytest.mark.integration_test
 def test_usuario_service_get_all_then_return_list(sync_client, create_database, load_database):
     # arrange
     # act
@@ -24,6 +27,7 @@ def test_usuario_service_get_all_then_return_list(sync_client, create_database, 
     assert isinstance(data, dict)
 
 
+@pytest.mark.integration_test
 def test_usuario_service_find_by_id_then_return_none(sync_client, create_database, load_database):
     # arrange
     _id = '10'
@@ -32,7 +36,8 @@ def test_usuario_service_find_by_id_then_return_none(sync_client, create_databas
     # assert
     assert response.status_code == 204
 
-    
+
+@pytest.mark.integration_test 
 def test_usuario_service_find_by_id_then_return_one(sync_client, create_database, load_database):
     # arrange
     _id = '1'
@@ -44,6 +49,7 @@ def test_usuario_service_find_by_id_then_return_one(sync_client, create_database
     assert isinstance(data, dict)
 
 
+@pytest.mark.integration_test
 def test_usuario_service_create_user_then_return_success(sync_client, create_database):
     # arrange
     payload = {
@@ -60,6 +66,7 @@ def test_usuario_service_create_user_then_return_success(sync_client, create_dat
     assert isinstance(data, dict)
 
 
+@pytest.mark.integration_test
 def test_usuario_service_update_user_then_return_success(sync_client, create_database):
     # arrange
     payload = {
@@ -75,21 +82,26 @@ def test_usuario_service_update_user_then_return_success(sync_client, create_dat
     assert isinstance(data, dict)
 
 
+@pytest.mark.integration_test
 def test_usuario_service_create_user_then_return_error(sync_client, create_database):
     pass
 
 
+@pytest.mark.integration_test
 def test_usuario_service_update_user_then_return_success(sync_client, create_database):
     pass
 
 
+@pytest.mark.integration_test
 def test_usuario_service_update_user_then_return_error(sync_client, create_database):
     pass
 
 
+@pytest.mark.integration_test
 def test_usuario_service_delete_user_then_return_success(sync_client, create_database):
     pass
 
 
+@pytest.mark.integration_test
 def test_usuario_service_delete_user_then_return_success(sync_client, create_database):
     pass
