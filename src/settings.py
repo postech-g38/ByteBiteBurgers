@@ -9,6 +9,9 @@ from sqlalchemy.engine import URL
 
 class Env(str, Enum):
     PRD = 'prd'
+    STG = 'stg'
+    HML = 'hml'
+    DEV = 'dev'
     UNITTEST = 'unittest'
 
 
@@ -20,8 +23,10 @@ class ApplicationSettings(BaseSettings):
     application_name: str = Field(..., validation_alias='APPLICATION_NAME')
     application_host: str = Field(..., validation_alias='APPLICATION_HOST')
     application_port: int = Field(..., validation_alias='APPLICATION_PORT')
-    environment: str = Field(..., validation_alias='ENVIRONEMNT')
-    workers:  int = Field(..., validation_alias='WORKERS')
+    environment:      Env = Field(..., validation_alias='ENVIRONEMNT')
+    workers:          int = Field(..., validation_alias='WORKERS')
+    timeout_graceful_shutdown: int = Field(..., validation_alias='TIMEOUT_GRACEFUL_SHUTDOWN')
+
 
 
 class DatabaseSettings(BaseSettings):
@@ -32,19 +37,22 @@ class DatabaseSettings(BaseSettings):
     database_name:     str = Field(..., validation_alias='DATABASE_NAME')
 
     @property
-    def unittest_sync_uri(self):
-        return ''
+    def unittest_sync_uri(self) -> str:
+        return 'sqlite:///unittest.db'
 
     @property
     def sync_uri(self) -> URL:
+        return self._build_uri(driver='postgresql', dialect='psycopg2')
+
+    def _build_uri(self, drivername: str, dialect: str) -> URL:
         return URL.create(
-            drivername='postgresql+psycopg2',
+            drivername=f"{drivername}+{dialect}",
             username=self.database_username, 
             password=self.database_password, 
             host=self.database_host, 
             port=self.database_port, 
             database=self.database_name
-            )
+        )
 
 
 class GeneralSettings(BaseSettings):
