@@ -6,8 +6,7 @@ from src.routes import health_check_router, v1_router
 
 def create_app() -> FastAPI:
     _app = FastAPI(
-        title=get_settings().app_settings.app_name,
-        debug=get_settings().app_settings.debug,
+        title=get_settings().application_settings.application_name
     )
     _app.include_router(health_check_router)
     _app.include_router(v1_router)
