@@ -1,29 +1,35 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  fast-api-service:
+  application-service:
     container_name: byte-burguer-api
     build: 
       context: .
       dockerfile: Dockerfile
+      args:
+        - BUILDKIT=1
+        - progress=plain
     ports:
-      - 8000:8000
-    environment:
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: postgres
-      DATABASE_PORT: 5432
-      DATABASE_NAME: postgres
+      - "8000:8000"
+    env_file:
+      - .env.dev
     depends_on:
       - postgres
+    healthcheck:
+      test: curl -X GET http://localhost:8000/healthcheck || exit 1
+      interval: 3s
+      timeout: 2s
+      retries: 5
+      start_period: 10s
 
-  postgres:
+  database-service:
     container_name: byte-burguer-postgres
     image: postgres
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - /var/lib/postgresql/data
       - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
