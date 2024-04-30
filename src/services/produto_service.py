@@ -2,13 +2,13 @@ from typing import Any
 from datetime import datetime
 
 from src.services.service_base import BaseService
-from src.adapters.repositories import EntityRepository
+from src.adapters.repositories import ProdutoRepository
 from src.adapters.database.models.produto_model import ProdutoModel
 from src.schemas.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, UpdateProdutoPayload
 
 
 class ProdutoService(BaseService):
-    def __init__(self, repository: EntityRepository) -> None:
+    def __init__(self, repository: ProdutoRepository) -> None:
         self.repository = repository
     
     def get_all(self) -> dict[str, Any]:

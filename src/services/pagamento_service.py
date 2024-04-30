@@ -1,8 +1,8 @@
-from src.adapters.repositories import EntityRepository
+# from src.adapters.repositories import 
 
 
 class PagamentoService:
-    def __init__(self, repository: EntityRepository) -> None:
+    def __init__(self, repository) -> None:
         self.repository = repository
     
     def get_pedido_status(self, pedido_id: int) -> dict:

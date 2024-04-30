@@ -1,33 +1,26 @@
 from datetime import datetime
+from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 
 from src.enums import UsuarioTipo
 
 
-class CreateUsuarioPayload(BaseModel):
+class UsuarioPayload(BaseModel):
     nome: str
     senha: str
-    cpf: str | None
+    cpf: Optional[str]
     email: str
-    tipo: str = UsuarioTipo.CLIENTE.value
+    tipo: UsuarioTipo = UsuarioTipo.CLIENTE.value
 
 
-class UpdateUsuarioPayload(BaseModel):
-    id: int
-    nome: str | None
-    senha: str | None
-    cpf: str | None
-    email: str | None
-    tipo: str | None
-
-
-class ResponseUsuarioPayload(UpdateUsuarioPayload):
+class ResponseUsuarioPayload(UsuarioPayload):
     model_config: ConfigDict = ConfigDict(from_attributes=True)
     
+    id: int
     created_at: datetime
-    updated_at: datetime | None
-    deleted_at: datetime | None
+    updated_at: Optional[datetime]
+    deleted_at: Optional[datetime]
 
 
 class ResponsePagination(BaseModel):

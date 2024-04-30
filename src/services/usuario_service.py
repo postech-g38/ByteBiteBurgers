@@ -1,50 +1,39 @@
-from typing import Any
+from typing import List
 from datetime import datetime
 
 from src.services.service_base import BaseService
-from src.adapters.repositories import EntityRepository
+from src.adapters.repositories import UsuarioRepository
 from src.adapters.database.models.usuario_model import UsuarioModel
-from src.schemas.usuario_schema import CreateUsuarioPayload, ResponseUsuarioPayload, UpdateUsuarioPayload
+from src.schemas.usuario_schema import UsuarioPayload, ResponseUsuarioPayload
 
 
 class UsuarioService(BaseService):
-    def __init__(self, repository: EntityRepository) -> None:
+    def __init__(self, repository: UsuarioRepository) -> None:
         self.repository = repository
     
-    def get_all(self):
-        values= self.query_result(result=self.repository.usuario.get_all())
-        rows = [ResponseUsuarioPayload.model_validate(i).model_dump() for i in values]
-        return {
-            'items': rows,
-            'quantidade': len(rows)
-        }
+    def get_all(self) -> List[UsuarioModel]:
+        return self.query_result(result=self.repository.get_all())
      
-    def get_by_id(self, id: int) -> dict | None:
-        row = self.query_result(self.repository.usuario.search_by_id(model_id=id))
-        if not row:
-            return None
-        return row.__dict__
+    def get_by_id(self, user_id: int) -> UsuarioModel:
+        return self.query_result(self.repository.search_by_id(model_id=user_id))
      
-    def get_by_cpf(self, cpf: str) -> dict | None:
-        row = self.query_result(self.repository.usuario.search_by_cpf(cpf=cpf))
-        if not row:
-            return None
-        return row.__dict__
+    def get_by_cpf(self, cpf: str) -> UsuarioModel:
+        return self.query_result(self.repository.search_by_cpf(cpf=cpf))
     
-    def create(self, data: CreateUsuarioPayload) -> dict | None:
-        row = UsuarioModel(**dict(data))
-        self.repository.usuario.save(model=row)
-        self.repository.usuario.model_refresh(model=row)
-        return ResponseUsuarioPayload.model_validate(row).model_dump()
+    def create(self, data: UsuarioPayload) -> UsuarioModel:
+        self.repository.save(data)
+        self.repository.refresh(data)
+        return data
 
-    # def update(self, data: UpdateUsuarioPayload) -> ResponseUsuarioPayload:
-    #     self.repository.usuario.update(model_id=data.id, values=dict(data))
-    #     row = self.repository.usuario.search_by_id(model_id=data.id)
-    #     return ResponseUsuarioPayload.model_validate(row).model_dump()
+    def update(self, user_id: int, data: UsuarioPayload) -> UsuarioModel:
+        self.query_result(self.repository.search_by_id(user_id))
+        self.repository.update(user_id, data)
+        row = self.repository.search_by_id(user_id)
+        return row
 
-    def delete(self, id: str) -> ResponseUsuarioPayload:
-        row = self.query_result(self.repository.usuario.search_by_id(model_id=id))
+    def delete(self, user_id: str, hard_delete: bool = False) -> UsuarioModel:
+        row = self.query_result(self.repository.search_by_id(user_id))
         row.deleted_at = datetime.now()
-        self.repository.usuario.delete(model_id=id)
-        return ResponseUsuarioPayload.model_validate(row).model_dump()
+        self.repository.delete(user_id)
+        return row
     

@@ -1,13 +1,13 @@
 from datetime import datetime
 
-from src.adapters.repositories import EntityRepository
+from src.adapters.repositories import PedidoRepository
 from src.adapters.database.models.pedido_model import PedidoModel
 from src.schemas.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, UpdatePedidoPayload
 from src.services.service_base import BaseService
 
 
 class PedidoService(BaseService):
-    def __init__(self, repository: EntityRepository) -> None:
+    def __init__(self, repository: PedidoRepository) -> None:
         self.repository = repository
     
     def get_all(self) -> dict | None:

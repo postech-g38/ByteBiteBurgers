@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from http import HTTPStatus
 
 from src.services.produto_service import ProdutoService
-from src.adapters.repositories import EntityRepository
+from src.adapters.repositories import ProdutoRepository
 from src.schemas.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, ResponsePagination, UpdateProdutoPayload
 
 router = APIRouter(prefix='/produto', tags=['Produto'])
@@ -16,7 +16,7 @@ router = APIRouter(prefix='/produto', tags=['Produto'])
     response_model=ResponsePagination, 
     summary='Pegar todos os Produtos'
 )
-def get_all(repository: EntityRepository = Depends()) -> dict:
+def get_all(repository: ProdutoRepository = Depends()) -> dict:
     return ProdutoService(repository=repository).get_all()
 
 
@@ -26,7 +26,7 @@ def get_all(repository: EntityRepository = Depends()) -> dict:
     response_model=ResponsePagination, 
     summary='Pegar Produtos por Categoria'
 )
-def get_by_category(categoria: str, repository: EntityRepository = Depends()) -> dict:
+def get_by_category(categoria: str, repository: ProdutoRepository = Depends()) -> dict:
     return ProdutoService(repository=repository).get_by_categoria(categoria=categoria)
 
 
@@ -36,7 +36,7 @@ def get_by_category(categoria: str, repository: EntityRepository = Depends()) ->
     response_model=ResponseProdutoPayload, 
     summary='Pegar Produto'
 )
-def get(id: int | str, repository: EntityRepository = Depends()) -> dict:
+def get(id: int | str, repository: ProdutoRepository = Depends()) -> dict:
     return ProdutoService(repository=repository).get(id=id)
 
 
@@ -46,7 +46,7 @@ def get(id: int | str, repository: EntityRepository = Depends()) -> dict:
     response_model=ResponseProdutoPayload, 
     summary='Criar Produto'
 )
-def create(data: CreateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
+def create(data: CreateProdutoPayload, repository: ProdutoRepository = Depends()) -> dict:
     return ProdutoService(repository=repository).create(data=data)
 
 
@@ -56,7 +56,7 @@ def create(data: CreateProdutoPayload, repository: EntityRepository = Depends())
     response_model=ResponseProdutoPayload, 
     summary='Atualizar Produto'
 )
-def update(data: UpdateProdutoPayload, repository: EntityRepository = Depends()) -> dict:
+def update(data: UpdateProdutoPayload, repository: ProdutoRepository = Depends()) -> dict:
     return ProdutoService(repository=repository).update(data=data)
 
 
@@ -66,6 +66,6 @@ def update(data: UpdateProdutoPayload, repository: EntityRepository = Depends())
     response_model=ResponseProdutoPayload, 
     summary='Deletar Produto'
 )
-def delete(id: int | str, repository: EntityRepository = Depends()) -> dict:
+def delete(id: int | str, repository: ProdutoRepository = Depends()) -> dict:
     service = ProdutoService(repository=repository)
     return service.delete(id=id)
