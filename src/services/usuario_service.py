@@ -11,18 +11,17 @@ class UsuarioService(BaseService):
     def __init__(self, repository: UsuarioRepository) -> None:
         self.repository = repository
     
-    def get_all(self) -> List[UsuarioModel]:
+    def paginate(self, query) -> List[UsuarioModel]:
         return self.query_result(result=self.repository.get_all())
      
     def get_by_id(self, user_id: int) -> UsuarioModel:
-        return self.query_result(self.repository.search_by_id(model_id=user_id))
+        return self.query_result(self.repository.search_by_id(user_id))
      
     def get_by_cpf(self, cpf: str) -> UsuarioModel:
-        return self.query_result(self.repository.search_by_cpf(cpf=cpf))
+        return self.query_result(self.repository.search_by_cpf(cpf))
     
     def create(self, data: UsuarioPayload) -> UsuarioModel:
-        self.repository.save(data)
-        self.repository.refresh(data)
+        data = self.repository.save(UsuarioModel(**data.model_dump()))
         return data
 
     def update(self, user_id: int, data: UsuarioPayload) -> UsuarioModel:
