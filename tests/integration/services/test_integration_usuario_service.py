@@ -1,4 +1,5 @@
 from datetime import datetime
+from unittest.mock import Mock
 
 import pytest
 
@@ -7,11 +8,12 @@ from src.adapters.repositories import UsuarioRepository
 from src.adapters.database.models import UsuarioModel
 from src.services.service_base import NotFoundExcepition
 from tests.resouces.database import usuario_model as usuario_mock
+from src.schemas.usuario_schema import UsuarioPayload
 
 
 @pytest.mark.integration_test
 @pytest.mark.skip
-def test_integration_integragtion_usuario_service_get_all_then_raise_not_found_exception(database):
+def test_integragtion_usuario_service_get_all_then_raise_not_found_exception(database):
     # arrange
     # act
     # assert
@@ -20,7 +22,7 @@ def test_integration_integragtion_usuario_service_get_all_then_raise_not_found_e
 
 @pytest.mark.integration_test
 @pytest.mark.skip
-def test_integration_integragtion_usuario_service_get_all_then_return_multiple_ususario_entities(database):
+def test_integragtion_usuario_service_get_all_then_return_multiple_ususario_entities(database):
     # arrange
     # act
     # assert
@@ -28,7 +30,7 @@ def test_integration_integragtion_usuario_service_get_all_then_return_multiple_u
 
 
 @pytest.mark.integration_test
-def test_integration_integration_usuario_service_get_by_id_then_raise_not_found_exception(database):
+def test_integration_usuario_service_get_by_id_then_raise_not_found_exception(database):
     # arrange
     usuario_id = 1
     repository = UsuarioRepository(database)
@@ -41,7 +43,7 @@ def test_integration_integration_usuario_service_get_by_id_then_raise_not_found_
 
 
 @pytest.mark.integration_test
-def test_integration_integration_usuario_service_get_by_id_then_return_usuario_entity(database):
+def test_integration_usuario_service_get_by_id_then_return_usuario_entity(database):
     # arrange
     usuario_id = 1
     usuario_model = UsuarioModel(
@@ -98,19 +100,17 @@ def test_integration_usuario_service_get_by_cpf_then_return_usuario_entity(datab
 @pytest.mark.integration_test
 def test_integration_usuario_service_create_usuario_then_return_usuario_entity(database):
     # arrange
-    usuario_model = UsuarioModel(
+    usuario_payload = UsuarioPayload(
         nome='someone else',
         email='someone@email.com',
         senha='password123',
         cpf='12345678910',
         tipo='admin',
     )
-    database.add(usuario_model)
-    database.commit()
     repository = UsuarioRepository(database)
     service = UsuarioService(repository)
     # act
-    result = service.create(usuario_model)
+    result = service.create(usuario_payload)
     # assert
     assert result.id == 1
     assert isinstance(result.created_at, datetime)
