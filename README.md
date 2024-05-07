@@ -1,6 +1,12 @@
 # Olá, professor 👋.
 
+## Entrega da fase 04 ⬇️
+
+
 ## Entrega da fase 03 ⬇️
+
+<details> 
+  <summary>Abrir</summary>
 
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=FEfz40NYuA0)
 
@@ -33,12 +39,8 @@ https://github.com/postech-g38/terraform-rds
   
 ![Desenho do banco](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/d63154d1-3686-4f56-a778-4ed6454cdb23)
 
-  
-
-
-  
 </details>
-
+</details>
 
 ## Entrega da fase 02 ⬇️
 
