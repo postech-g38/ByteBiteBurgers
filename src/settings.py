@@ -23,8 +23,8 @@ class ApplicationSettings(BaseSettings):
     application_name: str = Field(..., validation_alias='APPLICATION_NAME')
     application_host: str = Field(..., validation_alias='APPLICATION_HOST')
     application_port: int = Field(..., validation_alias='APPLICATION_PORT')
-    environment:      Env = Field(..., validation_alias='ENVIRONEMNT')
-    workers:          int = Field(..., validation_alias='WORKERS')
+    environment: Env = Field(..., validation_alias='ENVIRONEMNT')
+    workers: int = Field(..., validation_alias='WORKERS')
     timeout_graceful_shutdown: int = Field(..., validation_alias='TIMEOUT_GRACEFUL_SHUTDOWN')
 
 
@@ -32,9 +32,9 @@ class ApplicationSettings(BaseSettings):
 class DatabaseSettings(BaseSettings):
     database_username: str = Field(..., validation_alias='DATABASE_USERNAME')
     database_password: str = Field(..., validation_alias='DATABASE_PASSWORD')
-    database_host:     str = Field(..., validation_alias='DATABASE_HOST')
-    database_port:     int = Field(..., validation_alias='DATABASE_PORT')
-    database_name:     str = Field(..., validation_alias='DATABASE_NAME')
+    database_host: str = Field(..., validation_alias='DATABASE_HOST')
+    database_port: int = Field(..., validation_alias='DATABASE_PORT')
+    database_name: str = Field(..., validation_alias='DATABASE_NAME')
 
     @property
     def unittest_sync_uri(self) -> str:
