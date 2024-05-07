@@ -1,15 +1,16 @@
-from typing import Any, Dict, List, Optional, Type
+from typing import Type
 
-from sqlalchemy import Select, asc, delete, desc, func, update
 from sqlalchemy.future import select
 from sqlalchemy.orm import Session
+from fastapi import Depends
 
 from src.adapters.repositories.sqlalchemy_repository import SQLAlchemyRepository
 from src.adapters.database.models.usuario_model import UsuarioModel
+from src.adapters.database import get_database_session
 
 
 class UsuarioRepository(SQLAlchemyRepository):
-     def __init__(self, database_session) -> None:
+     def __init__(self, database_session: Session = Depends(get_database_session)) -> None:
         super().__init__(session=database_session)
         self.entity_model = UsuarioModel
 
