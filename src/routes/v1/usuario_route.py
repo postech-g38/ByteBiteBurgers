@@ -4,8 +4,10 @@ from http import HTTPStatus
 from fastapi import APIRouter, Depends
 
 from src.services.usuario_service import UsuarioService
+from src.adapters.database import get_database_session
 from src.adapters.repositories import UsuarioRepository
 from src.schemas.usuario_schema import UsuarioPayload, ResponseUsuarioPayload, ResponsePagination
+from src.schemas.base_schema import QueryPaginate
 
 router = APIRouter(prefix='/usuario', tags=['Usuario'])
 
@@ -16,19 +18,19 @@ router = APIRouter(prefix='/usuario', tags=['Usuario'])
     # response_model=ResponsePagination, 
     summary='Pegar todos os Usuario'
 )
-def paginate(repository: UsuarioRepository = Depends()):
-    return UsuarioService(repository=repository).get_all()
+def paginate(query: QueryPaginate, repository: UsuarioRepository = Depends()):
+    return UsuarioService(repository=repository).paginate(query)
 
 
 @router.get(
-    path='/{id}', 
+    path='/{user_id}', 
     status_code=HTTPStatus.OK,
     response_model=ResponseUsuarioPayload, 
     summary='Pegar Usuario'
 )
-def get(id: int, repository: UsuarioRepository = Depends()):
+def get(user_id: int, repository: UsuarioRepository = Depends()):
     service = UsuarioService(repository=repository)
-    return service.get_by_id(id=id)
+    return service.get_by_id(user_id)
 
 
 @router.get(

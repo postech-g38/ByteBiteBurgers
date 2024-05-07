@@ -1,16 +1,12 @@
-from typing import Any
-
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 
 from src.schemas.health_check_schema import HealthCheckResponse
-
 
 router = APIRouter()
 
 
-@router.route(
+@router.get(
     path='/healthcheck', 
-    methods=['GET', 'POST', 'HEAD'],
     status_code=200,
     response_model=HealthCheckResponse, 
     tags=['Health Check'], 
