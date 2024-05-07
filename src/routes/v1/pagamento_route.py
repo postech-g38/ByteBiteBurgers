@@ -1,21 +1,27 @@
-
 from fastapi import APIRouter, Depends
 
 from src.services.pagamento_service import PagamentoService
-# from src.adapters.repositories import 
 from src.schemas.pagamento_schema import PagamentoWebhookSchema
+from src.schemas.pagamento_schema import PagamentoPayloadSchema
+from src.adapters.repositories.pagamento_repository import PagamentoRepository
+
+router = APIRouter()
 
 
-router = APIRouter(prefix='/pagamento', tags=['Pedido'])
+@router.post(
+    path='/',
+    summary='Criar um Pagamento'
+)
+def create_payment(data: PagamentoPayloadSchema, repository: PagamentoRepository = Depends()):
+    return PagamentoService(repository).create(data)
 
 
 @router.get(
     path='/pedido/{pedido_id}', 
-    # response_model=ResponsePagination, 
-    summary='Pegar status do pagamento de um Pedido ID'
+    summary='Pegar status do pagamento por um Pedido ID'
 )
-def get_order_payment_status(pedido_id: int, repository) -> dict:
-    return PagamentoService(repository=repository).get_pedido_status(pedido_id=pedido_id)
+def get_order_payment_status(pedido_id: int, repository: PagamentoRepository = Depends()):
+    return PagamentoService(repository=repository).get_by_pedido_id(pedido_id)
 
 
 @router.post(
