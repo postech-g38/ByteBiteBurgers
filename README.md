@@ -1,14 +1,64 @@
 # Olá, professor 👋.
 
-## Entregas da fase 2 ⬇️
+## Entrega da fase 03 ⬇️
+
+[![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=FEfz40NYuA0)
+
+<details>
+  <summary>Repositórios</summary>
+
+Aplicação
+https://github.com/postech-g38/ByteBiteBurgers
+
+Lambda
+https://github.com/postech-g38/lambda-metrics
+
+Infra Kubernetes com Terraform
+https://github.com/postech-g38/terraform-eks
+
+Infra banco de dados gerenciáveis com Terraform
+https://github.com/postech-g38/terraform-rds
+
+</details>
+
+<details>
+  <summary>Desenho de Arquitetura</summary>
+
+  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/b8f3c32e-80b5-46f4-99fc-3abaf3e256cd)
+
+</details>
+
+<details>
+  <summary>Estrutura do banco de dados</summary>
+  
+![Desenho do banco](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/d63154d1-3686-4f56-a778-4ed6454cdb23)
+
+  
+
+
+  
+</details>
+
+
+## Entrega da fase 02 ⬇️
+
+<details> 
+  <summary>Abrir</summary>
+
+➡️ Fase 02: 
 
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=tMUzzM8YnzE)
 
 
+
+
 <details>
   <summary>Desenho de Arquitetura</summary>
+
+  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/b8f3c32e-80b5-46f4-99fc-3abaf3e256cd)
+
+
   
-  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/9b113352-6b66-4b52-80fc-39b85a9a05c8)
 </details>
 
 <details>
@@ -24,6 +74,9 @@ Automatizar o processo de pedidos em estabelecimentos, proporcionando uma experi
    - Permitir a atualização do status do pedido e consulta em tempo real.
 
 2. **Notificações:**
+
+
+teste
    - Notificar o usuário quando o pedido estiver concluído.
 
 3. **Processamento de Pagamentos:**
@@ -81,8 +134,9 @@ O projeto foi iniciado com a ferramenta `eksctl`, que auxilia e facilita o proce
 
 - **Postman:**
   - Collection do Postman: [ByteBiteBurgers](https://www.postman.com/gold-robot-4346/workspace/g38-pos-tech-fiap/collection/30696994-63b32e4a-a75e-4298-a551-d8cfeb17253b?action=share&creator=30696994&active-environment=30696994-08c7d317-27c4-47af-b65f-8e6d5ca36b23)
+  - 
 </details>
-
+</details>
 
 ## Informações complementares
 
@@ -102,12 +156,11 @@ git clone https://github.com/postech-g38/ByteBiteBurgers.git
 ```
 docker-compose build
 ```
- 
+
 3. Iniciar o container.
 
 ```
-docker-compose up
-```
+Fase 3: Distribuição da Aplicação - Pós Tech - Fiap -4SOAT```
 
 4. Abra o seu navegador e acesse o endereço abaixo.
 ```
@@ -134,16 +187,6 @@ Add the number of user and spawn rate and click start Swarming button to start t
 ## DISCLAIMER
 
 - Devemos ter um banco postgres local instalado na maquina, podemos usar o docker compose pra isso tambem ou podemos usar o SQL Lite que funciona emmemoria
-
-- A app sobe mas esta quebrando, temos q terminar de arrumar o endpoint de criar usuario
-
-
-# PENDÊNCIAS
-
-- Vou remover os arquivos init_database.py e drop_database.py depois. Criei apenas porque não consegui usar o manage_database.py.
-- O autoincrement não está funcionando para o campo ID. O ideal seria que o usuário não tenha que passar o ID e o backend (ou ainda melhor o banco) seja o responsável por gerar o ID único.
-- Carga inicial de categorias (e talvez Produtos)
-- Métodos de checkout.
 
 # Kubernetes - EKS
 
@@ -197,7 +240,7 @@ eksctl version
 - Para criar o cluster EKS, execute o comando:
 
 ```bash
-eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml         
+eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml
 ```
 ## Configuração da Política IAM
  - Acesse o Console do AWS e vá para Services > IAM.
@@ -228,7 +271,7 @@ eksctl create cluster -f k8s/byte-burguer-eks-cluster.yaml
   ]
 }
 ```
-- Pegue o IAM role worker node e associe a policy criada 
+- Pegue o IAM role worker node e associe a policy criada
 
 ```bash
 # Get Worker node IAM Role ARN
@@ -273,7 +316,7 @@ kubectl get all
 ```
 ## Teste de Stress - K6
 
-A fim de comprovar a escalabilidade e a disponibilidade com o aumento de volume de requisições na aplicação construimos um cenário de teste de stress. 
+A fim de comprovar a escalabilidade e a disponibilidade com o aumento de volume de requisições na aplicação construimos um cenário de teste de stress.
 
 - O cenário consiste em 20 usuarios virtuais (vu's), realizando 40 requisições por usuario durante 60 segundos ( 20 vu's * 40 interactions = 800 requests em 60 segundos)
 
@@ -284,3 +327,5 @@ A ideia deste teste consiste em comprovar a escalabilidade e disponibilidade com
 ```bash
 k6 run stress_test.js
 ```
+
+teste
