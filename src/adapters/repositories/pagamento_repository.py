@@ -18,6 +18,5 @@ class PagamentoRepository(SQLAlchemyRepository):
         result = self.session_db.execute(stmt).one_or_none()
         if result:
             result, = result
-            return result
-        return None
+        return result
     

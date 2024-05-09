@@ -10,11 +10,9 @@ from src.app import app
 from src.adapters.database.settings import sync_engine, get_session
 from src.adapters.database.models.base_model import BaseModel
 
-from tests.manage_database import load_database_mock
-
 
 @pytest.fixture(scope='session')
-def sync_client() -> Generator[TestClient, None, None]:
+def client() -> Generator[TestClient, None, None]:
     sync_test_client = TestClient(
         app=app,
         base_url=f"http://localhost:{os.getenv('APPLICATION_PORT')}",
