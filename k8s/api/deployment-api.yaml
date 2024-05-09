@@ -2,37 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: byte-burguer-pod
+  name: byte-burguer-user-pod
   labels:
-    app: byte-burguer-pod
+    app: byte-burguer-user-pod
 spec:
   template:
     metadata:
-      name: byte-burguer-pod
+      name: byte-burguer-user-pod
       labels:
-        app: byte-burguer-pod
+        app: byte-burguer-user-pod
     spec:
       containers:
-        - name: byte-burguer-api
-          image: hiltonbruno633/byte-burguer-api:latest
+        - name: byte-burguer-user
+          image: hiltonbruno633/byte-burguer-user:latest
           ports:
             - containerPort: 80
           envFrom:
             - configMapRef:
                 name: configmap
-          livenessProbe:
-            httpGet:
-                path: /health_check
-                port: 8000
-            periodSeconds: 10  
-            failureThreshold: 3
-            initialDelaySeconds: 20
-          readinessProbe:
-            httpGet:
-              path: /health_check 
-              port: 8000
-            periodSeconds: 10
-            failureThreshold: 5
           resources:
             requests:
               cpu: 10m
@@ -41,4 +28,4 @@ spec:
   replicas: 3
   selector:
     matchLabels: 
-      app: byte-burguer-pod
+      app: byte-burguer-user-pod
