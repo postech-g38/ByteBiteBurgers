@@ -8,6 +8,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.scoping import scoped_session
 from sqlalchemy.engine import create_engine, Engine, URL
 from sqlalchemy.orm.session import Session
+from sqlalchemy import text
+
 
 from src.settings import  get_settings, execution_environment, Env
 
@@ -67,3 +69,8 @@ def get_connection() -> Generator[Session, None, None]:
             _logger.info('DATABASE START TRANSACTION')
             yield connection
         _logger.info('DATABASE RETURN SESSION TO POOL')
+
+def run_migrations() -> None:
+    with get_connection() as conn:
+        with open('seeds/seed.sql') as file:
+            conn.execute(text(file.read()))

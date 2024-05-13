@@ -42,7 +42,7 @@ class DatabaseSettings(BaseSettings):
 
     @property
     def sync_uri(self) -> URL:
-        return self._build_uri(driver='postgresql', dialect='psycopg2')
+        return self._build_uri('postgresql', dialect='psycopg2')
 
     def _build_uri(self, drivername: str, dialect: str) -> URL:
         return URL.create(
