@@ -25,7 +25,7 @@ def test_environemt_enum_as_string(attr, value):
     # arrange
     # act
     # assert
-    assert Env.__getattribute__(attr) == value
+    assert Env.__members__.get(attr) == value
 
 
 @pytest.mark.parametrize(
@@ -39,7 +39,7 @@ def test_execution_environment_then_return_bool(attr, match):
     # arrange
     # act
     # assert
-    assert execution_environment(Env.__getattribute__(attr)) is match
+    assert execution_environment(Env.__members__.get(attr)) is match
 
 
 def test_application_settings_with_environment_variables_mock():
@@ -51,7 +51,7 @@ def test_application_settings_with_environment_variables_mock():
     assert appliaction_settings.application_name == 'tst-name'
     assert appliaction_settings.application_host == '0.0.0.0'
     assert appliaction_settings.application_port == 1234
-    assert appliaction_settings.environment == 'tst'
+    assert appliaction_settings.environment == 'dev'
     assert appliaction_settings.workers == 1
 
 
@@ -66,8 +66,7 @@ def test_database_settings_with_environment_variables_mock():
     assert database_settings.database_host == 'localhost'
     assert database_settings.database_port == 5432
     assert database_settings.database_name == 'postgres'
-    assert database_settings.unittest_sync_uri == 'sqlite:////absolute/path/to/foo.db'
-    # assert database_settings.sync_uri
+    assert database_settings.unittest_sync_uri == 'sqlite:///unittest.db'
 
 
 def test_general_settings_embeded_config_class():

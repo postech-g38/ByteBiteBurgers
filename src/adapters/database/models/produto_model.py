@@ -8,8 +8,8 @@ from src.adapters.database.models.base_model import EntityModel
 class ProdutoModel(EntityModel):
     __tablename__ = 'produto'
 
-    nome:       Mapped[str]
-    preco:      Mapped[float]
-    imagens:    Mapped[str]
-    categoria:  Mapped[str]
+    nome: Mapped[str]
+    preco: Mapped[float]
+    imagens: Mapped[str]
+    categoria: Mapped[str]
     

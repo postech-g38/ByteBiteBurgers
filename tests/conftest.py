@@ -1,4 +1,4 @@
-from typing import Any, Generator
+from typing import Generator
 import os
 
 import pytest
@@ -10,14 +10,12 @@ from src.app import app
 from src.adapters.database.settings import sync_engine, get_session
 from src.adapters.database.models.base_model import BaseModel
 
-from tests.manage_database import load_database_mock
-
 
 @pytest.fixture(scope='session')
-def sync_client() -> Generator[TestClient, None, None]:
+def client() -> Generator[TestClient, None, None]:
     sync_test_client = TestClient(
         app=app,
-        base_url=f"http://localhost:{os.getenv('APPLICATION_PORT')}",
+        base_url=f"http://{os.getenv('APPLICATION_HOST')}:{os.getenv('APPLICATION_PORT')}",
         headers={
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -28,7 +26,7 @@ def sync_client() -> Generator[TestClient, None, None]:
 
 
 @pytest.fixture(scope='session')
-def create_database_tables():
+def create_database_tables() -> Generator[None, None, None]:
     BaseModel.metadata.create_all(sync_engine)
     yield
     BaseModel.metadata.drop_all(sync_engine)

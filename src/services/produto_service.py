@@ -1,50 +1,34 @@
-from typing import Any
+from typing import Any, List
 from datetime import datetime
 
 from src.services.service_base import BaseService
 from src.adapters.repositories import ProdutoRepository
 from src.adapters.database.models.produto_model import ProdutoModel
-from src.schemas.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, UpdateProdutoPayload
+from src.schemas.produto_schema import CreateProdutoPayload, ResponseProduto
 
 
 class ProdutoService(BaseService):
     def __init__(self, repository: ProdutoRepository) -> None:
         self.repository = repository
     
-    def get_all(self) -> dict[str, Any]:
-        rows = self.query_result(result=self.repository.produto.get_all())
-        rows = [ResponseProdutoPayload.model_validate(i).model_dump() for i in rows]
-        return {
-            'items': rows,
-            'quantidade': len(rows)
-        }
+    def get_all(self) -> List[ProdutoModel]:
+        return self.query_result(self.repository.get_all())
 
-    def get(self, id: str):
-        row = self.query_result(self.repository.produto.search_by_id(model_id=id))
-        return ResponseProdutoPayload.model_validate(row).model_dump()
+    def get_by_id(self, produto_id: int) -> ProdutoModel:
+        return self.query_result(self.repository.search_by_id(produto_id))
         
-    def create(self, data: CreateProdutoPayload) -> dict[str, Any]:
-        row = ProdutoModel(**data.model_dump())
-        row = self.repository.produto.save(model=row)
-        return ResponseProdutoPayload.model_validate(row).model_dump() 
+    def create(self, data: CreateProdutoPayload) -> ProdutoModel:
+        return self.repository.save(ProdutoModel(**data.model_dump()))
     
-    def update(self, data: UpdateProdutoPayload) -> dict[str, Any]:
-        row = self.query_result(self.repository.produto.search_by_id(model_id=data.id))
-        self.repository.produto.update(model_id=data.id, values=data.model_dump())
-        row = self.repository.produto.model_refresh(model=row)
-        return ResponseProdutoPayload.model_validate(row).model_dump()
+    def update(self, produto_id: int, data: CreateProdutoPayload) -> ProdutoModel:
+        self.repository.update(produto_id, data.model_dump())
+        return self.query_result(self.repository.search_by_id(produto_id))
     
-    def delete(self, id: str | int) -> dict[str, Any]:
-        row = self.query_result(self.repository.produto.search_by_id(model_id=id))
-        row.deleted_at = datetime.now()
-        self.repository.produto.delete(model_id=id)
-        return ResponseProdutoPayload.model_validate(row).model_dump()
+    def delete(self, produto_id: int) -> ProdutoModel:
+        data = self.query_result(self.repository.search_by_id(produto_id))
+        data.deleted_at = datetime.now()
+        self.repository.delete(produto_id)
+        return data
     
-    def get_by_categoria(self, categoria: str):  #  -> dict[str, Any]
-        categoria = categoria.title()
-        rows = self.query_result(self.repository.produto.get_by_categoria(categoria=categoria))
-        rows = [ResponseProdutoPayload.model_validate(i).model_dump() for i in rows]
-        return {
-            'items': rows,
-            'quantidade': len(rows)
-        }
+    def get_by_categoria(self, categoria: str) -> List[ProdutoModel]:
+        return self.query_result(self.repository.get_by_categoria(categoria.title()))

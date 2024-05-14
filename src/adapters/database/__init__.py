@@ -1,10 +1,10 @@
-from typing import Generator
+from typing import AsyncGenerator
 
 from sqlalchemy.orm.session import Session
 
 from src.adapters.database.settings import get_session
 
 
-def get_database_session() -> Generator[Session, None, None]:
+async def get_database_session() -> AsyncGenerator[Session, None]:
     with get_session() as sess:
         yield sess

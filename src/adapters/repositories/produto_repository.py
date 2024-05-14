@@ -1,11 +1,14 @@
 from sqlalchemy import select
+from sqlalchemy.orm.session import Session
+from fastapi import Depends
 
 from src.adapters.repositories.sqlalchemy_repository import SQLAlchemyRepository
 from src.adapters.database.models.produto_model import ProdutoModel
+from src.adapters.database import get_database_session
 
 
 class ProdutoRepository(SQLAlchemyRepository):
-    def __init__(self, database_session) -> None:
+    def __init__(self, database_session: Session = Depends(get_database_session)) -> None:
         super().__init__(session=database_session)
         self.entity_model = ProdutoModel
       

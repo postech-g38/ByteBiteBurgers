@@ -1,12 +1,15 @@
 from sqlalchemy import select
+from sqlalchemy.orm.session import Session
+from fastapi import Depends
 
 from src.adapters.repositories.sqlalchemy_repository import SQLAlchemyRepository
 from src.adapters.database.models.pedido_model import PedidoModel
+from src.adapters.database import get_database_session
 from src.enums import PedidoStatus
 
 
 class PedidoRepository(SQLAlchemyRepository):
-    def __init__(self, database_session) -> None:
+    def __init__(self, database_session: Session = Depends(get_database_session)) -> None:
         super().__init__(session=database_session)
         self.entity_model = PedidoModel
     

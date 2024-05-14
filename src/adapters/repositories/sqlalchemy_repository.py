@@ -45,7 +45,7 @@ class SQLAlchemyRepository:
         self.session_db.refresh(instance=model)
         return model
 
-    def update(self, model_id: int | str, values: Dict[str, Any]) -> tuple[Any] | None:
+    def update(self, model_id: int, values: Dict[str, Any]) -> tuple[Any] | None:
         """Update BaseModel in database
         :param model_id: ID of the model
         :param values: Dictionary values of the model to be updated

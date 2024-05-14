@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 
@@ -12,24 +13,16 @@ class CreatePedidoPayload(BaseModel):
     produtos: list[ProdudoPedidoSchema]
 
 
-class UpdatePedidoPayload(BaseModel):
-    id:               int
-    status_pedido:    str | None
-    status_pagamento: str | None
-    pagamento_id:     str | None
-
-
-class ResponsePedidoPayload(UpdatePedidoPayload):
-    model_config: ConfigDict = ConfigDict(from_attributes=True)
-
-    valor:                  float
-    data_mudanca_status: datetime | None
-    created_at:          datetime | None
-    updated_at:          datetime | None
-    deleted_at:          datetime | None
+class ResponsePedidoPayload(BaseModel):
+    id: int
+    created_at: Optional[datetime]
+    updated_at: Optional[datetime]
+    deleted_at: Optional[datetime]
+    status_pedido: Optional[str]
+    status_pagamento: Optional[str]
+    pagamento_id: Optional[str]
 
 
 class ResponsePagination(BaseModel):
-    items: list[ResponsePedidoPayload] | None
-    items: list[ResponsePedidoPayload] | None
+    items: list[ResponsePedidoPayload]
     quantidade: int

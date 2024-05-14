@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional, List
 
 from pydantic import BaseModel, ConfigDict, field_validator, ValidationError
 
@@ -6,43 +7,21 @@ from src.enums import ProdutoCategorias
 
 
 class CreateProdutoPayload(BaseModel):
-    nome:      str | None
-    preco:     float
-    imagens:   str
-    categoria: str
-
-    @field_validator('categoria')
-    def validate_categoria(cls, categoria: str) -> str:
-        categorias = [i.value for i in ProdutoCategorias]
-        if categoria.title() not in categorias:
-            raise ValueError(f"Categoria deve ser: {'|'.join(categorias)}")
-        return categoria.lower()
+    nome: Optional[str]
+    preco: Optional[float]
+    imagens: Optional[str]
+    categoria: Optional[ProdutoCategorias]
 
 
-class UpdateProdutoPayload(BaseModel):
+class ResponseProduto(CreateProdutoPayload):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
-    nome:      str | None
-    preco:     float | None
-    imagens:   str | None
-    categoria: str | None
-
-    @field_validator('categoria')
-    def validate_categoria(cls, categoria: str) -> str:
-        categorias = [i.value for i in ProdutoCategorias]
-        if categoria.title() not in categorias:
-            raise ValueError(f"Categoria deve ser: {'|'.join(categorias)}")
-        return categoria.lower()
-
-
-class ResponseProdutoPayload(UpdateProdutoPayload):
-    model_config: ConfigDict = ConfigDict(from_attributes=True)
-
     created_at: datetime
-    updated_at: datetime | None
-    deleted_at: datetime | None
+    updated_at: Optional[datetime]
+    deleted_at: Optional[datetime]
 
 
 class ResponsePagination(BaseModel):
-    items: list[ResponseProdutoPayload] | None
-    quantidade: int
-    
+    items: List[ResponseProduto]
+    quantidade: int  
