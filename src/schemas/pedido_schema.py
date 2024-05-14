@@ -8,7 +8,7 @@ class ProdudoPedidoSchema(BaseModel):
     produto_id: int
     quantidade: int
 
-
+    
 class CreatePedidoPayload(BaseModel):
     produtos: list[ProdudoPedidoSchema]
 
@@ -26,3 +26,4 @@ class ResponsePedidoPayload(BaseModel):
 class ResponsePagination(BaseModel):
     items: list[ResponsePedidoPayload]
     quantidade: int
+    

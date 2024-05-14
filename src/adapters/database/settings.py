@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.scoping import scoped_session
 from sqlalchemy.engine import create_engine, Engine, URL
 from sqlalchemy.orm.session import Session
+from sqlalchemy import text
 
 from src.settings import  get_settings, execution_environment, Env
 

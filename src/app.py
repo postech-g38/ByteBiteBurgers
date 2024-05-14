@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import os
 
 from src.settings import get_settings
 from src.routes import health_check_router, v1_router

@@ -12,13 +12,13 @@ from src.enums import PedidoStatus
 class PedidoService(BaseService):
     def __init__(self, repository: PedidoRepository) -> None:
         self.repository = repository
-    
+
     def get_all(self) -> List[PedidoModel]:
         return self.query_result(self.repository.get_all())
 
     def get_by_id(self, pedido_id: int) -> PedidoModel:
         return self.query_result(self.repository.search_by_id(pedido_id))
-    
+
     def get_by_status(self, status: str) -> PedidoModel:
         return self.query_result(self.repository.get_by_status(status.title()))
 
@@ -33,7 +33,7 @@ class PedidoService(BaseService):
         data.deleted_at = datetime.now()
         self.repository.delete(pedido_id)
         return data
-    
+
     def pending_orders(self) -> List[PedidoModel]:
         rows = self.query_result(self.repository.get_pending_orders())
         return (
@@ -41,7 +41,7 @@ class PedidoService(BaseService):
             sorted([i for i in rows if i.status_pedido == PedidoStatus.EM_PREPARACAO], key=lambda x: x.created_at) +
             sorted([i for i in rows if i.status_pedido == PedidoStatus.PRONTO], key=lambda x: x.created_at)
         )
-    
+
     def checkout(self, data: CreatePedidoPayload):
         row = PedidoModel(**dict(data))
         total = 0

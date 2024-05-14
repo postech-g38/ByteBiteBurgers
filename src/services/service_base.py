@@ -19,4 +19,4 @@ class BaseService:
         """Return the result if exists or raise exception"""
         if result:
             return result
-        raise NotFoundExcepition()
+        

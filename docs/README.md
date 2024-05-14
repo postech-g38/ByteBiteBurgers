@@ -3,6 +3,24 @@
 
 Lanchonete com auto atendimento
 
+<details>
+  <summary>Repositórios</summary>
+
+Aplicação
+https://github.com/postech-g38/ByteBiteBurgers
+
+Lambda
+https://github.com/postech-g38/lambda-metrics
+
+Infra Kubernetes com Terraform
+https://github.com/postech-g38/terraform-eks
+
+Infra banco de dados gerenciáveis com Terraform
+https://github.com/postech-g38/terraform-rds
+
+</details>
+
+
 ### Dependencies
 - [ ] Docker
 - [ ] Python 3.11
@@ -80,14 +98,3 @@ Add the number of user and spawn rate and click start Swarming button to start t
 ## DISCLAIMER
 
 - Devemos ter um banco postgres local instalado na maquina, podemos usar o docker compose pra isso tambem ou podemos usar o SQL Lite que funciona emmemoria
-
-- A app sobe mas esta quebrando, temos q terminar de arrumar o endpoint de criar usuario
-
-
-# PENDÊNCIAS
-
-- Vou remover os arquivos init_database.py e drop_database.py depois. Criei apenas porque não consegui usar o manage_database.py.
-- O autoincrement não está funcionando para o campo ID. O ideal seria que o usuário não tenha que passar o ID e o backend (ou ainda melhor o banco) seja o responsável por gerar o ID único.
-- Carga inicial de categorias (e talvez Produtos)
-- Métodos de checkout.
-
