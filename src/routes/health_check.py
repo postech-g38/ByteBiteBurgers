@@ -2,7 +2,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends
 
-from src.presenters.health_check_schema import HealthCheckResponse
+from src.schemas.health_check_schema import HealthCheckResponse
 
 
 router = APIRouter()
