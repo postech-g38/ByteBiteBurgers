@@ -13,8 +13,13 @@ from src.adapters.repositories.pagamento_repository import PagamentoRepository
 from src.adapters.database.models.pagamento_model import PagamentoModel
 
 
+<<<<<<< HEAD:src/services/pagamento_service.py
 class PagamentoService(BaseService):
     def __init__(self, repository: PagamentoRepository) -> None:
+=======
+class PagamentoController:
+    def __init__(self, repository: EntityRepository) -> None:
+>>>>>>> main:src/controllers/pagamento_controller.py
         self.repository = repository
     
     def create(self, data: PagamentoPayloadSchema) -> Response:
