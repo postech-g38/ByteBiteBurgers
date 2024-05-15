@@ -3,8 +3,15 @@
 pytest==7.4.2
 pytest-mock==3.11.1
 pytest-env==1.0.1
+pytest-bdd>=7.1.2
+pytest-cov>=4.0.0
+pytest-dotenv>=0.5.2
+pytest-mock>=3.11.0
+pytest-integration>=0.2.3
 
 locust==2.17.0
 
 ipdb==0.13.13
 freezegun==1.2.2
+
+httpx
