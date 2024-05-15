@@ -18,14 +18,14 @@ spec:
           ports:
             - containerPort: 80
           envFrom:
-            - configMapRef:
-                name: configmap
+            - secretRef:
+                name: secret-byteburguer
           resources:
             requests:
               cpu: 10m
             limits:
               cpu: 500m
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels: 
       app: byte-burguer-user-pod
