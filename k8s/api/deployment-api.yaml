@@ -25,7 +25,7 @@ spec:
               cpu: 10m
             limits:
               cpu: 500m
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels: 
       app: byteburguer-payment-pod
