@@ -14,31 +14,18 @@ spec:
     spec:
       containers:
         - name: byteburguer-api
-          image: ggrando/bytebiteburger:latest
+          image: hiltonbruno633/byte-burguer-user:latest
           ports:
             - containerPort: 80
           envFrom:
             - secretRef:
                 name: my-secret
-          livenessProbe:
-            httpGet:
-                path: /health_check
-                port: 8000
-            periodSeconds: 10  
-            failureThreshold: 3
-            initialDelaySeconds: 20
-          readinessProbe:
-            httpGet:
-              path: /health_check 
-              port: 8000
-            periodSeconds: 10
-            failureThreshold: 5
           resources:
             requests:
               cpu: 10m
             limits:
               cpu: 500m
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels: 
       app: byte-burguer-pod
