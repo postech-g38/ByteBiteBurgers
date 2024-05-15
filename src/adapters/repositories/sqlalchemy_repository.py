@@ -4,7 +4,7 @@ from sqlalchemy import Select, asc, delete, desc, func, update
 from sqlalchemy.future import select
 from sqlalchemy.orm import Session
 
-from src.adapters.database.models.entity_model import EntityModel
+from src.adapters.database.models.base_model import EntityModel
 
 
 class SQLAlchemyRepository:
@@ -67,9 +67,9 @@ class SQLAlchemyRepository:
         """
         statement = delete(self.entity_model).where(self.entity_model.id == model_id)
         self.session_db.execute(statement=statement)
-        # self.session_db.flush()
+        self.session_db.flush()
     
-    def model_refresh(self, model: Type[EntityModel]) -> Type[EntityModel]:
+    def refresh(self, model: Type[EntityModel]) -> Type[EntityModel]:
         self.session_db.refresh(instance=model)
         return model
 

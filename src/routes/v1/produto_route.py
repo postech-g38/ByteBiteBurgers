@@ -3,7 +3,7 @@ from typing import Any
 from fastapi import APIRouter, Depends
 from http import HTTPStatus
 
-from src.controllers.produto_controller import ProdutoController
+from src.services.produto_controller import ProdutoController
 from src.adapters.repositories import EntityRepository
 from src.presenters.produto_schema import CreateProdutoPayload, ResponseProdutoPayload, ResponsePagination, UpdateProdutoPayload
 

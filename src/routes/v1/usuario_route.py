@@ -2,7 +2,7 @@ from typing import Any, List
 
 from fastapi import APIRouter, Depends
 
-from src.controllers.usuario_controller import UsuarioController
+from src.services.usuario_controller import UsuarioController
 from src.adapters.repositories import EntityRepository
 from src.presenters.usuario_schema import CreateUsuarioPayload, ResponseUsuarioPayload, ResponsePagination, UpdateUsuarioPayload
 

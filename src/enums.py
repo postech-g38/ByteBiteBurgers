@@ -1,20 +1,16 @@
 from enum import Enum
 
 
-class UsuarioTipo(Enum):
-    CLIENTE: str = 'cliente'
-    ADMIN:   str = 'admin'
+class PagamentoStatus(str, Enum):
+    CRIADO = 'criado'
+    APROVADO = 'aprovado'
+    NEGADO = 'negado'
+    CANCELADO = 'cancelado'
 
 
-class PedidoStatus(Enum):
-    RECEBIDO:      str = 'Recebido'
-    EM_PREPARACAO: str = 'Em preparação'
-    PRONTO:        str = 'Pronto'
-    FINALIZADO:    str = 'Finalizado'
-
-
-class ProdutoCategorias(Enum):
-    LANCHE:         str = 'Lanche'
-    ACOMPANHAMENTO: str = 'Acompanhamento'
-    BEBIDA:         str = 'Bebida'
-    SOBREMESA:      str = 'Sobremesa'
+class PagamentoMethod(str, Enum):
+    CARTAO_CREDITO = 'cartao_credito'
+    CARTAO_DEBITO = 'cartao_debito'
+    DINHEIRO = 'dinheiro'
+    PIX = 'pix'
+    

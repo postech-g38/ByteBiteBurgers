@@ -1,7 +1,7 @@
 
 from fastapi import APIRouter, Depends, Request
 
-from src.controllers.pedido_controller import PedidoController
+from src.services.pedido_controller import PedidoController
 from src.adapters.repositories import EntityRepository
 from src.presenters.pedido_schema import CreatePedidoPayload, ResponsePedidoPayload, ResponsePagination, UpdatePedidoPayload
 
