@@ -35,4 +35,4 @@ jobs:
         context: .
         file: ./Dockerfile  # O caminho para o Dockerfile no seu repositório
         push: true
-        tags: ggrando/bytebiteburger:latest  # Substitua por seu nome de usuário e nome do repositório no Docker Hub
+        tags: hiltonbruno633/byteburguer-payment-api:latest  # Substitua por seu nome de usuário e nome do repositório no Docker Hub
