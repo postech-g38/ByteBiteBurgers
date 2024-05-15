@@ -64,7 +64,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ggrando/bytebiteburger:latest
+          tags: hiltonbruno633/byteburguer-payment-api:latest
 
   deploy:
     needs: build-and-push
