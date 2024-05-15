@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   application-service:
-    container_name: byte-burguer-api
+    container_name: byte-burguer-orders-api
     build: 
       context: .
       dockerfile: Dockerfile
@@ -14,7 +14,7 @@ services:
     env_file:
       - .env.dev
     depends_on:
-      - postgres
+      - database
     healthcheck:
       test: curl -X GET http://localhost:8000/healthcheck || exit 1
       interval: 3s
@@ -22,8 +22,8 @@ services:
       retries: 5
       start_period: 10s
 
-  database-service:
-    container_name: byte-burguer-postgres
+  database:
+    container_name: byte-burguer-orders-ostgres
     image: postgres
     environment:
       POSTGRES_USER: postgres

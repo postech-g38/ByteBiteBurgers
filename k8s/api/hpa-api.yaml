@@ -8,8 +8,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: byte-burguer-pod
-  minReplicas: 3
-  maxReplicas: 9
+  minReplicas: 1
+  maxReplicas: 1
   metrics:
   - type: Resource
     resource:
