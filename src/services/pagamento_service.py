@@ -30,10 +30,4 @@ class PagamentoService(BaseService):
             PagamentoResponseSchema.model_validate(pagamento).model_dump_json(), 
             HTTPStatus.OK
         )
-
-    def payment_response(self, payload: PagamentoWebhookSchema) -> Response:
-        return Response(
-            PagamentoWebhookResponse.model_dump_json(),
-            HTTPStatus.OK
-        )
     
