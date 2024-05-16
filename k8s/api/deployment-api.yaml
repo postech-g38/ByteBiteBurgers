@@ -13,7 +13,7 @@ spec:
         app: payment-byte-burguer-pod
     spec:
       containers:
-        - name: byteburguer-api
+        - name: byteburguer-payment-api
           image: hiltonbruno633/byteburguer-payment-api:latest
           ports:
             - containerPort: 80
