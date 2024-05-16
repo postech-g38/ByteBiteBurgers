@@ -6,6 +6,10 @@ from pydantic import BaseModel, ConfigDict, field_validator, ValidationError
 from src.enums import ProdutoCategorias
 
 
+class ProdutoCategoriaParams(BaseModel):
+    categoria: str
+
+
 class CreateProdutoPayload(BaseModel):
     nome: Optional[str]
     preco: Optional[float]

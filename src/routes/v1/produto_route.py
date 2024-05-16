@@ -5,7 +5,7 @@ from http import HTTPStatus
 
 from src.services.produto_service import ProdutoService
 from src.adapters.repositories import ProdutoRepository
-from src.schemas.produto_schema import CreateProdutoPayload, ResponseProduto, ResponsePagination
+from src.schemas.produto_schema import CreateProdutoPayload, ResponseProduto, ResponsePagination, ProdutoCategoriaParams
 
 router = APIRouter(prefix='/produto', tags=['Produto'])
 
@@ -70,5 +70,8 @@ def delete(produto_id: int, repository: ProdutoRepository = Depends()):
     response_model=ResponsePagination, 
     summary='Pegar Produtos por Categoria'
 )
-def get_by_category(categoria: str, repository: ProdutoRepository = Depends()):
-    return ProdutoService(repository).get_by_categoria(categoria=categoria)
+def get_by_category(
+    params: ProdutoCategoriaParams = Depends(), 
+    repository: ProdutoRepository = Depends()
+):
+    return ProdutoService(repository).get_by_categoria(params.categoria)

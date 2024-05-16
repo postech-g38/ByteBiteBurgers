@@ -42,7 +42,7 @@ class PedidoService(BaseService):
             sorted([i for i in rows if i.status_pedido == PedidoStatus.PRONTO], key=lambda x: x.created_at)
         )
 
-    def checkout(self, data: CreatePedidoPayload):
+    def checkout(self, data: CreatePedidoPayload) -> PedidoModel:
         row = PedidoModel(**dict(data))
         total = 0
 

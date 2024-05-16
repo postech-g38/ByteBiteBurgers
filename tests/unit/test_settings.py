@@ -67,6 +67,8 @@ def test_database_settings_with_environment_variables_mock():
     assert database_settings.database_port == 5432
     assert database_settings.database_name == 'postgres'
     assert database_settings.unittest_sync_uri == 'sqlite:///unittest.db'
+    assert database_settings.sync_uri
+    assert database_settings._build_uri
 
 
 def test_general_settings_embeded_config_class():

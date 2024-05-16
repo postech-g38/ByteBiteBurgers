@@ -80,11 +80,13 @@ def test_pedido_service_delete_then_return_pedido_entity():
     # assert
     repository.delete.assert_called_once_with(pedido_id)
 
-@pytest.mark.skip
+
 def test_pedido_service_pending_orders_then_return_pedidos_list():
     # arrange
     repository = Mock(PedidoRepository)
-    repository.get_pending_orders.return_value = [ 'order']
+    repository.get_pending_orders.return_value = [ 
+        PedidoModel(**PEDIDO_MODEL_LANCHE_MOCK)
+    ]
     service = PedidoService(repository)
     # act
     result = service.pending_orders()

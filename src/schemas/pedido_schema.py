@@ -13,6 +13,11 @@ class CreatePedidoPayload(BaseModel):
     produtos: list[ProdudoPedidoSchema]
 
 
+class CheckoutPedidoPayload(CreatePedidoPayload):
+    usuario_documento: Optional[str] = None
+    
+
+
 class ResponsePedidoPayload(BaseModel):
     id: int
     created_at: Optional[datetime]

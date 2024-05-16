@@ -81,6 +81,7 @@ def test_produto_route_get_by_categoria_then_return_success(client, database):
     database.commit()
     # act
     response = client.get('/v1/produto/categotia', params={'categoria': produto_categoria})
+    print(response.content)
     # assert
     assert response.status_code == HTTPStatus.OK
     
