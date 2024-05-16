@@ -44,9 +44,9 @@ class DatabaseSettings(BaseSettings):
     def sync_uri(self) -> URL:
         return self._build_uri(driver='postgresql', dialect='psycopg2')
 
-    def _build_uri(self, drivername: str, dialect: str) -> URL:
+    def _build_uri(self, driver: str, dialect: str) -> URL:
         return URL.create(
-            drivername=f"{drivername}+{dialect}",
+            drivername=f"{driver}+{dialect}",
             username=self.database_username, 
             password=self.database_password, 
             host=self.database_host, 
