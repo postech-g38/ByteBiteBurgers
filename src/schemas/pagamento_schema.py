@@ -15,7 +15,7 @@ class PagamentoPayloadSchema(BaseModel):
 
 class PagamentoResponseSchema(PagamentoPayloadSchema):
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int
     created_at: datetime
     updated_at: datetime | None
@@ -27,4 +27,3 @@ class PagamentoWebhookSchema(BaseModel):
 
 class PagamentoWebhookResponse(BaseModel):
     status: str = 'ok'
-    
