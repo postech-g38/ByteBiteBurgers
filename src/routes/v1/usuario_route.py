@@ -17,8 +17,8 @@ router = APIRouter(prefix='/usuario', tags=['Usuario'])
     # response_model=ResponsePagination, 
     summary='Pegar todos os Usuario'
 )
-def paginate(query: QueryPaginate, repository: UsuarioRepository = Depends()):
-    return UsuarioService(repository=repository).paginate(query)
+def paginate(repository: UsuarioRepository = Depends()):
+    return UsuarioService(repository=repository).paginate()
 
 
 @router.get(

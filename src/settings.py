@@ -1,10 +1,9 @@
 from functools import lru_cache
-from typing import ClassVar
+from typing import ClassVar, Optional
 from enum import Enum
 
 from pydantic_settings import BaseSettings
 from pydantic import Field
-from sqlalchemy.engine import URL
 
 
 class Env(str, Enum):
@@ -40,18 +39,12 @@ class DatabaseSettings(BaseSettings):
         return 'sqlite:///unittest.db'
 
     @property
-    def sync_uri(self) -> URL:
-        return self._build_uri(driver='postgresql', dialect='psycopg2')
+    def sync_uri(self) -> str:
+        return self._build_uri(driver='mongodb')
 
-    def _build_uri(self, driver: str, dialect: str) -> URL:
-        return URL.create(
-            drivername=f"{driver}+{dialect}",
-            username=self.database_username, 
-            password=self.database_password, 
-            host=self.database_host, 
-            port=self.database_port, 
-            database=self.database_name
-        )
+    def _build_uri(self, driver: str, dialect: Optional[str] = None) -> str:
+        driver = f"{driver}+{dialect}" if dialect else driver
+        return f"{driver}://{self.database_username}:{self.database_password}@{self.database_host}:{self.database_port}/{self.database_name}?authSource=admin"
 
 
 class GeneralSettings(BaseSettings):
