@@ -1,14 +1,29 @@
 # Olá, professor 👋
 
 ## Entrega da fase 04 ⬇️
+<details> 
+  <summary>Abrir</summary>
 
+  ➡️ Fase 04: 
+  
+  [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=FEfz40NYuA0)
 
+<details>
+  <summary>Repositórios</summary>
+</details>
+
+</details>
+  
 ## Entrega da fase 03 ⬇️
 
 <details> 
   <summary>Abrir</summary>
 
+  ➡️ Fase 03: 
+  
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=FEfz40NYuA0)
+
+</details>
 
 <details>
   <summary>Repositórios</summary>
