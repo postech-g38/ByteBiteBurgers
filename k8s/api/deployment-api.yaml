@@ -2,15 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: byte-burguer-pod
+  name: byte-burguer-user-pod
   labels:
-    app: byte-burguer-pod
+    app: byte-burguer-user-pod
 spec:
   template:
     metadata:
-      name: byte-burguer-pod
+      name: byte-burguer-user-pod
       labels:
-        app: byte-burguer-pod
+        app: byte-burguer-user-pod
     spec:
       containers:
         - name: byteburguer-api
@@ -20,12 +20,7 @@ spec:
           envFrom:
             - secretRef:
                 name: my-secret
-          resources:
-            requests:
-              cpu: 10m
-            limits:
-              cpu: 500m
   replicas: 1
   selector:
     matchLabels: 
-      app: byte-burguer-pod
+      app: byte-burguer-user-pod
