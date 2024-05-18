@@ -52,4 +52,14 @@ jobs:
           DATABASE_PORT: 5432
           DATABASE_NAME: postgres
           ENVIRONMENT: 'unittest'
-        run: pytest --verbose --cov
+        run: pytest --verbose --cov=. --cov-report=xml
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+        with:
+          args: >
+            -Dsonar.projectKey=postech-g38_ByteBiteBurgersPayment
+            -Dsonar.python.coverage.reportPaths=coverage.xml
