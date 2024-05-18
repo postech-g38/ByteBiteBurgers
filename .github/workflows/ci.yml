@@ -36,6 +36,7 @@ jobs:
           ls -la
           pip install -r requirements/common.txt
           pip install -r requirements/local.txt
+          pip install pytest-cov
 
       - name: Wait for PostgreSQL to be ready
         run: |
@@ -52,4 +53,4 @@ jobs:
           DATABASE_PORT: 5432
           DATABASE_NAME: postgres
           ENVIRONMENT: 'unittest'
-        run: pytest --verbose --cov
+        run: pytest --verbose --cov=. --cov-report=xml
