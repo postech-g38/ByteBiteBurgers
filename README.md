@@ -26,9 +26,11 @@
 </details>
 
 <details>
-  <summary>Evidência da proteção da branch manin</summary>
-  ![branch main](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/69fe943a-239f-4e9c-a79a-cad2a8678572)
-
+  <summary>Evidência da proteção da branch main (em todos os repositórios)</summary>
+  Ela não aceita pull direto, e também requer análise do Sonar  
+  
+  ![image](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/793904d5-c2a0-4fcc-bcd6-dc2bfad7ebdb)
+  
 </details>
 
 <details>
