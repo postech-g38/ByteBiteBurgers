@@ -19,7 +19,7 @@ spec:
             - containerPort: 80
           envFrom:
             - secretRef:
-                name: my-secret
+                name: payment-secret
           resources:
             requests:
               cpu: 10m
