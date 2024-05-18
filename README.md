@@ -28,6 +28,9 @@
 
 <details>
   <summary>Desenho de Arquitetura</summary>
+
+  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/38192556/de738fec-aaf0-4128-952e-8874872b4a6f)
+
 </details>
 
 </details>
