@@ -10,7 +10,6 @@
 
   📃 Informações de cobertura dos repositórios:
 
-  ByteBiteBurgers: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgers&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgers)  
   ByteBiteBurgersUsers: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersUsers&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersUsers)  
   ByteBiteBurgersOrders: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersOrders&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersOrders)  
   ByteBiteBurgersPayment: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersPayment&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersPayment)  
