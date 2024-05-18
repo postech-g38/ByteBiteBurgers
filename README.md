@@ -6,8 +6,15 @@
 
   ➡️ Fase 04: 
   
-  [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=FEfz40NYuA0)
+  [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?xxxxxxxxx)
 
+  📃 Informações de cobertura dos repositórios:
+
+  ByteBiteBurgers: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgers&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgers)  
+  ByteBiteBurgersUsers: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersUsers&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersUsers)  
+  ByteBiteBurgersOrders: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersOrders&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersOrders)  
+  ByteBiteBurgersPayment: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersPayment&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersPayment)  
+  
 <details>
   <summary>Repositórios</summary>
 
