@@ -1,8 +1,9 @@
 from datetime import datetime
+from bson import ObjectId
 
 
 USUARIO_MODEL_CLIENTE_MOCK = {
-    'id': 1,
+    '_id': ObjectId('626bccb9697a12204fb22ea3'),
     'created_at': datetime.utcnow(),
     'updated_at': datetime.utcnow(),
     'deleted_at': None,
@@ -14,7 +15,7 @@ USUARIO_MODEL_CLIENTE_MOCK = {
 }
 
 USUARIO_MODEL_CLIENTE_DELETED_MOCK = {
-    'id': 1,
+    '_id': ObjectId('626bccb9697a12204fb22ea3'),
     'created_at': datetime.utcnow(),
     'updated_at': datetime.utcnow(),
     'deleted_at': datetime.utcnow(),
@@ -26,7 +27,7 @@ USUARIO_MODEL_CLIENTE_DELETED_MOCK = {
 }
 
 USUARIO_MODEL_ADMIN_MOCK = {
-    'id': 2,
+    '_id': ObjectId('626bccb9697a12204fb22ea3'),
     'created_at': datetime.utcnow(),
     'updated_at': datetime.utcnow(),
     'deleted_at': None,
@@ -38,7 +39,7 @@ USUARIO_MODEL_ADMIN_MOCK = {
 }
 
 USUARIO_MODEL_ADMIN_DELETED_MOCK = {
-    'id': 2,
+    '_id': ObjectId('626bccb9697a12204fb22ea3'),
     'created_at': datetime.utcnow(),
     'updated_at': datetime.utcnow(),
     'deleted_at': datetime.utcnow(),

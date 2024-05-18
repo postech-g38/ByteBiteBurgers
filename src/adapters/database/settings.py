@@ -73,7 +73,7 @@ _logger = logging.getLogger(__name__)
 #             conn.execute(text(file.read()))
 
 from pymongo import MongoClient
-from bson.objectid import ObjectId
+from src.settings import get_settings
 
 
 client = MongoClient(
@@ -81,8 +81,8 @@ client = MongoClient(
     port=get_settings().database_settings.database_port,
     maxPoolSize=50,
     minPoolSize=10,
-    maxIdleTimeMS=30000,
-    waitQueueTimeoutMS=10000
+    maxIdleTimeMS=3,
+    waitQueueTimeoutMS=10
 )
 
 

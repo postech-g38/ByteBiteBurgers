@@ -15,7 +15,6 @@ services:
       - .env.dev
     depends_on:
       - database
-        # condition: service_healthy
     healthcheck:
       test: curl -X GET http://localhost:8000/healthcheck || exit 1
       interval: 3s
@@ -34,12 +33,6 @@ services:
     volumes: 
       - ./database_data:/data/db
       - ./seeds/seed.js:/docker-entrypoint-initdb.d/seed.js
-    healthcheck: 
-      test: echo 'db.runCommand({find:"app_db_name.devUser"}).ok' | mongosh --authenticationDatabase admin --host database -u mongoadmin -p mongopassword admin --quiet | grep -q 1
-      interval: 3s
-      timeout: 2s
-      retries: 3
-      start_period: 10s
 
 volumes:
   mymongodata:

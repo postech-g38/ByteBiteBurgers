@@ -1,5 +1,4 @@
-db = connect("localhost:27017/mongo");
-
+db = db.getSiblingDB('mongo');
 db.usuarios.insertMany([
     {
         nome: "Cliente Pedro",

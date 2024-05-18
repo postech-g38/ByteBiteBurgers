@@ -1,14 +1,12 @@
 from typing import Any, Generator
-import os
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.orm.session import Session
-from sqlalchemy.sql.expression import delete
 
 from src.app import app
-from src.adapters.database.settings import sync_engine, get_session
-from src.adapters.database.models.base_model import BaseModel
+from pymongo import MongoClient
+from src.settings import get_settings
+from src.adapters.database.settings import get_session
 
 
 @pytest.fixture(scope='session')
@@ -25,16 +23,21 @@ def client() -> Generator[TestClient, None, None]:
         yield _client    
 
 
-@pytest.fixture(scope='session')
-def create_database_tables():
-    BaseModel.metadata.create_all(sync_engine)
-    yield
-    BaseModel.metadata.drop_all(sync_engine)
+@pytest.fixture
+def database():
+    client = MongoClient(
+        host=get_settings().database_settings.sync_uri, 
+        port=get_settings().database_settings.database_port,
+        maxPoolSize=50,
+        minPoolSize=10,
+        maxIdleTimeMS=3,
+        waitQueueTimeoutMS=10
+    )
+    db = client['mongo']
+    yield db
+    client.drop_database('mongo')
 
-
-@pytest.fixture(scope='function')
-def database(create_database_tables) -> Generator[Session, None, None]:
-    with get_session() as database_session:
-        yield database_session
-        for table in BaseModel.metadata.sorted_tables:
-            database_session.execute(delete(table))
+@pytest.fixture
+def database_session():
+    with get_session() as sess:
+        yield sess
