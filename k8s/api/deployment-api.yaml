@@ -2,15 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: byte-burguer-user-pod
+  name: user-byte-burguer-pod
   labels:
-    app: byte-burguer-user-pod
+    app: user-byte-burguer-pod
 spec:
   template:
     metadata:
-      name: byte-burguer-user-pod
+      name: user-byte-burguer-pod
       labels:
-        app: byte-burguer-user-pod
+        app: user-byte-burguer-pod
     spec:
       containers:
         - name: byteburguer-api
@@ -19,8 +19,8 @@ spec:
             - containerPort: 80
           envFrom:
             - secretRef:
-                name: my-secret
+                name: users-secret
   replicas: 1
   selector:
     matchLabels: 
-      app: byte-burguer-user-pod
+      app: user-byte-burguer-pod
