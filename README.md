@@ -8,7 +8,7 @@
   
   [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?xxxxxxxxx)
 
-  📃 Informações de cobertura dos repositórios:
+  📃 Informações de cobertura dos microsserviços:
 
   ByteBiteBurgersUsers: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersUsers&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersUsers)  
   ByteBiteBurgersOrders: [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersOrders&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersOrders)  
@@ -23,6 +23,12 @@
   - Pedido: https://github.com/postech-g38/ByteBiteBurgersOrders 
   - Pagamento: https://github.com/postech-g38/ByteBiteBurgersPayment 
      
+</details>
+
+<details>
+  <summary>Evidência da proteção da branch manin</summary>
+  ![branch main](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/69fe943a-239f-4e9c-a79a-cad2a8678572)
+
 </details>
 
 <details>
