@@ -1,4 +1,4 @@
-# Olá, professor 👋.
+# Olá, professor 👋
 
 ## Entrega da fase 03 ⬇️
 
