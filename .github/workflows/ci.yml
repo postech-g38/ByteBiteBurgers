@@ -1,6 +1,5 @@
 name: Run Tests Simplified
 
-#on: [push]
 on:
   workflow_dispatch:
 
@@ -55,7 +54,7 @@ jobs:
           DATABASE_PORT: 5432
           DATABASE_NAME: postgres
           ENVIRONMENT: 'unittest'
-        run: pytest --verbose --cov --cov-report xml:coverage.xml
+        run: pytest --verbose --cov=. --cov-report=xml
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
