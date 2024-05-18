@@ -22,11 +22,3 @@ def create_payment(data: PagamentoPayloadSchema, repository: PagamentoRepository
 )
 def get_order_payment_status(pedido_id: int, repository: PagamentoRepository = Depends()):
     return PagamentoService(repository).get_by_pedido_id(pedido_id)
-
-
-@router.post(
-    path='/webhook', 
-    summary='Webhook para atualizaçao do status do Pagamento'
-)
-def get_order_payment_status(data: PagamentoWebhookSchema, repository: PagamentoRepository = Depends()):
-    return PagamentoService(repository).payment_response(data)
