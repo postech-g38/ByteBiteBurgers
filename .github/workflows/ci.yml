@@ -1,7 +1,6 @@
 name: Run Tests Simplified
 
-on:
-  workflow_dispatch:
+on: [push]
 
 jobs:
   test:
@@ -54,7 +53,16 @@ jobs:
           DATABASE_PORT: 5432
           DATABASE_NAME: postgres
           ENVIRONMENT: 'unittest'
-        run: pytest --verbose --cov=. --cov-report=xml
+        run: pytest --verbose --cov=src --cov-report=xml:coverage.xml
+
+      - name: Adjust coverage paths
+        run: sed -i 's|/home/runner/work/ByteBiteBurgers/ByteBiteBurgers/src|src|g' coverage.xml
+
+      - name: List coverage file
+        run: ls -la coverage.xml
+
+      - name: Show coverage.xml content
+        run: cat coverage.xml
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -64,4 +72,6 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=postech-g38_ByteBiteBurgers
+            -Dsonar.organization=postech-g38
             -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sources=src
