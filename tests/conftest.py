@@ -8,12 +8,15 @@ from pymongo import MongoClient
 from src.settings import get_settings
 from src.adapters.database.settings import get_session
 
+import socket
+
+
 
 @pytest.fixture(scope='session')
 def client() -> Generator[TestClient, None, None]:
     sync_test_client = TestClient(
         app=app,
-        base_url=f"http://0.0.0.0:8000",
+        base_url=f"http://{socket.gethostbyname(socket.gethostname())}:8000",
         headers={
             'Content-Type': 'application/json',
             'Accept': 'application/json'
