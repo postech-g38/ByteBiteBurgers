@@ -25,13 +25,6 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install MongoDB Shell
-        run: |
-          wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-          echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-          sudo apt-get update
-          sudo apt-get install -y mongodb-org-shell
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -42,9 +35,7 @@ jobs:
       - name: Wait for MongoDB to be ready
         run: |
           echo "Waiting for MongoDB to start..."
-          sleep 60  # Aguarda 60 segundos para o MongoDB estar pronto
-          echo "MongoDB should be ready now. Checking connection..."
-          mongo --eval 'db.runCommand({ ping: 1 })'  # Tenta conectar ao MongoDB
+          sleep 30  # Aguarda 30 segundos para o MongoDB estar pronto
 
       - name: Run pytest with coverage
         env:
