@@ -45,11 +45,6 @@ jobs:
             sleep 2
           done
 
-      - name: Start web service
-        run: |
-          nohup python src/path/to/your/web/service.py &
-          sleep 10  # Aguarda o serviço inicializar
-
       - name: Run pytest with coverage
         env:
           DATABASE_USERNAME: postgres
