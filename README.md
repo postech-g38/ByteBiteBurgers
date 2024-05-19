@@ -1,6 +1,51 @@
 # Olá, professor 👋
+## Entrega da fase 04 ⬇️
+
+<details> 
+  <summary>Abrir</summary>
+
+  ➡️ Fase 04: 
+  
+  [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?xxxxxxxxx)
+
+  📃 Informações de cobertura dos microsserviços:
+
+  ByteBiteBurgersUsers: https://github.com/postech-g38/ByteBiteBurgersUsers [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersUsers&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersUsers)  
+  ByteBiteBurgersOrders: https://github.com/postech-g38/ByteBiteBurgersOrders [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersOrders&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersOrders)  
+  ByteBiteBurgersPayment: https://github.com/postech-g38/ByteBiteBurgersPayment [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=postech-g38_ByteBiteBurgersPayment&metric=coverage)](https://sonarcloud.io/summary/new_code?id=postech-g38_ByteBiteBurgersPayment)  
+  
+<details>
+  <summary>Repositórios</summary>
+
+  #### Microsserviços
+  
+  - Usuário: https://github.com/postech-g38/ByteBiteBurgersUsers
+  - Pedido: https://github.com/postech-g38/ByteBiteBurgersOrders 
+  - Pagamento: https://github.com/postech-g38/ByteBiteBurgersPayment 
+     
+</details>
+
+<details>
+  <summary>Evidência da proteção da branch main (em todos os repositórios)</summary>
+  Ela não aceita pull direto, e também requer análise do Sonar  
+  
+  ![image](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/793904d5-c2a0-4fcc-bcd6-dc2bfad7ebdb)
+  
+</details>
+
+<details>
+  <summary>Desenho de Arquitetura</summary>
+
+  ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/38192556/de738fec-aaf0-4128-952e-8874872b4a6f)
+
+</details>
+
+</details>
 
 ## Entrega da fase 03 ⬇️
+
+<details> 
+  <summary>Abrir</summary>
 
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=FEfz40NYuA0)
 
@@ -33,12 +78,9 @@ https://github.com/postech-g38/terraform-rds
   
 ![Desenho do banco](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/d63154d1-3686-4f56-a778-4ed6454cdb23)
 
-  
-
-
-  
 </details>
 
+</details>
 
 ## Entrega da fase 02 ⬇️
 
@@ -49,16 +91,11 @@ https://github.com/postech-g38/terraform-rds
 
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=tMUzzM8YnzE)
 
-
-
-
 <details>
   <summary>Desenho de Arquitetura</summary>
 
   ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/b8f3c32e-80b5-46f4-99fc-3abaf3e256cd)
 
-
-  
 </details>
 
 <details>
@@ -74,7 +111,6 @@ Automatizar o processo de pedidos em estabelecimentos, proporcionando uma experi
    - Permitir a atualização do status do pedido e consulta em tempo real.
 
 2. **Notificações:**
-
 
 teste
    - Notificar o usuário quando o pedido estiver concluído.
@@ -104,7 +140,6 @@ teste
   - O pagamento é processado em um sistema terceiro, que pode estar indisponível no momento, afetando a operação.
  
 </details>
- 
 
 <details>
   <summary>Os requisitos de infraestrutura: </summary>
@@ -139,7 +174,6 @@ O projeto foi iniciado com a ferramenta `eksctl`, que auxilia e facilita o proce
 </details>
 
 ## Informações complementares
-
 
 Para auxiliar na sua trajetória de conhecimento da ByteBiteBugers, criamos esse pequeno roteiro para baixar e executar o sistema.
 
