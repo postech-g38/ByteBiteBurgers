@@ -1,6 +1,7 @@
 name: Run Tests Simplified
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   test:
@@ -24,16 +25,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Log: Setup Python
-        run: echo "Setting up Python environment..."
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
-
-      - name: Log: Install dependencies
-        run: echo "Installing dependencies..."
 
       - name: Install dependencies
         run: |
@@ -42,19 +37,12 @@ jobs:
           pip install -r requirements/local.txt
           pip install pytest-cov
 
-      - name: Log: Wait for MongoDB
-        run: echo "Waiting for MongoDB to be ready..."
-
       - name: Wait for MongoDB to be ready
         run: |
           until mongo --username ${{ secrets.DATABASE_USERNAME }} --password ${{ secrets.DATABASE_PASSWORD }} --eval 'db.runCommand({ ping: 1 })'; do
             echo "Waiting for MongoDB to start..."
             sleep 2
           done
-          echo "MongoDB is ready!"
-
-      - name: Log: Run pytest with coverage
-        run: echo "Running pytest with coverage..."
 
       - name: Run pytest with coverage
         env:
@@ -66,26 +54,14 @@ jobs:
           ENVIRONMENT: 'unittest'
         run: pytest --verbose --cov=src --cov-report=xml:coverage.xml
 
-      - name: Log: Adjust coverage paths
-        run: echo "Adjusting coverage paths..."
-
       - name: Adjust coverage paths
         run: sed -i 's|/home/runner/work/ByteBiteBurgersUsers/ByteBiteBurgersUsers/src|src|g' coverage.xml
-
-      - name: Log: List coverage file
-        run: echo "Listing coverage file..."
 
       - name: List coverage file
         run: ls -la coverage.xml
 
-      - name: Log: Show coverage.xml content
-        run: echo "Showing coverage.xml content..."
-
       - name: Show coverage.xml content
         run: cat coverage.xml
-
-      - name: Log: SonarQube Scan
-        run: echo "Starting SonarQube scan..."
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
