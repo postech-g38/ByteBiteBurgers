@@ -23,7 +23,9 @@ class UsuarioService(BaseService):
 
     def get_by_id(self, user_id: int) -> ResponseUsuarioPayload:
         user_id = ObjectId(user_id)
-        return self.query_result(self.repository.search_by_id(user_id))
+        data = self.query_result(self.repository.search_by_id(user_id))
+        data['id'] = str(data.pop('_id'))
+        return data
 
     def get_by_cpf(self, cpf: str) -> ResponseUsuarioPayload:
         return self.query_result(self.repository.search_by_cpf(cpf))
@@ -36,7 +38,9 @@ class UsuarioService(BaseService):
             'deleted_at': None
         })
         usuario_id = self.repository.save(data)
-        return self.repository.search_by_id(usuario_id)
+        data = self.repository.search_by_id(usuario_id)
+        data['id'] = str(data.pop('_id'))
+        return data
 
     def update(self, user_id: int, data: UsuarioPayload) -> ResponseUsuarioPayload:
         user_id = ObjectId(user_id)

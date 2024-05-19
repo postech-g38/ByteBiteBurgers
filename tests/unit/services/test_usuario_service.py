@@ -38,7 +38,9 @@ def test_usuario_service_get_by_id_then_return_usuario_entity():
     usuario_id = '626bccb9697a12204fb22ea3'
     usuario_model = Mock()
     repository = Mock(UsuarioRepository)
-    repository.search_by_id.return_value = usuario_model
+    repository.search_by_id.return_value = {
+        '_id': 12345
+    }
     service = UsuarioService(repository)
     # act
     result = service.get_by_id(usuario_id)
@@ -78,6 +80,9 @@ def test_usuario_service_create_usuario_then_return_usuario_entity():
     usuario = Mock()
     usuario.model_dump.return_value = {}
     repository = Mock(UsuarioRepository)
+    repository.search_by_id.return_value = {
+        '_id': 12345
+    }
     service = UsuarioService(repository)
     # act
     result = service.create(usuario)
