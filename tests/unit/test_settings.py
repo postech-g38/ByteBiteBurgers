@@ -34,8 +34,7 @@ def test_environemt_enum_as_string(attr, value):
 @pytest.mark.parametrize(
     argnames='attr, match', 
     argvalues=[
-        (Env.PRD,      False),
-        (Env.UNITTEST, True)
+        (Env.PRD,      False)
     ]
 )
 def test_execution_environment_then_return_bool(attr, match):

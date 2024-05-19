@@ -1,7 +1,8 @@
 from typing import Any, List
 from http import HTTPStatus
+from bson import ObjectId
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Body
 
 from src.services.usuario_service import UsuarioService
 from src.adapters.repositories import UsuarioRepository
@@ -17,8 +18,8 @@ router = APIRouter(prefix='/usuario', tags=['Usuario'])
     # response_model=ResponsePagination, 
     summary='Pegar todos os Usuario'
 )
-def paginate(query: QueryPaginate, repository: UsuarioRepository = Depends()):
-    return UsuarioService(repository=repository).paginate(query)
+def paginate(repository: UsuarioRepository = Depends()):
+    return UsuarioService(repository=repository).paginate()
 
 
 @router.get(
@@ -27,9 +28,8 @@ def paginate(query: QueryPaginate, repository: UsuarioRepository = Depends()):
     response_model=ResponseUsuarioPayload, 
     summary='Pegar Usuario'
 )
-def get(user_id: int, repository: UsuarioRepository = Depends()):
-    service = UsuarioService(repository=repository)
-    return service.get_by_id(user_id)
+def get(user_id: str, repository: UsuarioRepository = Depends()):
+    return UsuarioService(repository=repository).get_by_id(user_id)
 
 
 @router.get(
@@ -38,9 +38,8 @@ def get(user_id: int, repository: UsuarioRepository = Depends()):
     response_model=ResponseUsuarioPayload, 
     summary='Pegar Usuario pelo CPF'
 )
-def get(cpf: str, repository: UsuarioRepository = Depends()) -> dict:
-    service = UsuarioService(repository=repository)
-    return service.get_by_cpf(cpf=cpf)
+def get_by_cpf(cpf: str, repository: UsuarioRepository = Depends()) -> dict:
+    return UsuarioService(repository=repository).get_by_cpf(cpf=cpf)
 
 
 @router.post(
@@ -50,11 +49,10 @@ def get(cpf: str, repository: UsuarioRepository = Depends()) -> dict:
     summary='Criar Usuario'
 )
 def create(
-    data: UsuarioPayload, 
+    data: UsuarioPayload = Body(...), 
     repository: UsuarioRepository = Depends()
 ) -> dict[str, Any]:
-    service = UsuarioService(repository=repository)
-    return service.create(data=data)
+    return UsuarioService(repository=repository).create(data=data)
 
 
 @router.put(
@@ -64,18 +62,19 @@ def create(
     summary='Atualizar Usuario'
 )
 def update(
-    user_id: int,
+    user_id: str,
     data: UsuarioPayload, 
     repository: UsuarioRepository = Depends()
 ):
-    service = UsuarioService(repository=repository)
-    return service.update(user_id, data)
+    return UsuarioService(repository=repository).update(user_id, data)
 
 
 @router.delete(
-    path='/{id}', 
+    path='/{usuario_id}', 
     status_code=HTTPStatus.ACCEPTED,
     summary='Deletar Usuario'
 )
-def delete(id: str, repository: UsuarioRepository = Depends()):
-    return UsuarioService(repository=repository).delete(id=id)
+def delete(usuario_id: str, repository: UsuarioRepository = Depends()):
+    response = UsuarioService(repository=repository).delete(usuario_id)
+    response['_id'] = str(response['_id'])
+    return response

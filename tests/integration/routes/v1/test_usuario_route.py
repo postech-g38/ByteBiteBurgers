@@ -3,9 +3,7 @@ from http import HTTPStatus
 
 import pytest
 
-from src.services.usuario_service import UsuarioService
-from src.adapters.database.models import UsuarioModel
-from tests.resouces.database import usuario_model
+from tests.resouces.database import usuario_model as usuario_mock
 
 
 @pytest.mark.skip
@@ -28,8 +26,8 @@ def test_usuario_route_paginate_then_return_204_no_content(client):
 def test_usuario_route_paginate_then_return_list(client, database):
     # arrange
     params = {'page': 1, 'size': 2, 'order_by': 'created_at:desc'}
-    database.add(UsuarioModel(usuario_model.USUARIO_MODEL_CLIENTE_MOCK))
-    database.add(UsuarioModel(usuario_model.USUARIO_MODEL_CLIENTE_MOCK))
+    database.insert_one(usuario_mock.USUARIO_MODEL_CLIENTE_MOCK)
+    database.insert_one(usuario_mock.USUARIO_MODEL_CLIENTE_MOCK)
     database.commit()
     # act
     response = client.get(
@@ -46,7 +44,7 @@ def test_usuario_route_paginate_then_return_list(client, database):
 @pytest.mark.integration_test
 def test_usuario_route_find_by_id_then_return_none(client, database):
     # arrange
-    usuario_id = 10
+    usuario_id = '626bccb9697a12204fb22ea3'
     # act
     response = client.get(f"v1/usuario/{usuario_id}")
     # assert
@@ -56,13 +54,12 @@ def test_usuario_route_find_by_id_then_return_none(client, database):
 @pytest.mark.integration_test 
 def test_usuario_route_find_by_id_then_return_one(client, database):
     # arrange
-    usuario_id = 1
-    database.add(UsuarioModel(**usuario_model.USUARIO_MODEL_CLIENTE_MOCK))
-    database.commit()
+    usuario_id = '626bccb9697a12204fb22ea3'
+    database['usuarios'].insert_one(usuario_mock.USUARIO_MODEL_CLIENTE_MOCK)
     # act
     response = client.get(f"v1/usuario/{usuario_id}")
     # assert
-    # assert response.status_code == 200
+    assert response.status_code == 200
     data = response.json()
     assert isinstance(data, dict)
 
@@ -117,9 +114,12 @@ def test_usuario_route_update_user_then_return_error(client, database):
 
 @pytest.mark.integration_test
 def test_usuario_route_delete_user_then_return_success(client, database):
-    pass
-
-
-@pytest.mark.integration_test
-def test_usuario_route_delete_user_then_return_success(client, database):
-    pass
+    # arrange
+    usuario_id = '626bccb9697a12204fb22ea3'
+    database['usuarios'].insert_one(usuario_mock.USUARIO_MODEL_CLIENTE_MOCK)
+    # act
+    response = client.delete(f"/v1/usuario/{usuario_id}")
+    # assert
+    assert response.status_code == 202
+    data = response.json()
+    assert isinstance(data, dict)

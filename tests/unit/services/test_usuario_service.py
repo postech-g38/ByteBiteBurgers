@@ -1,6 +1,5 @@
 from unittest.mock import Mock
-from datetime import datetime
-import uuid
+from bson import ObjectId
 
 import pytest
 
@@ -9,35 +8,21 @@ from src.adapters.repositories import UsuarioRepository
 from src.services.service_base import NotFoundExcepition
 
 
-def test_usuario_service_psginate_then_raise_not_found_exception():
-    # arrange
-    query = Mock(page=1, size=2, order_by='created_at:desc')
-    repository = Mock(UsuarioRepository)
-    repository.get_all.return_value = None
-    service = UsuarioService(repository)
-    # act
-    with pytest.raises(NotFoundExcepition):
-        result = service.paginate(query)
-    # assert
-    repository.get_all.assert_called_once()
-
-
 @pytest.mark.skip
 def test_usuario_service_paginate_then_return_multiple_usuario_entities():
     # arrange
-    query = Mock(page=1, size=2, order_by='created_at:desc')
     repository = Mock(UsuarioRepository)
     repository.get_all.return_value = []
     service = UsuarioService(repository)
     # act
-    result = service.paginate(query)
+    result = service.paginate()
     # assert
     repository.get_all.assert_called_once()
 
 
 def test_usuario_service_get_by_id_then_raise_not_found_exception():
     # arrange
-    usuario_id = 1
+    usuario_id = '626bccb9697a12204fb22ea3'
     repository = Mock(UsuarioRepository)
     repository.search_by_id.return_value = None
     service = UsuarioService(repository)
@@ -50,7 +35,7 @@ def test_usuario_service_get_by_id_then_raise_not_found_exception():
 
 def test_usuario_service_get_by_id_then_return_usuario_entity():
     # arrange
-    usuario_id = 1
+    usuario_id = '626bccb9697a12204fb22ea3'
     usuario_model = Mock()
     repository = Mock(UsuarioRepository)
     repository.search_by_id.return_value = usuario_model
@@ -58,13 +43,13 @@ def test_usuario_service_get_by_id_then_return_usuario_entity():
     # act
     result = service.get_by_id(usuario_id)
     # assert
-    repository.search_by_id.assert_called_once_with(usuario_id)
+    repository.search_by_id.assert_called_once_with(ObjectId(usuario_id))
     result is not None
 
 
 def test_usuario_service_get_by_cpf_then_raise_not_found_exception():
     # arrange
-    usuario_cpf = ''
+    usuario_cpf = '17132451081'
     repository = Mock(UsuarioRepository)
     repository.search_by_cpf.return_value = None
     service = UsuarioService(repository)
@@ -77,15 +62,15 @@ def test_usuario_service_get_by_cpf_then_raise_not_found_exception():
 
 def test_usuario_service_get_by_cpf_then_return_usuario_entity():
     # arrange
-    usuario_cpf = ''
+    usuario_cpf = '17132451081'
     usuario_model = Mock()
     repository = Mock(UsuarioRepository)
     repository.search_by_cpf.return_value = usuario_model
     service = UsuarioService(repository)
     # act
-    result = service.get_by_id(usuario_cpf)
+    result = service.get_by_cpf(usuario_cpf)
     # assert
-    repository.search_by_id.assert_called_once_with(usuario_cpf)
+    repository.search_by_cpf.assert_called_once_with(usuario_cpf)
 
 
 def test_usuario_service_create_usuario_then_return_usuario_entity():
@@ -108,7 +93,7 @@ def test_usuario_service_create_usuario_then_return_usuario_entity():
 @pytest.mark.skip('not implemented')
 def test_usuario_service_update_usuario_then_return_usuario_entity():
     # arrange
-    usuario_id = 1
+    usuario_id = '626bccb9697a12204fb22ea3'
     usuario_update = {}
     repository = Mock(UsuarioRepository)
     repository.update.return_value = {}
@@ -123,7 +108,7 @@ def test_usuario_service_update_usuario_then_return_usuario_entity():
 @pytest.mark.skip('not implemented')
 def test_usuario_service_update_usuario_then_raise_not_found_exception():
     # arrange
-    usuario_id = 1
+    usuario_id = '626bccb9697a12204fb22ea3'
     usuario_update = {}
     repository = Mock(UsuarioRepository)
     repository.update.return_value = None
@@ -138,7 +123,7 @@ def test_usuario_service_update_usuario_then_raise_not_found_exception():
 
 def test_usuario_service_delete_usuario_then_return_usuario_entity():
     # arrange
-    usuario_id = 1
+    usuario_id = '626bccb9697a12204fb22ea3'
     usuario_model = Mock()
     repository = Mock(UsuarioRepository)
     repository.search_by_id.return_value = usuario_model
@@ -157,7 +142,7 @@ def test_usuario_service_delete_usuario_then_return_usuario_entity():
 
 def test_usuario_service_delete_usuario_then_raise_not_found_exception():
     # arrange
-    usuario_id = 1
+    usuario_id = '626bccb9697a12204fb22ea3'
     repository = Mock(UsuarioRepository)
     repository.search_by_id.return_value = None
     service = UsuarioService(repository)
@@ -165,5 +150,5 @@ def test_usuario_service_delete_usuario_then_raise_not_found_exception():
     with pytest.raises(NotFoundExcepition):
         result = service.delete(usuario_id)
     # assert
-    repository.search_by_id.assert_called_once_with(usuario_id)
+    repository.search_by_id.assert_called_once_with(ObjectId(usuario_id))
     repository.delete.assert_not_called()

@@ -1,29 +1,15 @@
-from typing import Type
+from typing import Dict, Any
 
-from sqlalchemy.future import select
-from sqlalchemy.orm import Session
 from fastapi import Depends
 
-from src.adapters.repositories.sqlalchemy_repository import SQLAlchemyRepository
-from src.adapters.database.models.usuario_model import UsuarioModel
+from src.adapters.repositories.mongodb_repository import PyMongoRepository
 from src.adapters.database import get_database_session
 
 
-class UsuarioRepository(SQLAlchemyRepository):
-     def __init__(self, database_session: Session = Depends(get_database_session)) -> None:
-        super().__init__(session=database_session)
-        self.entity_model = UsuarioModel
+class UsuarioRepository(PyMongoRepository):
+	def __init__(self, database_session=Depends(get_database_session)) -> None:
+		super().__init__(database_session, 'mongo', 'usuarios')
 
-     def search_by_cpf(self, cpf: str) -> Type[UsuarioModel] | None:
-        """Get item by cpf
-        :param: cpf: ID of the model
-        :return: UsuarioModel or None
-        :raises ``sqlalchemy.repositories.exc.NoResultFound´´ or ``sqlalchemy.repositories.exc.MultipleResultsFound``
-        """
-        statement = select(self.entity_model).where(self.entity_model.cpf == cpf)
-        results = self.session_db.execute(statement=statement)
-        result = results.one_or_none()
-        if result:
-            (result,) = result
-        return result
+	def search_by_cpf(self, cpf: str) -> Dict[str, Any] | None:
+		return self._collection.find_one({'cpf': cpf}, session=self._session)
         

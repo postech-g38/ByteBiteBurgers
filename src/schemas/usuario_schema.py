@@ -1,7 +1,7 @@
-from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+
+from pydantic import BaseModel
 
 from src.enums import UsuarioTipo
 
@@ -15,12 +15,7 @@ class UsuarioPayload(BaseModel):
 
 
 class ResponseUsuarioPayload(UsuarioPayload):
-    model_config: ConfigDict = ConfigDict(from_attributes=True)
-    
-    id: int
-    created_at: datetime
-    updated_at: Optional[datetime]
-    deleted_at: Optional[datetime]
+    pass
 
 
 class ResponsePagination(BaseModel):

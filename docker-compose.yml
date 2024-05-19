@@ -23,13 +23,16 @@ services:
       start_period: 10s
 
   database:
-    container_name: byte-burguer-postgres
-    image: postgres
+    container_name: byte-burguer-mongodb
+    image: mongo:5.0
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: mongopassword
     ports:
-      - "5432:5432"
-    volumes:
-      - /var/lib/postgresql/data
-      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql
+      - "27017:27017"
+    volumes: 
+      - ./database_data:/data/db
+      - ./seeds/seed.js:/docker-entrypoint-initdb.d/seed.js
+
+volumes:
+  mymongodata:
