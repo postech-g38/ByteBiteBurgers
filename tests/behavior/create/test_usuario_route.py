@@ -4,11 +4,8 @@ from pytest_bdd import scenarios, given, when, then
 
 # to run the bdd test we should build the app, and get itshost address
 # then run pytest tests/behavior
-HOST = 'localhost:8000'
 
 scenarios('create.feature')
-
-BASE_URL = f"http://{HOST}/v1"
 
 data = {}
 
@@ -26,7 +23,7 @@ def prepare_user_payload():
 
 @when('the user is created')
 def create_user(client):
-    response = client.post(f"{BASE_URL}/usuario/", json=data['payload'])
+    response = client.post("/v1/usuario/", json=data['payload'])
     data['response'] = response
 
 
@@ -38,7 +35,7 @@ def verify_user_creation():
 
 @then('the user should be in the user list')
 def verify_user_in_list(client):
-    response = client.get(f"{BASE_URL}/usuario/{data['user_id']}")
+    response = client.get(f"/v1/usuario/{data['user_id']}")
     assert response.status_code == 200
     user_info = response.json()
     assert user_info['id'] == data['user_id']
