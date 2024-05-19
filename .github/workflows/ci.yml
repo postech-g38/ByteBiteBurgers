@@ -16,7 +16,7 @@ jobs:
         ports:
           - 27017:27017
         options: >-
-          --health-cmd "mongo --username ${{ secrets.DATABASE_USERNAME }} --password ${{ secrets.DATABASE_PASSWORD }} --eval 'db.runCommand({ ping: 1 })'"
+          --health-cmd "mongo --username $MONGO_INITDB_ROOT_USERNAME --password $MONGO_INITDB_ROOT_PASSWORD --eval 'db.runCommand({ ping: 1 })'"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -39,7 +39,7 @@ jobs:
 
       - name: Wait for MongoDB to be ready
         run: |
-          until mongo --username ${{ secrets.DATABASE_USERNAME }} --password ${{ secrets.DATABASE_PASSWORD }} --eval 'db.runCommand({ ping: 1 })'; do
+          until mongo --username $MONGO_INITDB_ROOT_USERNAME --password $MONGO_INITDB_ROOT_PASSWORD --eval 'db.runCommand({ ping: 1 })'; do
             echo "Waiting for MongoDB to start..."
             sleep 2
           done
