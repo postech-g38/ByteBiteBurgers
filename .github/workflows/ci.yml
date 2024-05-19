@@ -36,6 +36,9 @@ jobs:
         run: |
           echo "Waiting for MongoDB to start..."
           sleep 60  # Aguarda 60 segundos para o MongoDB estar pronto
+          echo "MongoDB should be ready now. Checking connection..."
+          netstat -an | grep 27017  # Verifica se a porta 27017 está sendo usada
+          mongo --eval 'db.runCommand({ ping: 1 })'  # Tenta conectar ao MongoDB
 
       - name: Run pytest with coverage
         env:
