@@ -2,7 +2,7 @@ from typing import Any, List
 from http import HTTPStatus
 from bson import ObjectId
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Body
 
 from src.services.usuario_service import UsuarioService
 from src.adapters.repositories import UsuarioRepository
@@ -38,7 +38,7 @@ def get(user_id: str, repository: UsuarioRepository = Depends()):
     response_model=ResponseUsuarioPayload, 
     summary='Pegar Usuario pelo CPF'
 )
-def get(cpf: str, repository: UsuarioRepository = Depends()) -> dict:
+def get_by_cpf(cpf: str, repository: UsuarioRepository = Depends()) -> dict:
     return UsuarioService(repository=repository).get_by_cpf(cpf=cpf)
 
 
@@ -49,7 +49,7 @@ def get(cpf: str, repository: UsuarioRepository = Depends()) -> dict:
     summary='Criar Usuario'
 )
 def create(
-    data: UsuarioPayload, 
+    data: UsuarioPayload = Body(...), 
     repository: UsuarioRepository = Depends()
 ) -> dict[str, Any]:
     return UsuarioService(repository=repository).create(data=data)
