@@ -64,7 +64,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ggrando/bytebiteburger:latest
+          tags: hiltonbruno633/byte-burguer-user:latest
 
   deploy:
     needs: build-and-push
