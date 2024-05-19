@@ -44,7 +44,6 @@ jobs:
           DATABASE_HOST: 'localhost'
           DATABASE_PORT: 27017
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          ENVIRONMENT: 'unittest'
         run: pytest --verbose --cov=src --cov-report=xml:coverage.xml
 
       - name: Adjust coverage paths
