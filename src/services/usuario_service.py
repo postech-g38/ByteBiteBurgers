@@ -12,7 +12,14 @@ class UsuarioService(BaseService):
         self.repository = repository
 
     def paginate(self) -> List[ResponseUsuarioPayload]:
-        return self.query_result(self.repository.get_all())
+        data = self.query_result(self.repository.get_all())
+        data = list(data)
+        for i in data:
+            i["id"] = str(i.pop("_id"))
+        return{
+            'items': data,
+            'quantidade': len(data)
+        }
 
     def get_by_id(self, user_id: int) -> ResponseUsuarioPayload:
         user_id = ObjectId(user_id)
@@ -44,6 +51,5 @@ class UsuarioService(BaseService):
         user_id = ObjectId(user_id)
         row = self.query_result(self.repository.search_by_id(user_id))
         self.repository.delete(user_id)
-        # row['deleted_at'] = datetime.now()
         return row
     

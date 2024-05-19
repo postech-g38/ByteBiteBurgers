@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, Body
 
 from src.services.usuario_service import UsuarioService
 from src.adapters.repositories import UsuarioRepository
-from src.schemas.usuario_schema import UsuarioPayload, ResponseUsuarioPayload
+from src.schemas.usuario_schema import UsuarioPayload, ResponseUsuarioPayload, ResponsePagination
 from src.schemas.base_schema import QueryPaginate
 
 router = APIRouter(prefix='/usuario', tags=['Usuario'])
@@ -15,11 +15,11 @@ router = APIRouter(prefix='/usuario', tags=['Usuario'])
 @router.get(
     path='/paginate', 
     status_code=HTTPStatus.OK,
-    # response_model=ResponsePagination, 
+    response_model=ResponsePagination, 
     summary='Pegar todos os Usuario'
 )
 def paginate(repository: UsuarioRepository = Depends()):
-    return UsuarioService(repository=repository).paginate()
+    return UsuarioService(repository).paginate()
 
 
 @router.get(
