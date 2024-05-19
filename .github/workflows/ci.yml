@@ -36,6 +36,7 @@ jobs:
           ls -la
           pip install -r requirements/common.txt
           pip install -r requirements/local.txt
+          pip install pytest-cov
 
       - name: Wait for PostgreSQL to be ready
         run: |
@@ -52,4 +53,25 @@ jobs:
           DATABASE_PORT: 5432
           DATABASE_NAME: postgres
           ENVIRONMENT: 'unittest'
-        run: pytest --verbose --cov
+        run: pytest --verbose --cov=src --cov-report=xml:coverage.xml
+
+      - name: Adjust coverage paths
+        run: sed -i 's|/home/runner/work/ByteBiteBurgersUsers/ByteBiteBurgersUsers/src|src|g' coverage.xml
+
+      - name: List coverage file
+        run: ls -la coverage.xml
+
+      - name: Show coverage.xml content
+        run: cat coverage.xml
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+        with:
+          args: >
+            -Dsonar.projectKey=postech-g38_ByteBiteBurgersUsers
+            -Dsonar.organization=postech-g38
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sources=src

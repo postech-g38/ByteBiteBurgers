@@ -22,7 +22,7 @@ class ApplicationSettings(BaseSettings):
     application_name: str = Field(..., validation_alias='APPLICATION_NAME')
     application_host: str = Field(..., validation_alias='APPLICATION_HOST')
     application_port: int = Field(..., validation_alias='APPLICATION_PORT')
-    environment: Env = Field(..., validation_alias='ENVIRONEMNT')
+    environment: Env = Field(..., validation_alias='ENVIRONMENT')
     workers: int = Field(..., validation_alias='WORKERS')
     timeout_graceful_shutdown: int = Field(..., validation_alias='TIMEOUT_GRACEFUL_SHUTDOWN')
 

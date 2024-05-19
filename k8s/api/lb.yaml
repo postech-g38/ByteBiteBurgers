@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-service
+spec:
+  selector:
+    app: user-byte-burguer-pod
+  ports:
+    - port: 8002
+      targetPort: 8000
+  type: LoadBalancer
