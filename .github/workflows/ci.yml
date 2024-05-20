@@ -1,24 +1,20 @@
 name: Run Tests Simplified
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
-        image: postgres:latest
+      mongo:
+        image: mongo:latest
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          MONGO_INITDB_ROOT_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          MONGO_INITDB_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          - 27017:27017
 
     steps:
       - name: Checkout repository
@@ -32,27 +28,22 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pwd
-          ls -la
           pip install -r requirements/common.txt
           pip install -r requirements/local.txt
           pip install pytest-cov
 
-      - name: Wait for PostgreSQL to be ready
+      - name: Wait for MongoDB to be ready
         run: |
-          until pg_isready -h localhost -p 5432 -U postgres; do
-            echo "Waiting for PostgreSQL to start..."
-            sleep 2
-          done
+          echo "Waiting for MongoDB to start..."
+          sleep 30  # Aguarda 30 segundos para o MongoDB estar pronto
 
       - name: Run pytest with coverage
         env:
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
-          DATABASE_HOST: '0.0.0.0'
-          DATABASE_PORT: 5432
-          DATABASE_NAME: postgres
-          ENVIRONMENT: 'unittest'
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_HOST: 'localhost'
+          DATABASE_PORT: 27017
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
         run: pytest --verbose --cov=src --cov-report=xml:coverage.xml
 
       - name: Adjust coverage paths
