@@ -81,8 +81,7 @@ client = MongoClient(
     port=get_settings().database_settings.database_port,
     maxPoolSize=50,
     minPoolSize=10,
-    maxIdleTimeMS=3,
-    waitQueueTimeoutMS=10
+    serverSelectionTimeoutMS=30000
 )
 
 
