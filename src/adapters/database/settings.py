@@ -76,15 +76,8 @@ from pymongo import MongoClient
 from src.settings import get_settings
 
 
-def _get_sync_uri() -> str:
-    uri = get_settings().database_settings.sync_uri
-    if not execution_environment(Env.PRD):
-        uri = uri.replace('+srv', '')
-    return uri
-
-
 client = MongoClient(
-    host=_get_sync_uri(), 
+    host=get_settings().database_settings.sync_uri, 
     port=get_settings().database_settings.database_port,
     maxPoolSize=50,
     minPoolSize=10,
