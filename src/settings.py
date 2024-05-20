@@ -40,15 +40,14 @@ class DatabaseSettings(BaseSettings):
 
     @property
     def sync_uri(self) -> str:
-        return self._build_uri(driver='mongodb', dialect='srv')
-
+        if execution_environment(Env.PRD):
+            return self._build_uri(driver='mongodb', dialect='srv')
+        return f"mongodb://{self.database_username}:{self.database_password}@{self.database_host}/{self.database_name}?authSource=admin"
+    
     def _build_uri(self, driver: str, dialect: Optional[str] = None) -> str:
         driver = f"{driver}+{dialect}" if dialect else driver
         uri = f"{driver}://{self.database_username}:{self.database_password}@{self.database_host}/"
-        if execution_environment(Env.PRD):
-            uri += '?retryWrites=true&w=majority&appName=MongoDBCluster'
-        else:
-            uri += '?authSource=admin'
+        uri += '?retryWrites=true&w=majority&appName=MongoDBCluster'            
         return uri
 
 
