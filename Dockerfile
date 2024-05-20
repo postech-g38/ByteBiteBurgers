@@ -6,12 +6,14 @@ RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt autoremove -y
 RUN pip install --upgrade pip
-RUN apt-get install -y build-essential python3-dev
+RUN apt-get install -y build-essential python3-dev wget
 
 # App Directory
 ENV SERVICE_HOME=/usr/src/app
 
 WORKDIR ${SERVICE_HOME}
+
+RUN wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
 
 # Copy Source Code
 COPY src/ src/
