@@ -44,7 +44,11 @@ class DatabaseSettings(BaseSettings):
 
     def _build_uri(self, driver: str, dialect: Optional[str] = None) -> str:
         driver = f"{driver}+{dialect}" if dialect else driver
-        uri = f"{driver}://{self.database_username}:{self.database_password}@{self.database_host}:{self.database_port}/{self.database_name}?authSource=admin"
+        uri = f"{driver}://{self.database_username}:{self.database_password}@{self.database_host}:{self.database_port}/{self.database_name}"
+        if execution_environment(Env.PRD):
+            uri += '?tls=true&tlsCAFile=global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false'
+        else:
+            uri += '?authSource=admin'
         return uri
 
 
