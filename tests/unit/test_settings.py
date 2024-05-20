@@ -70,7 +70,8 @@ def test_database_settings_with_environment_variables_mock():
     assert database_settings.database_port == 5432
     assert database_settings.database_name == 'postgres'
     assert database_settings.unittest_sync_uri == 'sqlite:///unittest.db'
-    # assert database_settings.sync_uri == 'postgresql+psycopg2://postgres:postgres@localhost:5432/postgres'
+    assert database_settings.sync_uri == 'mongodb://postgres:postgres@localhost/postgres?authSource=admin'
+    assert database_settings._build_uri('mongodb') == 'mongodb://postgres:postgres@localhost/?retryWrites=true&w=majority&appName=MongoDBCluster'
 
 
 def test_general_settings_embeded_config_class():
