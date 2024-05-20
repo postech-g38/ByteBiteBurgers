@@ -12,11 +12,20 @@ class UsuarioService(BaseService):
         self.repository = repository
 
     def paginate(self) -> List[ResponseUsuarioPayload]:
-        return self.query_result(self.repository.get_all())
+        data = self.query_result(self.repository.get_all())
+        data = list(data)
+        for i in data:
+            i["id"] = str(i.pop("_id"))
+        return{
+            'items': data,
+            'quantidade': len(data)
+        }
 
     def get_by_id(self, user_id: int) -> ResponseUsuarioPayload:
         user_id = ObjectId(user_id)
-        return self.query_result(self.repository.search_by_id(user_id))
+        data = self.query_result(self.repository.search_by_id(user_id))
+        data['id'] = str(data.pop('_id'))
+        return data
 
     def get_by_cpf(self, cpf: str) -> ResponseUsuarioPayload:
         return self.query_result(self.repository.search_by_cpf(cpf))
@@ -29,7 +38,9 @@ class UsuarioService(BaseService):
             'deleted_at': None
         })
         usuario_id = self.repository.save(data)
-        return self.repository.search_by_id(usuario_id)
+        data = self.repository.search_by_id(usuario_id)
+        data['id'] = str(data.pop('_id'))
+        return data
 
     def update(self, user_id: int, data: UsuarioPayload) -> ResponseUsuarioPayload:
         user_id = ObjectId(user_id)
@@ -44,6 +55,5 @@ class UsuarioService(BaseService):
         user_id = ObjectId(user_id)
         row = self.query_result(self.repository.search_by_id(user_id))
         self.repository.delete(user_id)
-        # row['deleted_at'] = datetime.now()
         return row
     

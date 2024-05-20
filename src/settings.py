@@ -44,7 +44,8 @@ class DatabaseSettings(BaseSettings):
 
     def _build_uri(self, driver: str, dialect: Optional[str] = None) -> str:
         driver = f"{driver}+{dialect}" if dialect else driver
-        return f"{driver}://{self.database_username}:{self.database_password}@{self.database_host}:{self.database_port}/{self.database_name}?authSource=admin"
+        uri = f"{driver}://{self.database_username}:{self.database_password}@{self.database_host}:{self.database_port}/{self.database_name}?authSource=admin"
+        return uri
 
 
 class GeneralSettings(BaseSettings):
