@@ -46,7 +46,6 @@ class DatabaseSettings(BaseSettings):
         driver = f"{driver}+{dialect}" if dialect else driver
         uri = f"{driver}://{self.database_username}:{self.database_password}@{self.database_host}/"
         if execution_environment(Env.PRD):
-            
             uri += '?retryWrites=true&w=majority&appName=MongoDBCluster'
         else:
             uri += '?authSource=admin'
