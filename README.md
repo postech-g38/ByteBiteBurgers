@@ -1,17 +1,12 @@
 # Olá, professor 👋
 
-## ByteBiteBurgers
-https://github.com/postech-g38/ByteBiteBurgers
-****
-
 ## Entrega da fase 04 ⬇️
-
 <details> 
   <summary>Abrir</summary>
 
   ➡️ Fase 04: 
   
-  [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?xxxxxxxxx)
+  [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=mldtRj6B6lc)
 
   📃 Informações de cobertura dos microsserviços:
 
@@ -46,13 +41,16 @@ https://github.com/postech-g38/ByteBiteBurgers
 </details>
 
 </details>
-
+  
 ## Entrega da fase 03 ⬇️
 
 <details> 
   <summary>Abrir</summary>
 
+  ➡️ Fase 03: 
+  
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=FEfz40NYuA0)
+
 
 <details>
   <summary>Repositórios</summary>
@@ -84,7 +82,6 @@ https://github.com/postech-g38/terraform-rds
 ![Desenho do banco](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/d63154d1-3686-4f56-a778-4ed6454cdb23)
 
 </details>
-
 </details>
 
 ## Entrega da fase 02 ⬇️
@@ -96,11 +93,16 @@ https://github.com/postech-g38/terraform-rds
 
 [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=tMUzzM8YnzE)
 
+
+
+
 <details>
   <summary>Desenho de Arquitetura</summary>
 
   ![Desenho de Arquitetura](https://github.com/postech-g38/ByteBiteBurgers/assets/51934321/b8f3c32e-80b5-46f4-99fc-3abaf3e256cd)
 
+
+  
 </details>
 
 <details>
@@ -116,6 +118,7 @@ Automatizar o processo de pedidos em estabelecimentos, proporcionando uma experi
    - Permitir a atualização do status do pedido e consulta em tempo real.
 
 2. **Notificações:**
+
 
 teste
    - Notificar o usuário quando o pedido estiver concluído.
@@ -145,6 +148,7 @@ teste
   - O pagamento é processado em um sistema terceiro, que pode estar indisponível no momento, afetando a operação.
  
 </details>
+ 
 
 <details>
   <summary>Os requisitos de infraestrutura: </summary>
@@ -179,6 +183,7 @@ O projeto foi iniciado com a ferramenta `eksctl`, que auxilia e facilita o proce
 </details>
 
 ## Informações complementares
+
 
 Para auxiliar na sua trajetória de conhecimento da ByteBiteBugers, criamos esse pequeno roteiro para baixar e executar o sistema.
 
