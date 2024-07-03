@@ -1,5 +1,42 @@
 # Olá, professor 👋
 
+## Entrega da fase 05 ⬇️
+<details> 
+  <summary>Abrir</summary>
+
+  ➡️ Fase 05: 
+  
+  [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=XXXXXXX)
+<details>
+ <summary>  📃 Clique para abrir a justificativa do padrão saga escolhido  </summary>
+
+  XXXXXXXXXXXXXXXXXXXXX
+  
+</details>
+
+<details>
+  <summary>  
+    <img src="https://banner2.cleanpng.com/20180502/ozq/kisspng-owasp-zap-vulnerability-penetration-test-proxy-ser-web-application-5aea65947a30d0.0276627015253108685005.jpg" alt="OWASP ZAP Logo" width="20" height="20">
+     Clique para abrir os relatórios do OWASP ZAP
+  </summary>
+
+  * Relatório 01 (antes): https://xxxxxx <br>
+  * Relatório 02 (depois): https://xxxxxx
+  
+</details>
+
+[📄 Clique aqui para abrir o relatório RPID do sistema](https://xxxxxx)
+
+<details>
+  <summary>Desenho de Arquitetura</summary>
+
+  ![Desenho de Arquitetura](XXXXXXXXXX)
+
+</details>
+
+
+</details>
+
 ## Entrega da fase 04 ⬇️
 <details> 
   <summary>Abrir</summary>
