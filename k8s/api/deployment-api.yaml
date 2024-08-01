@@ -1,0 +1,31 @@
+# deployment da aplicacao backend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-byte-burguer-pod
+  labels:
+    app: payment-byte-burguer-pod
+spec:
+  template:
+    metadata:
+      name: payment-byte-burguer-pod
+      labels:
+        app: payment-byte-burguer-pod
+    spec:
+      containers:
+        - name: byteburguer-payment-api
+          image: hiltonbruno633/byteburguer-payment-api:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: payment-secret
+          resources:
+            requests:
+              cpu: 10m
+            limits:
+              cpu: 500m
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: payment-byte-burguer-pod

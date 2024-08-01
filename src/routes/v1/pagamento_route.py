@@ -1,27 +1,64 @@
+from http import HTTPStatus
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Path, Body
+from fastapi.responses import JSONResponse
 
 from src.services.pagamento_service import PagamentoService
-from src.adapters.repositories import EntityRepository
-from src.schemas.pagamento_schema import PagamentoWebhookSchema
+from src.schemas.pagamento_schema import PagamentoPayloadSchema, PagamentoWebhookSchema
+from src.adapters.repositories.pagamento_repository import PagamentoRepository
+from src.adapters.api import ByteBiteBurguers, bytebiteburguers_facade
+from src.constants import HEADERS
+
+router = APIRouter()
 
 
-router = APIRouter(prefix='/pagamento', tags=['Pedido'])
+@router.post(
+    path='/',
+    summary='Criar um Pagamento'
+)
+def create_payment(
+    data: PagamentoPayloadSchema = Body(), 
+    repository: PagamentoRepository = Depends(),
+    orders: ByteBiteBurguers = Depends(bytebiteburguers_facade)
+):
+    data = PagamentoService(repository, orders).create(data)
+    return JSONResponse(
+        status_code=HTTPStatus.CREATED,
+        headers=HEADERS,
+        content=data,
+        
+    )
 
 
 @router.get(
     path='/pedido/{pedido_id}', 
-    # response_model=ResponsePagination, 
-    summary='Pegar status do pagamento de um Pedido ID'
+    summary='Pegar Pagamento por um Pedido ID'
 )
-def get_order_payment_status(pedido_id: int, repository: EntityRepository = Depends()) -> dict:
-    return PagamentoService(repository=repository).get_pedido_status(pedido_id=pedido_id)
+def get_order_payment_status(
+    pedido_id: int = Path(...), 
+    repository: PagamentoRepository = Depends(),
+    orders: ByteBiteBurguers = Depends(bytebiteburguers_facade)
+):
+    data = PagamentoService(repository, orders).get_by_pedido_id(pedido_id)
+    return JSONResponse(
+        status_code=HTTPStatus.OK,
+        headers=HEADERS,
+        content=data,
+    )
 
 
 @router.post(
-    path='/webhook', 
-    # response_model=ResponsePagination, 
-    summary='Webhook para atualizaçao do status do pagamento'
+    path='/pagamento/webhook', 
+    summary='Pegar Pagamento por um Pedido ID'
 )
-def get_order_payment_status(data: PagamentoWebhookSchema, repository: EntityRepository = Depends()) -> dict:
-    return PagamentoService(repository=repository).payment_response(payload=data)
+def update_payment_status(
+    payload: PagamentoWebhookSchema = Body(...), 
+    repository: PagamentoRepository = Depends(),
+    orders: ByteBiteBurguers = Depends(bytebiteburguers_facade)
+):
+    data = PagamentoService(repository, orders).update_status(payload)
+    return JSONResponse(
+        status_code=HTTPStatus.OK,
+        headers=HEADERS,
+        content=data,
+    )

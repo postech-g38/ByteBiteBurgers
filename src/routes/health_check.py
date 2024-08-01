@@ -9,15 +9,10 @@ router = APIRouter()
 
 
 @router.get(
-    path='/health_check', 
-    response_model=HealthCheckResponse, 
-    status_code=200,tags=['Health Check'], 
+    path='/healthcheck', 
+    response_model=HealthCheckResponse,
+    tags=['Health Check'], 
     description='Is API alive ?'
-    )
-def health_check() -> dict[str, Any]:
-    # repository: EntityRepository = Depends()
-    payload = {
-        'status': 'alive',
-        'message': 'hello world'
-    }
-    return HealthCheckResponse.model_validate(payload)
+)
+def health_check():
+    return HealthCheckResponse()
