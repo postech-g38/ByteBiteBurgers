@@ -22,7 +22,8 @@ class PagamentoResponseSchema(PagamentoPayloadSchema):
 
 
 class PagamentoWebhookSchema(BaseModel):
-    pass
+    pagamento_id: int
+    pagamento_status: PagamentoStatus
 
 
 class PagamentoWebhookResponse(BaseModel):

@@ -16,6 +16,8 @@ WORKDIR ${SERVICE_HOME}
 # Copy Source Code
 COPY src/ src/
 
+COPY migrations.py migrations.py
+
 # Install Dependencies
 COPY requirements/common.txt .
 RUN pip install \

@@ -55,9 +55,19 @@ class DatabaseSettings(BaseSettings):
         )
 
 
+class QueueSettings(BaseSettings):
+    queue_url: str = Field(..., validation_alias='QUEUE_URL')
+
+
+class ApiByteBiteBurguers(BaseSettings):
+    byte_bite_burguers_host: str = Field(..., validation_alias='API_BYTE_BITE_BURGUERS_HOST')
+
+
 class GeneralSettings(BaseSettings):
+    api_byte_bite_burguer: ClassVar = ApiByteBiteBurguers()
     application_settings: ClassVar = ApplicationSettings()
     database_settings: ClassVar = DatabaseSettings()
+    queue_settings: ClassVar = QueueSettings()
 
 
 @lru_cache
