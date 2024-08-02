@@ -1,17 +1,63 @@
 # Olá, professor 👋
 
+> *Para facilitar a sua leitura e organização desse projeto, todas as*
+> *entregas estão abaixo, para abrir a entrega e seus componentes, é*
+> *necessário clicar no texto que contém uma seta.*
+
 ## Entrega da fase 05 ⬇️
 <details> 
   <summary>Abrir</summary>
-
-  ➡️ Fase 05: 
+<br/> <br/>
   
   [![Assista ao Vídeo no YouTube](https://img.shields.io/badge/Assista%20ao%20V%C3%ADdeo-no%20YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=XXXXXXX)
-<details>
- <summary>  📃 Clique para abrir a justificativa do padrão saga escolhido  </summary>
 
-  XXXXXXXXXXXXXXXXXXXXX
+  <br/>
+
+  [📄 Clique aqui para abrir o relatório RPID do sistema](https://drive.google.com/file/d/18eqs7RzGkGF1kQrpR7f4kV9-1yNJEfjY/preview)
+
+  <br/>
   
+<details>
+ <summary>📃 Clique para abrir a justificativa do padrão saga escolhido </summary> 
+
+ <br/>
+
+  Considerando o contexto da nossa aplicação, nós optamos pelo padrão SAGA coreografado. Esta escolha se alinha com a simplicidade e necessidades do nosso sistema, como recomendado pelo professor nas aulas sobre o tema. Assim, garante-se uma abordagem eficiente e escalável para o gerenciamento das transações. Em resumo, os pontos considerados para essa escolha são:
+
+ - Desacoplamento e independência dos serviços; 
+ - Escalabilidade e resiliência; 
+ - Facilidade de modificação; 
+ - Responsabilidade e isolamento; 
+ - Simplicidade na coordenação e redução de ponto único de falha;
+ - Adaptação e cenários assíncronos.
+
+***Fonte complementar utilizada:** https://microservices.io/patterns/data/saga.html, livro Microservice Patterns, Chris Richardson*
+  </details>
+
+<details>
+  <summary> 👁️ Visualizar o Saga Pattern </summary>
+
+  ```mermaid
+sequenceDiagram
+  participant Pedidos as Pedidos
+  participant Pagamentos as Pagamentos
+  participant Usuários as Usuários
+  participant Serviço Externo as Serviço Externo
+
+  Usuários ->> Pedidos: Inicia processo
+  Pedidos -->> Usuários: Exibe produtos
+  Usuários ->> Pedidos: Cria pedido
+  Pedidos ->>+ Pagamentos: Solicita pagamento
+  Pagamentos ->> Serviço Externo: Verifica pagamento
+  Serviço Externo --) Pagamentos: Pagamento verificado
+  Pagamentos -->>- Pedidos: Atualiza pedido
+  Pagamentos ->> Usuários: Notifica usuário
+  Pagamentos -->> Pedidos: Pagamento confirmado
+  Pagamentos ->> Pedidos: Atualiza status do pedido
+  Pedidos ->> Usuários: Notifica movimentação
+  Pedidos ->> Usuários: Pedido finalizado
+  Pedidos -->> Usuários: Notifica o usuário
+```
 </details>
 
 <details>
@@ -20,12 +66,14 @@
      Clique para abrir os relatórios do OWASP ZAP
   </summary>
 
-  * Relatório 01 (antes): https://xxxxxx <br>
-  * Relatório 02 (depois): https://xxxxxx
+  <br/>
+
+  * [Relatório 01 (antes)](https://drive.google.com/file/d/1_O1HjPtCsvIDB2F13pRrnFrniJ8ZeW7j/preview)
+  * [Relatório 02 (depois)](XXXXXX)
   
 </details>
 
-[📄 Clique aqui para abrir o relatório RPID do sistema](https://xxxxxx)
+
 
 <details>
   <summary>Desenho de Arquitetura</summary>
@@ -34,8 +82,22 @@
 
 </details>
 
+<details>
+  <summary>Microsserviços</summary>
+
+  <br/>
+  
+>   ⚠️ *Essa imagem pode ser vista em alta qualidade no*
+> [*Miro*](https://miro.com/app/board/uXjVMjB4jS0=/?moveToWidget=3458764595821195415&cot=14)
+
+  <br/> 
+  
+  ![image](https://github.com/user-attachments/assets/d8a7c575-c716-4cd5-9704-036fb62c9ae2)
 
 </details>
+
+</details>
+ </br> 
 
 ## Entrega da fase 04 ⬇️
 <details> 
