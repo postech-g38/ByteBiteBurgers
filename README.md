@@ -69,7 +69,7 @@ sequenceDiagram
   <br/>
 
   * [Relatório 01 (antes)](https://drive.google.com/file/d/1_O1HjPtCsvIDB2F13pRrnFrniJ8ZeW7j/preview)
-  * [Relatório 02 (depois)](XXXXXX)
+  * [Relatório 02 (depois)](https://drive.google.com/file/d/1Jw9dAWlE68AdVMrnSV2CoAJge8wp-Xfc/preview)
   
 </details>
 
