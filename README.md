@@ -76,7 +76,18 @@ sequenceDiagram
 <details>
   <summary>Desenho de Arquitetura</summary>
 
-  ![Desenho de Arquitetura](XXXXXXXXXX)
+  >   ⚠️ *Essa imagem pode ser vista em alta qualidade no*
+  > [*Miro*](https://miro.com/app/board/uXjVMjB4jS0=/?moveToWidget=3458764596487034497&cot=14)
+
+  ![image](https://github.com/user-attachments/assets/3f8884d1-984a-44a8-87d9-13dfb35a128a)
+
+
+  >   ⚠️ *Essa imagem pode ser vista em alta qualidade no*
+  > [*Miro*](https://miro.com/app/board/uXjVMjB4jS0=/?moveToWidget=3458764595821195848&cot=14)
+
+  ![image](https://github.com/user-attachments/assets/00a201cc-3eb1-4a98-962f-4561333aa585)
+
+
 
 </details>
 
@@ -90,7 +101,8 @@ sequenceDiagram
 
   <br/> 
   
-  ![image](https://github.com/user-attachments/assets/d8a7c575-c716-4cd5-9704-036fb62c9ae2)
+![image](https://github.com/user-attachments/assets/a42d51be-3d27-4d0f-aa56-38be841dd08b)
+
 
 </details>
 
