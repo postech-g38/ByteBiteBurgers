@@ -73,8 +73,6 @@ sequenceDiagram
   
 </details>
 
-
-
 <details>
   <summary>Desenho de Arquitetura</summary>
 
@@ -97,7 +95,7 @@ sequenceDiagram
 </details>
 
 </details>
- </br> 
+
 
 ## Entrega da fase 04 ⬇️
 <details> 
