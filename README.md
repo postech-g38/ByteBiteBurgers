@@ -13,7 +13,7 @@
 
   <br/>
 
-  [📄 Clique aqui para abrir o relatório RPID do sistema](https://drive.google.com/file/d/18eqs7RzGkGF1kQrpR7f4kV9-1yNJEfjY/preview)
+  [📄 Clique aqui para abrir o relatório RPID do sistema](https://github.com/postech-g38/ByteBiteBurgers/blob/main/docs/RIPD%20-%20ByteBiteBurgers.pdf)
 
   <br/>
   
